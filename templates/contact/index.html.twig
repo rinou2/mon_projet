@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% block header %} {% include 'header.html.twig' %}{% endblock %}
+<p class="t">Get In Touch</p>
+<h1>Contact Us</h1>
+<p>Vous avez une question, un commentaire ou vous souhaitez organiser un événement spécial ?
+Nous serions ravis de vous entendre.</p>
+<form action="" method="GET">
+<div>
+<label for="nom">Votre nom:</label>
+<input type="text" id="nom" name="nom"  placeholder="John Doe">
+</div>
+<div>
+<label for="email">adresse email:</label>
+<input type="text" id="email" name="email" placeholder="john@doe.com">
+</div>
+<div>
+<label for="num">Numéro de téléphone:</label>
+<input type="tel" id="num" name="num" placeholder="+33 0 00 00 00 00">
+</div>
+<div>
+<label for="sujet">sujet :</label>
+<select id="sujet" name="sujet">
+  <option value="">Sélectionnez une option</option>
+  <option value="op1">Réservations et Événements privés</option>
+  <option value="op2">Cartes et Menus sur mesure</option>
+  <option value="op3">Informations pratiques et Accès</option>
+</select>
+</div>
+<div>
+<label for="message">Message:</label>
+<textarea type="message" id="message" name="message" rows="5" placeholder="Ecrivez votre message ici..."></textarea> 
+</div>
+<button type="submit">Envoyer</button>
+
+</form>
+{% endblock %}

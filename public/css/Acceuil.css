@@ -1,0 +1,133 @@
+header{
+    background-color: #333;
+    color:white;
+    padding-left: 500px;
+    padding-right:500px;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    
+}
+footer{
+    background-color: #333;
+    color:white;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    
+}
+.c2{
+    padding-left: 500px;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    
+}
+html{
+    background-color: white;
+}
+body{
+    background-color: white;
+}
+.c1{
+    background-color:#BE5C3E;
+    color:white;
+}
+.p1{
+    padding-left: 500px;
+}
+.rect{
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color:#BE5C3E;
+}
+.c {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 40px;
+  background-color:white;
+}
+
+.image {
+  position: relative; 
+}
+
+.image img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 1050px;
+  height: auto;
+}
+a{
+    color:white;
+    text-decoration: none;
+}
+div img {
+    background-color: #BE5C3E;
+    height:18px;
+    width:18px;
+}
+h2{
+    font-size: 60px;
+}
+
+form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+    margin-top: auto; /* Pousse le formulaire tout en bas */
+}
+
+.t {
+  font-family: "Dancing Script", cursive;
+  font-size: 1.35rem;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+#menu img{
+    width:250px;
+    height:150px;
+    object-fit: cover;
+    border-radius:15px;
+}
+#menu{
+    background-color:white;
+    display:flex;
+    justify-content:center ;
+    align-items: center;
+    flex-direction: column;
+    border:1px solid black;
+    border-radius:10px;
+    margin:20px;
+}
+.menus{
+    display:flex;
+    flex-wrap: wrap;
+    margin-top:20px;
+    gap:200px;
+}
+.titre{
+    font-family: "Dancing Script", cursive;
+    font-size: 5.35rem;
+    color: #BE5C3E;
+    display: block;
+    margin: 0;
+    text-align: center;
+}
+.m{
+    padding-right:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
