@@ -1,0 +1,81 @@
+{% extends 'espacea/layout.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block contenu %}
+    <h1>Tableau de bord</h1>
+    <p>Bonjour {{ app.user.nom }}.</p>
+    <canvas id="graph" width="1000px" height="500px">Canvas not supported</canvas>
+  <script>
+  const canvasElement = document.getElementById('graph');
+  const ctx = canvasElement.getContext('2d');
+  const createAxeX = (marks, scale, unit, label) => {
+    const distance=(ctx.canvas.width -100)/marks
+   ctx.beginPath();
+   ctx.moveTo(50, ctx.canvas.height - 50);
+    ctx.lineTo(ctx.canvas.width - 50, ctx.canvas.height - 50);
+    ctx.stroke();
+    if(label){
+        ctx.fillText(label, ctx.canvas.width /2, ctx.canvas.height - 10);
+    }
+    for(var i=0;i<=marks;i++){
+        ctx.beginPath();
+        ctx.moveTo(50+i*distance, ctx.canvas.height - 50);
+        ctx.lineTo(50+i*distance, ctx.canvas.height - 40);
+        ctx.stroke();
+        ctx.fillText(i, 50+i*distance, ctx.canvas.height - 30);
+
+    }
+}
+const fillTextVertically = (text, x, y) => {
+    const lineHeight = 10;
+    y = y - lineHeight * text.length / 2;
+
+
+    ctx.textAlign = "center";
+    for (var i = 0; i < text.length; i += 1) {
+        ctx.fillText(text[i], x, y + i * lineHeight);
+    }
+}
+const createAxeY= (marks, scale, unit, label) => {
+    const distance=(ctx.canvas.height -100)/marks
+   ctx.beginPath();
+   ctx.moveTo(50,50);
+    ctx.lineTo(50, ctx.canvas.height - 50);
+    ctx.stroke();
+    if(label){
+        fillTextVertically(label,5,ctx.canvas.height /2);
+    }
+    for( var i = 1; i <= marks; i ++){
+        ctx.beginPath();
+        ctx.moveTo(50,ctx.canvas.height - 50 - i * distance);
+        ctx.lineTo(45,ctx.canvas.height - 50 - i * distance );
+        ctx.stroke();
+        if(unit){
+            ctx.fillText(i*scale+unit,30,ctx.canvas.height - 50 - i * distance);
+        }
+    }
+
+}
+const generatePoints = (size,color) => {
+  const points = []; 
+
+
+for (var i = 0; i < size; i += 1) {
+   points.push({
+   x:i,
+   y: ,
+   color: color 
+});
+
+}
+
+
+return points;  
+}
+  const points = generatePoints(50, "red");
+  createAxeY(10,100,"£","gains");
+  createAxeX(12,100,undefined,"mois");
+  
+  </script>
+{% endblock %}

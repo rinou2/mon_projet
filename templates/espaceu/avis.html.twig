@@ -1,0 +1,32 @@
+{% extends 'espaceu/layout.html.twig' %}
+
+{% block title %}Avis{% endblock %}
+
+{% block contenu %}
+    <h1>avis</h1>
+
+    {% if avis|length > 0 %}
+       <table>
+        <thead>
+            <tr>
+                <th>Commentaire</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for avis in avis %}
+                {% if app.user and avis.user and avis.user.id == app.user.id %}
+                    <tr>
+                        <td>{{ avis.commentaire}}</td>
+                        <td>{{ avis.statut }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Aucune commande pour le moment.</p>
+    {% endif %}
+
+
+{% endblock %}

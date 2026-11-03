@@ -9,23 +9,37 @@
 
 </div>
 
-{% block header %} {% include 'header.html.twig' %}{% endblock %}</div>
+{% block header %} {% include 'header.html.twig' %}{% endblock %}
 <section class="c">
-<div class="image">
-<div class="rect"></div>
-<img src="images/ruya.png" alt="restaurant">
+<div class="x">
+    <div class="jaune"></div>
+    <img src="images/pate1.png" alt="Pâtes" class="pa">
 </div>
 <div>
 <h2>Bienvenue à<br>
 Vite et Gourmand</h2>
-<p>Laissez-vous porter par une symphonie de saveurs uniques, orchestrée par notre chef avec des produits d'exception.<br> Depuis 25 ans à Bordeaux, Pour un repas de fête ou un moment gourmand du quotidien, Vite & Gourmand vous propose un menu de saison en constante évolution. Découvrez dès maintenant nos créations gourmandes sur notre tout nouveau site web!</p>
+<p>Laissez-vous porter par une symphonie de saveurs uniques,orchestrée par notre chef avec des produits d'exception.<br> Depuis 25 ans à Bordeaux, Pour un repas de fête ou un moment gourmand du quotidien, Vite & Gourmand vous propose un menu de saison en constante évolution. Découvrez dès maintenant nos créations gourmandes sur notre tout nouveau site web!</p>
+<button class="b" > s'inscrire </button>
 </div>
+
 </section>
 
 <section id="menu">
-<h2 class="titre">Nos favoris menus </h2>
+
+
+               <span class="titre">What's Cooking</span>
+               <h2 class="stitre">Our Delicious <span>Menu</span></h2>
+               <div class="sligne"></div>
+               <div class="conteneur">
+               <button class="choix" data-choix="all">All</button>
+               <button class="choix" data-choix="tacos">Tacos</button>
+               <button class="choix" data-choix="pizza">Pizzas</button>
+               <button class="choix" data-choix="burger">Burgers</button>
+               <button class="choix" data-choix="pasta">Pastas</button>
+               
+               </div>
 <div class="menus">
-<div class="m">
+<div class="m" data-menu="pizza" data-bs-toggle="modal" data-bs-target="#modalItem1" style="cursor: pointer;">
 <img src="images/pizza.jpg" alt="pizza">
 <h3>pizza</h3>
 <div class="étoiles">
@@ -36,7 +50,33 @@ Vite et Gourmand</h2>
 </div>
 <p class="prix">$19.99</p>
 </div>
-<div class="m">
+<div class="m" data-menu="pizza" data-bs-toggle="modal" data-bs-target="#modalItem1" style="cursor: pointer;">
+<img src="images/pizzathon.webp" alt="pizza">
+<h3>pizza</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$19.99</p>
+</div>
+<div class="m" data-menu="pizza" data-bs-toggle="modal" data-bs-target="#modalItem1" style="cursor: pointer;">
+<img src="images/marpizza.jpg" alt="pizza">
+<h3>pizza</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$19.99</p>
+</div>
+
+
+
+
+<div class="m" data-menu="burger">
 <img src="images/burger.png" alt="burger">
 <h3>burger</h3>
 <div class="étoiles">
@@ -45,10 +85,32 @@ Vite et Gourmand</h2>
 <i class="fas fa-star"></i>
 <i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
 </div>
-<p class="prix">$14.99 </p>
+<p class="prix">$14.99 </p><i class="fa-sharp fa-solid fa-circle-plus"  data-bs-toggle="modal" data-bs-target="#modalItem2" style="cursor: pointer;"></i>
 </div>
-<div class="m">
-<img src="images/pasta.webp" alt="pasta">
+<div class="m" data-menu="burger">
+<img src="images/veggieburger.jpg" alt="burger">
+<h3>burger</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$14.99 </p><i class="fa-sharp fa-solid fa-circle-plus"  data-bs-toggle="modal" data-bs-target="#modalItem2" style="cursor: pointer;"></i>
+</div>
+<div class="m" data-menu="burger">
+<img src="images/cheeseburger.avif" alt="burger">
+<h3>burger</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$14.99 </p><i class="fa-sharp fa-solid fa-circle-plus"  data-bs-toggle="modal" data-bs-target="#modalItem2" style="cursor: pointer;"></i>
+</div>
+<div class="m" data-menu="pasta">
+<img src="images/pasta.webp" alt="pasta" data-bs-toggle="modal" data-bs-target="#modalItem3" style="cursor: pointer;">
 <h3>pasta</h3>
 <div class="étoiles">
 <i class="fas fa-star"></i>
@@ -58,8 +120,33 @@ Vite et Gourmand</h2>
 </div>
 <p class="prix">$16.99</p>
 </div>
-<div class="m">
-<img src="images/tacos.jpeg" alt="tacos">
+<div class="m" data-menu="pasta">
+<img src="images/Tagliatelles.png" alt="pasta" data-bs-toggle="modal" data-bs-target="#modalItem3" style="cursor: pointer;">
+<h3>pasta</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$16.99</p>
+</div>
+<div class="m" data-menu="pasta">
+<img src="images/penne.png" alt="pasta" data-bs-toggle="modal" data-bs-target="#modalItem3" style="cursor: pointer;">
+<h3>pasta</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$16.99</p>
+</div>
+
+
+
+<div class="m" data-menu="tacos">
+<img src="images/tacos.jpeg" alt="tacos" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
 <h3>tacos</h3>
 <div class="étoiles">
 <i class="fas fa-star"></i>
@@ -69,22 +156,90 @@ Vite et Gourmand</h2>
 </div>
 <p class="prix">$10.99</p>
 </div>
+
+<div class="m" data-menu="tacos">
+<img src="images/tacosmex.jpeg" alt="tacos" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
+<h3>tacos</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
 </div>
+<p class="prix">$10.99</p>
+</div>
+<div class="m" data-menu="tacos">
+<img src="images/hard-shelltacos.jpeg" alt="tacos" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
+<h3>tacos</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$10.99</p>
+</div>
+
+
+
+<div class="m" data-menu="dassert">
+<img src="images/dessert1.jpeg" alt="dessert" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
+<h3>Dessert</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$10.99</p>
+</div>
+<div class="m" data-menu="dassert">
+<img src="images/dessert2.jpeg" alt="dessert" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
+<h3>Dessert</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$10.99</p>
+</div>
+<div class="m" data-menu="dassert">
+<img src="images/dessert3.jpeg" alt="dessert" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
+<h3>Dessert</h3>
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+</div>
+<p class="prix">$10.99</p>
+</div>
+---------------!>
+
+</div>
+
+
+
+
+<button class="b"><a href="/menu"  class="a">voir plus</a></button>
 </section>
 
 
-<section id="menu">
-<h2 class="titre">Nos favoris chefs </h2>
-<div class="menus">
-<div class="m">
-    <img src="images/chef1.webp" alt="chef1">
+<section id="chef">
+              <span class="titre">Les Maîtres du Goût</span>
+               <h2 class="stitre">Découvrez nos <span>Chefs d'Exception</span></h2>
+               <div class="sligne"></div>
+<div class="chefs">
+<div class="ch">
+<img src="images/chef1.webp" alt="chef1">
     <h3>Alice Mortal</h3>
         <div class="chef">
         Head Chef
         </div>
     <p class="prix">12 years experience</p>
 </div>
-<div class="m">
+<div class="ch">
 <img src="images/chef2.jpeg" alt="chef2">
 <h3>Michael Corn</h3>
 <div class="chef">
@@ -92,7 +247,7 @@ Grill Master
 </div>
 <p class="prix">8 years experience</p>
 </div>
-<div class="m">
+<div class="ch">
 <img src="images/chef3.avif" alt="chef3">
 <h3>Faz Chowdel</h3>
 <div class="chef">
@@ -100,7 +255,7 @@ Pastry Chef
 </div>
 <p class="prix">10 years experience</p>
 </div>
-<div class="m">
+<div class="ch">
 <img src="images/chef4.jpeg" alt="chef4">
 <h3>Rose Latnum</h3>
 <div class="chef">
@@ -110,5 +265,149 @@ Pizza Artisan
 </div>
 </div>
 </section>
+<!-- Fenêtre Modal des détails -->
+<div class="modal fade" id="modalItem2" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content overflow-hidden rounded-4 border-0">
+      <div class="modal-body p-0">
+        <div class="row g-0">
+          <div class="col-md-6">
+            <img src="images/burger.png" alt="Classic Smash Burger" class="img-fluid h-100 object-fit-cover w-100">
+          </div>
+
+          <div class="col-md-6 p-4 position-relative">
+            <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            <span class="text-uppercase text-muted fw-bold small">BURGERS</span>
+            <h3 class="fw-bold mt-1 mb-2">Classic Smash Burger</h3>
+            <p class="text-secondary small mb-4">
+              Double smashed patty, cheddar cheese, caramelized onions, house pickles and our legendary special sauce.
+            </p>
+            <div class="d-flex align-items-baseline mb-4">
+              <span class="fs-3 fw-bold text-danger me-2">$14.99</span>
+            </div>
+            <button class="b">
+              ajouter au panier
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section id="avis">
+               <span class="titre">Vos Mots Doux</span>
+               <h2 class="stitre">Les retours de <span>nos gourmands</span></h2>
+               <div class="sligne"></div>
+<div class="slider-mask">
+<div class="image-container">
+<div class="av">
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star"></i>
+</div>
+<p>Les burgers sont incroyables, la viande est juteuse et les produits sont super frais. Je recommande à 100% !</p>
+<img src="images/per1.jpeg" alt="image">
+</div>
+<div class="av">
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star"></i>
+</div>
+<p>Commande servie rapidement et bien chaude. Le personnel est très accueillant, nous reviendrons très vite.</p>
+<img src="images/per2.jpeg" alt="image">
+</div>
+<div class="av">
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star"></i>
+</div>
+<p>La pâte à pizza est fine et croustillante comme il faut. Une excellente adresse pour bien manger.  </p>
+<img src="images/per3.jpeg" alt="image">
+</div>
+<div class="av">
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star"></i>
+</div>
+<p>Des portions généreuses, des prix très raisonnables et un goût au rendez-vous. Rien à redire ! </p>
+<img src="images/per4.jpeg" alt="image">
+</div>
+<div class="av">
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star"></i>
+</div>
+<p> Cadre super agréable et plats faits maison. On passe toujours un bon moment ici.</p>
+<img src="images/per5.jpeg" alt="image">
+</div>
+{%for a in avis%}
+{%if a.statut == "publié"%}
+<div class="av">
+<div class="étoiles">
+{%for note in 1..a.note %}
+<i class="fas fa-star"></i>
+{%endfor%}
+</div>
+<p>{{a.commentaire}}.</p>
+</div>
+{% endif %}
+{%endfor%}
+<div class="av">
+<div class="étoiles">
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i>
+<i class="fas fa-star"></i> <i class="fas fa-star"></i>
+</div>
+<p> La qualité des ingrédients est au rendez-vous et l'assaisonnement est impeccable. Une vraie pépite !</p>
+<img src="images/per6.jpeg" alt="image">
+</div>
+</div>
+</div>
+</section>
+
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="formModalLabel">Mon Formulaire</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+
+      <!-- Corps de la modale : Contient le formulaire -->
+      <div class="modal-body">
+      <form action="{{path ('app_connexion' )}}" method="POST">
+<h2 style="text-align: center;">se connecter</h2>
+<div>
+<label for="email">adresse email:</label>
+<input type="text" id="email" name="email"  placeholder="john@doe.com">
+</div>
+<div>
+<label for="mdp">mot de passe:</label>
+<input type="password" id="mdp" name="mdp">
+</div>
+<p>si vous avez pas un compte veuillez vous <a href="inscription">incrire</a> ?</p>
+
+<button class="b" type="submit">se connecter</button>
+
+</form>
+</div>
+
+    </div>
+  </div>
+</div>
 {% block footer %} {% include 'footer.html.twig' %}{% endblock %}
 {% endblock %}

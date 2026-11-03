@@ -1,0 +1,74 @@
+{% extends 'espacea/layout.html.twig' %}
+
+{% block title %}Employés{% endblock %}
+
+{% block contenu %}
+    <h1>Employés</h1>
+
+    <p>{{ employes|length }} employe(s)</p>
+
+    {% if employes|length > 0 %}
+  
+       <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Adresse Postale</th>
+                <th>Adresse mail</th>
+                <th>Numéro</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for employe in employes %}
+            <tr>
+    <td>{{ employe.nom }}</td>
+    <td>{{ employe.postale }}</td>
+    <td>{{ employe.email }}</td>
+    <td>{{ employe.num }}</td>
+         
+
+
+</tr>
+                    
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Aucun employé pour le moment.</p>
+    {% endif %}
+            <button class="b" data-bs-toggle="modal" data-bs-target="#myModal" type="submit">ajouter un employé</button>
+     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+    <div class="modal-body">
+    <form action="{{path ('app_aj' )}}" method="POST">
+       
+<h2 style="text-align: center;">Ajouter un employé </h2>
+<div>
+<label for="nom">Nom et prénom:</label>
+<input type="text" id="nom" name="nom"  placeholder="John Doe" required>
+</div>
+<div>
+<label for="email">Adresse email:</label>
+<input type="text" id="email" name="email" placeholder="john@doe.com" required>
+</div>
+<div>
+<label for="ad">Adresse postale:</label>
+<input type="text" id="ad" name="ad" required >
+</div>
+<div>
+<label for="num">Numéro de téléphone(GSM):</label>
+<input type="tel" id="num" name="num" placeholder="+33 0 00 00 00 00" required>
+</div>
+
+<div>
+<label for="mdp">Mot de passe:</label>
+<input type="password" id="mdp" name="mdp" required>
+</div>
+<button class="b" type="submit">ajouter</button>
+</form></div>
+</div>
+  </div>
+</div>
+{% endblock %}

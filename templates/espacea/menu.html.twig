@@ -1,0 +1,98 @@
+{% extends 'espacea/layout.html.twig' %}
+
+{% block title %}Menus{% endblock %}
+
+{% block contenu %}
+    <h1>Menus</h1>
+
+    <p>{{ menus|length }} menu(s)</p>
+
+    {% if menus|length > 0 %}
+  
+       <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Nombre de peronnes</th>
+                <th>Thème</th>
+                <th>Régime</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for menu in menus %}
+            <tr>
+    <td>{{ menu.titre }}</td>
+    <td>{{ menu.description }}</td>
+    <td>{{ menu.prix }}</td>
+    <td>{{menu.nbrpersonnes}}</td>
+    <td>{{ menu.theme }}</td>
+    <td>{{ menu.regime }}</td>
+         
+
+
+</tr>
+                    
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Aucun menu pour le moment.</p>
+    {% endif %}
+            <button class="b" data-bs-toggle="modal" data-bs-target="#myModal" type="submit">ajouter un menu</button>
+     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+    <div class="modal-body">
+    <form action="{{path ('app_ajmenu' )}}" enctype="multipart/form-data" method="POST">
+<h2 style="text-align: center;">Ajouter un menu </h2>
+<div>
+<label for="tit">Titre:</label>
+<input type="text" id="tit" name="tit" required>
+</div>
+<div>
+<label for="descr">Description:</label>
+<input type="textarea" id="descr" name="descr" required>
+</div>
+<div>
+<label for="prix">Prix:</label>
+<input type="float" id="prix" name="prix" required >
+</div>
+<div>
+<label for="nbr">Nombre de personnes:</label>
+<input type="number" id="nbr" name="nbr" required>
+</div>
+
+<div>
+<label for="img">Image:</label>
+  <input type="file" id="img" name="img">
+</div>
+<div>
+<label for="theme">Thème:</label>
+<input type="text" id="theme" name="theme" required>
+</div>
+<div>
+<label for="regime">Régime:</label>
+<input type="text" id="regime" name="regime" required>
+</div>
+<button class="b" type="submit">ajouter</button>
+</form>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const image = document.getElementById('img').value;
+        const extensions = ['jpg', 'jpeg', 'png','webp'];
+        const isValid = extensions.some(ext => image.toLowerCase().endsWith(ext));
+        if (!isValid) {
+            alert("Votre extension d'image est invalide");
+            event.preventDefault();
+        }
+
+    })
+</script>
+</div>
+</div>
+  </div>
+</div>
+{% endblock %}

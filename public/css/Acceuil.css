@@ -6,6 +6,10 @@ header{
     display:flex;
     justify-content:space-around;
     align-items: center;
+    position:sticky;
+    z-index:1000;
+    width:100%;
+    top:0;
     
 }
 footer{
@@ -23,11 +27,13 @@ footer{
     align-items: center;
     
 }
-html{
-    background-color: white;
+.stitre{
+    text-align: center;
+    font-size: 50px;
 }
-body{
-    background-color: white;
+
+span{
+    color:#BE5C3E;
 }
 .c1{
     background-color:#BE5C3E;
@@ -48,9 +54,10 @@ body{
 .c {
   display: flex;
   align-items: center;
-  gap: 50px;
+  width:100%;
+  gap: 100px;
   padding: 40px;
-  background-color:white;
+
 }
 
 .image {
@@ -61,31 +68,72 @@ body{
   position: relative;
   z-index: 2;
   display: block;
-  width: 1050px;
+  width: 650px;
   height: auto;
 }
-a{
+.a, 
+.a:link, 
+.a:visited {
     color:white;
     text-decoration: none;
+
+}
+.a:hover{
+    color:grey;
 }
 div img {
-    background-color: #BE5C3E;
+
     height:18px;
     width:18px;
 }
-h2{
-    font-size: 60px;
+.res{
+    width:100%;
+    height:97vh;
+    z-index:0;
+    position:relative;
 }
-
 form {
-    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centre parfaitement l'élément au milieu */
+    z-index: 10;
+    position:absolute;
+    background-color: beige;
     display: flex;
+    padding:70px;
+    height:auto;
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    max-width: 300px;
-    margin-top: auto; /* Pousse le formulaire tout en bas */
+    max-width: 600px;
+    margin-left:auto;
+    margin-right:200px;
+    border-radius:10px;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
 }
+.formavis{
+    background-color: transparent !important;     
+}
+.form {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centre parfaitement l'élément au milieu */
+    z-index: 10;
+    position:absolute;
+    background-color: beige !important;
+    display: flex;
+    padding:70px;
+    height:auto;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-left:auto;
+    margin-right:200px;
+    border-radius:10px;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+}
+
 
 .t {
   font-family: "Dancing Script", cursive;
@@ -96,38 +144,325 @@ form {
 }
 
 #menu img{
-    width:250px;
+    width:117%;
     height:150px;
     object-fit: cover;
-    border-radius:15px;
+    margin-top:0;
 }
 #menu{
-    background-color:white;
+    top:0;
     display:flex;
     justify-content:center ;
     align-items: center;
     flex-direction: column;
-    border:1px solid black;
-    border-radius:10px;
-    margin:20px;
+    width: 100%;
+    max-width: 100%;
+    margin-right:100px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color:beige;
+    min-height: 100vh;
 }
+
+
+
 .menus{
-    display:flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     margin-top:20px;
-    gap:200px;
+    gap:20px;
+
 }
+.chefs{
+    margin-top:20px;
+    gap:20px;
+    display: flex;
+  flex-wrap: wrap;
+}
+.m{
+    width:200px;
+    margin-top:50px;
+    padding-right:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index:2;
+    --scale-factor: 1;
+  transform: scale(var(--scale-factor));
+  transition: transform 0.3s ease;
+    position:relative;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+}
+.m1{
+    width:300px;
+    margin-top:50px;
+    padding-right:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index:2;
+    --scale-factor: 1;
+  transform: scale(var(--scale-factor));
+  transition: transform 0.3s ease;
+    position:relative;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+}
+.ch{
+    margin-top:50px;
+    padding-right:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index:2;
+    --scale-factor: 1;
+  transform: scale(var(--scale-factor));
+  transition: transform 0.3s ease;
+    position:relative;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  width:300px;
+}
+#chef{
+    display:flex;
+    justify-content:center ;
+    align-items: center;
+    min-height: 75vh;
+    flex-direction: column;
+
+}
+#chef img{
+    width:117%;
+    height:250px;
+    object-fit: cover;
+    margin-top:0;
+}
+
 .titre{
     font-family: "Dancing Script", cursive;
-    font-size: 5.35rem;
+    font-size: 1.50rem;
     color: #BE5C3E;
     display: block;
     margin: 0;
     text-align: center;
 }
-.m{
+.sligne{
+    width: 58px;
+  height: 4px;
+  border-radius: 4px;
+  background: #BE5C3E;
+  margin: 0 auto 12px;
+}
+table{
+    width:100%;
+    border-collapse: collapse;
+    margin-top:20px;
+
+    
+
+}
+td{
+    border: 1px solid black !important;
+    padding: 8px;
+    text-align: left;
+}
+.choix{
+  border: 2px solid #e5e5e5;
+  background: #fff;
+  border-radius: 50px;
+  padding: 8px 20px;
+
+  color: #666;
+  cursor: pointer;
+  margin: 3px;
+}
+select{
+    width:200px !important;
+ 
+}
+.choix:hover{
+background-color: #BE5C3E;
+color:white;
+}
+.conteneur{
+    display:flex;
+    
+}
+.ch:hover{
+    --scale-factor: calc(1 + 0.1);
+}
+
+.m:hover{
+    --scale-factor: calc(1 + 0.1);
+}
+.menu-details {
+  display: none; /* Masqué par défaut */
+  margin-top: 5px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+}
+
+/* Cette classe sera activée par JavaScript */
+.menu-details.actif {
+  display: block; 
+}
+.b{
+    color:white;
+    background-color:#BE5C3E ;
+    border-radius:15px;
+    text-align:center;
+    padding-top: 1px;
+    width:300px;
+    height: 50px;
+    border:none;
+    margin-top:50px !important;
+    margin:50px auto 0 auto !important;
+}
+.b1{
+    color:white;
+    background-color:#BE5C3E ;
+    border-radius:15px;
+    text-align:center;
+    padding-top: 1px;
+    width:150px;
+    height: 50px;
+    border:none;
+    margin-top:30px;
+    margin-bottom:30px;
+    margin:auto;
+}
+.étoiles i{
+    color: #ffc107 ;
+
+}
+.av{
+       margin-top:50px;
     padding-right:20px;
     display:flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    z-index:2;
+    --scale-factor: 1;
+  transform: scale(var(--scale-factor));
+  transition: transform 0.3s ease;
+    position:relative;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  width:300px;
+  height:300px;
 }
+
+.av img{ 
+    width:50px;
+    height:50px;
+    object-fit: cover;
+    margin-bottom:0;
+    border:1px solid #BE5C3E;
+    border-radius:40px;
+    margin-left:0;
+
+}
+/* 1. Le masque qui cache ce qui dépasse sur les côtés */
+.slider-mask {
+    width: 100%;
+    height:60vh;
+    max-width: 1200px; /* Ajustez la largeur visible de votre slider */
+    margin: 0 auto;
+    overflow: hidden; /* C'est ceci qui évite d'avoir une barre de défilement */
+}
+
+/* 2. Le conteneur qui s'anime */
+.image-container {
+    display: flex; /* Flexbox est plus simple que Grid pour ce type d'animation */
+    gap: 20px;
+    width: max-content; /* Permet d'aligner toutes les cartes sur une seule ligne */
+    animation: defilement 12s linear infinite;
+}
+
+/* 3. Style individuel de chaque carte */
+.image-container .card {
+    width: 250px;
+    flex-shrink: 0; /* Empêche les cartes de s'écraser */
+}
+
+/* 4. Définition de l'animation de défilement */
+@keyframes defilement {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Décale le bloc vers la gauche */
+        transform: translateX(-50%); 
+    }
+}
+
+.slider-mask:hover .image-container {
+    animation-play-state: paused;
+}
+
+#avis{
+    max-height:70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 0;
+    background-color: beige;
+}
+.x {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+}
+.jaune{
+    position: absolute;
+    top: -100px; 
+    left: -180px; 
+    width: 700px; 
+    height: 100vh;
+    background: beige;
+    border-radius: 0 60% 60% 0 / 0 50% 50% 0;
+    z-index:0; 
+    pointer-events: none;
+}
+.pa {
+    position: relative;
+    padding-top: 100px;
+    left: 100px; /* Ajustez cette valeur pour positionner l'assiette sur le jaune */
+    width: 800px; /* Ajustez la taille de l'assiette */
+    height: auto;
+    z-index: 2;   /* Pour qu'elle soit bien au premier plan */
+    filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.15));
+}
+.c {
+  display: flex;
+  align-items: center;
+  width:100%;
+  gap: 50px;
+  height:100vh;
+  padding: 40px;
+  position: relative;
+    padding-top: 0;
+
+}
+

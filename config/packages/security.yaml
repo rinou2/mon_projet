@@ -5,8 +5,21 @@ security:
 
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
-
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+        app_employeur_provider:
+            entity:
+                class: App\Entity\Employer
+                property: email
+        
+        app_chain_provider:
+            chain:
+                providers: [app_user_provider, app_employeur_provider ]
+    role_hierarchy: 
+        ROLE_ADMIN :  ROLE_EMPLOYER
     firewalls:
         dev:
             # Ensure dev tools and static assets are always allowed
@@ -14,18 +27,26 @@ security:
             security: false
         main:
             lazy: true
-            provider: users_in_memory
-
-            # Activate different ways to authenticate:
-            # https://symfony.com/doc/current/security.html#the-firewall
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+            provider: app_chain_provider
+            form_login:
+                login_path: app_connexion      # page qui affiche le formulaire
+                check_path: app_connexion      # URL où le formulaire est envoyé
+                username_parameter: email      # name="email" dans ton input
+                password_parameter: mdp   # name="password" dans ton input
+                enable_csrf: false
+                default_target_path: app_espace   # page où l'utilisateur est redirigé après connexion
+            logout:
+                path: app_deconnexion
+                target: app_acceuil
+            remember_me:                       # pour la case "Se souvenir de moi"
+                secret: '%kernel.secret%'
+                lifetime: 604800               # 1 semaine
 
     # Note: Only the *first* matching rule is applied
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+          - { path: ^/espaceu, roles: ROLE_USER }
+          - { path: ^/espacee, roles: ROLE_EMPLOYER }
+          - { path: ^/espacea, roles: ROLE_ADMIN }
 
 when@test:
     security:

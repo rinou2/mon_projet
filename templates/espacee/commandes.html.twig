@@ -1,0 +1,58 @@
+{% extends 'espacee/layout.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block contenu %}
+    <h1>Commandes</h1>
+
+    <p>{{ commandes|length }} commande(s)</p>
+
+    {% if commandes|length > 0 %}
+  
+       <table>
+        <thead>
+            <tr>
+                <th>Date de l'événement</th>
+                <th>Adresse</th>
+                <th>Lieu</th>
+                <th>Heure</th>
+                <th>Nombre de personnes</th>
+                <th>Total</th>
+                <th>Date de création</th>
+                <th>Statut</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for commande in commandes %}
+              <form method="POST" action="{{path('app_statutem', {id: commande.id})}}">
+            <tr>
+    <td>{{ commande.date_event|date('d/m/Y') }}</td>
+    <td>{{ commande.adresse }}</td>
+    <td>{{ commande.lieu }}</td>
+    <td>{{ commande.heure|date('H:i') }}</td>
+    <td>{{ commande.nbr_personnes }}</td>
+    <td>{{ commande.total|number_format(2, ',', ' ') }} €</td>
+    <td>{{ commande.date_creation|date('d/m/Y') }}</td>
+    <td>
+    <div style="display: flex; align-items: center; gap: 5px;">
+    
+        <select name="statut">
+            {% for statut in status %}
+                <option value="{{ statut }}" {{ statut == commande.statut ? 'selected' : '' }}>{{ statut }}</option>
+            {% endfor %}
+        </select>
+         <button type="submit">mettre à jour</button>
+    </div>
+    </form>
+</td>
+</tr>
+                    
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Aucune commande pour le moment.</p>
+    {% endif %}
+{% endblock %}

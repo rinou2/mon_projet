@@ -1,0 +1,109 @@
+{% extends 'espaceu/layout.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block contenu %}
+    <h1>Commandes</h1>
+
+    <p>{{ commandes|length }} commande(s)</p>
+
+    {% if commandes|length > 0 %}
+       <table>
+        <thead>
+            <tr>
+                <th>Date de l'événement</th>
+                <th>Adresse</th>
+                <th>Lieu</th>
+                <th>Heure</th>
+                <th>Nombre de personnes</th>
+                <th>Total</th>
+                <th>Date de création</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commande in commandes %}
+                {% if app.user and commande.user and commande.user.id == app.user.id and commande.statut !== "livrée" %}
+                    <tr>
+                        <td>{{ commande.date_event|date('d/m/Y') }}</td>
+                        <td>{{ commande.adresse }}</td>
+                        <td>{{ commande.lieu }}</td>
+                        <td>{{ commande.heure|date('H:i') }}</td>
+                        <td>{{ commande.nbr_personnes }}</td>
+                        <td>{{ commande.total|number_format(2, ',', ' ') }} €</td>
+                        <td>{{ commande.date_creation|date('d/m/Y') }}</td>
+                    <td>{{ commande.statut }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table><br> <br>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date de l'événement</th>
+                <th>Adresse</th>
+                <th>Lieu</th>
+                <th>Heure</th>
+                <th>Nombre de personnes</th>
+                <th>Total</th>
+                <th>Date de création</th>
+                <th>Statut</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commande in commandes %}
+                {% if app.user and commande.user and commande.user.id == app.user.id and commande.statut == "livrée" %}
+                    <tr>
+                        <td>{{ commande.date_event|date('d/m/Y') }}</td>
+                        <td>{{ commande.adresse }}</td>
+                        <td>{{ commande.lieu }}</td>
+                        <td>{{ commande.heure|date('H:i') }}</td>
+                        <td>{{ commande.nbr_personnes }}</td>
+                        <td>{{ commande.total|number_format(2, ',', ' ') }} €</td>
+                        <td>{{ commande.date_creation|date('d/m/Y') }}</td>
+                    <td>{{ commande.statut }}</td>
+                    <td><i class="fa-regular fa-comment"  data-bs-toggle="modal" data-bs-target="#maModal_{{commande.id}}"></i></td>
+                    </tr>
+
+      
+                {% endif %}
+                <div class="modal fade" id="maModal_{{commande.id}}" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      
+    
+
+      <div class="modal-body">
+        <form class="formavis" action="{{path('app_espaceu_avis', { id: commande.id })}}" method="POST">
+          <h2 style="text-align:center; color:#BE5C3E;"> doner votre avis </h2>
+
+          <div>
+            <label for="note">Note :</label>
+            <input type="Number" name="note">
+          </div>
+
+          <div>
+            <label for="comment">Commentaire :</label><br>
+            <textarea rows="6" style="width:400px;" name="comment"></textarea>
+          </div>
+
+          <button type="submit" class="b" class="btn btn-primary w-100">envoyer</button>
+        </form>
+        </div>
+
+    </div>
+  </div>
+</div>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        <p>Aucune commande pour le moment.</p>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'espacee/layout.html.twig' %}
+
+{% block title %}Avis{% endblock %}
+
+{% block contenu %}
+    <h1>Avis</h1>
+
+    <p>{{ avis|length }} avis</p>
+
+    {% if avis|length > 0 %}
+       <table>
+        <thead>
+            <tr>
+                <th>Commentaire</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for avis in avis %}
+            <form method="POST" action="{{path('app_status', {id: avis.id})}}">
+                    <tr>
+                        <td>{{ avis.commentaire}}</td>
+                        <td>
+    <div style="display: flex; align-items: center; gap: 5px;">
+        <select name="statut">
+            {% for statut in status %}
+                <option value="{{ statut }}" {{ statut == avis.statut ? 'selected' : '' }}>{{ statut }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Mettre à jour</button>
+    </div>
+</td>
+                    </tr></form>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Aucun avis pour le moment.</p>
+    {% endif %}
+
+
+{% endblock %}

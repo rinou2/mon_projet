@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% block header %} {% include 'header.html.twig' %}{% endblock %}
+
+<form action="{{path ('app_aj' )}}" method="POST">
+<h2 style="text-align: center;">Ajouter un employé </h2>
+<div>
+<label for="nom">Nom et prénom:</label>
+<input type="text" id="nom" name="nom"  placeholder="John Doe" required>
+</div>
+<div>
+<label for="email">Adresse email:</label>
+<input type="text" id="email" name="email" placeholder="john@doe.com" required>
+</div>
+<div>
+<label for="ad">Adresse postale:</label>
+<input type="text" id="ad" name="ad" required >
+</div>
+<div>
+<label for="num">Numéro de téléphone(GSM):</label>
+<input type="tel" id="num" name="num" placeholder="+33 0 00 00 00 00" required>
+</div>
+
+<div>
+<label for="mdp">Mot de passe:</label>
+<input type="password" id="mdp" name="mdp" required>
+</div>
+<button class="b" type="submit">ajouter</button>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+body { margin: 0; font-family: Arial, sans-serif; }
+
+.user { display: flex; min-height: 100vh; }
+
+.user-nav { width: 230px; background: #2b2b2b; padding: 20px; box-sizing: border-box; }
+.user-nav h2 { color: #BE5C3E; font-size: 18px; margin: 0 0 20px 0; }
+.user-nav a { display: block; color: #dddddd; padding: 10px 12px; margin-bottom: 4px; text-decoration: none; border-radius: 6px; }
+.user-nav a:hover { background: #444444; }
+.user-nav a.actif { background: #BE5C3E; color: white; }
+
+
+
+.user-nav a.deconnexion { margin-top: 30px; border-top: 1px solid #555; border-radius: 0; padding-top: 14px; }
+
+.user-contenu { flex: 1; padding: 30px; background: white; }
+.user-contenu table { border-collapse: collapse; width: 100%;}
+.user-contenu th, .user-contenu td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
+.user-contenu th { background: #f5f5f5; }
+.modal-body{
+    background-color:beige ;
+}

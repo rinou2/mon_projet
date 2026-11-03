@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% block header %} {% include 'header.html.twig' %}{% endblock %}
+
+<img class="res" src={{asset("images/ruya.png")}} alt="res">
+
+<form action="{{ path('app_com', { id: menu.id }) }}" method="POST">
+<h2 style="text-align: center;">commander</h2>
+<div>
+<label for="adresse">adresse:</label>
+<input type="text" id="ad" name="ad" required>
+</div>
+<div>
+<label for="date">date:</label>
+<input type="date" id="date" name="date" required>
+</div>
+<div>
+<label for="lieu">lieu:</label>
+<input type="text" id="lieu" name="lieu" required >
+</div>
+<div>
+<label for="heure">heure:</label>
+<input type="text" id="heure" name="heure" placeholder="00:00:00" required>
+</div>
+
+<div>
+<label for="nbr">nombre de personnes:</label>
+<input type="number" id="nbr" name="nbr" required>
+</div>
+<button class="b" type="submit">commander</button>
+</form>
+
+{% endblock %}

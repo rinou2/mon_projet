@@ -1,0 +1,18 @@
+body { margin: 0; font-family: Arial, sans-serif; }
+
+.admin { display: flex; min-height: 100vh; }
+
+.admin-nav { width: 230px; background: #2b2b2b; padding: 20px; box-sizing: border-box; }
+.admin-nav h2 { color: #f0a58c; font-size: 18px; margin: 0 0 20px 0; }
+.admin-nav a { display: block; color: #dddddd; padding: 10px 12px; margin-bottom: 4px; text-decoration: none; border-radius: 6px; }
+.admin-nav a:hover { background: #444444; }
+.admin-nav a.actif { background: #f0a58c; color: white; }
+
+
+
+.admin-nav a.deconnexion { margin-top: 30px; border-top: 1px solid #555; border-radius: 0; padding-top: 14px; }
+
+.admin-contenu { flex: 1; padding: 30px; background: white; }
+.admin-contenu table { border-collapse: collapse; width: 100%; }
+.admin-contenu th, .admin-contenu td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
+.admin-contenu th { background: #f5f5f5; }

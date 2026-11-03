@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% block header %} {% include 'header.html.twig' %}{% endblock %}
+<img class="res" src="images/ruya.png" alt="res">
+
+<form action="{{path ('app_inscri' )}}" method="POST">
+<h2 style="text-align: center;">s'inscrire</h2>
+<div>
+<label for="nom">Nom et prénom:</label>
+<input type="text" id="nom" name="nom"  placeholder="John Doe" required>
+</div>
+<div>
+<label for="email">Adresse email:</label>
+<input type="text" id="email" name="email" placeholder="john@doe.com" required>
+</div>
+<div>
+<label for="ad">Adresse postale:</label>
+<input type="text" id="ad" name="ad" required >
+</div>
+<div>
+<label for="num">Numéro de téléphone(GSM):</label>
+<input type="tel" id="num" name="num" placeholder="+33 0 00 00 00 00" required>
+</div>
+
+<div>
+<label for="mdp">Mot de passe:</label>
+<input type="password" id="mdp" name="mdp" required>
+</div>
+<button class="b" type="submit">s'inscrire</button>
+</form>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const mdp = document.getElementById('mdp').value;
+        const email = document.getElementById('email').value;
+        const num = document.getElementById('num').value;
+        let erreurs =[];
+        let contientquedechiffres=true;
+        for(let i=0;i<num.length;i++){
+            if(isNaN(num[i])){
+                contientquedechiffres=false;
+                break;
+            }
+        }
+        if(!contientquedechiffres || num.length<8){
+            erreurs.push("Le numéro de téléphone n'est pas valide.");
+        }
+        const premierArobase = email.indexOf("@");
+        const dernierArobase = email.lastIndexOf("@");
+
+        const unSeulArobase = (premierArobase !== -1 && premierArobase === dernierArobase);
+
+        let domaine = "";
+        if (unSeulArobase) {
+            domaine = email.substring(premierArobase + 1);
+        }
+        const aUnPointDansDomaine = domaine.includes(".");
+        const neCommencePasParPoint = !email.startsWith(".");
+        const neFinitPasParPoint = !email.endsWith(".");
+
+        if (email.includes(" ") || !unSeulArobase || !aUnPointDansDomaine || !neCommencePasParPoint || !neFinitPasParPoint) {
+            erreurs.push("L'adresse e-mail n'est pas valide.");
+        }
+        const special="!@#$%^&*()_+-=[]{}|;':\",./<>?~`\\";
+        let contientchiffre = false;
+        let contientspecial =false;
+        for(let i=0;i<mdp.length;i++){
+            if(!isNaN(mdp[i]) && mdp[i]!==" "){
+                contientchiffre=true;
+            }
+            if(special.includes(mdp[i])){
+                contientspecial=true;
+            }
+        }
+        if (mdp.length < 8 || mdp.includes(" ") || mdp === mdp.toUpperCase() || mdp === mdp.toLowerCase() || !contientchiffre || !contientspecial) {
+            erreurs.push("Le mot de passe est faible.");
+        }
+        if (erreurs.length > 0) {
+            event.preventDefault();
+            alert("Veuillez corriger les erreurs suivantes :\n\n" + erreurs.join("\n"));
+        }
+    });
+</script>
+{% endblock %}
