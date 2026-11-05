@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\User;
+use App\Service\EmailVerifier;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface; 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +26,8 @@ final class InscriptionControleurController extends AbstractController
     #[Route('/inscri', name: 'app_inscri')]
     public function inscri(EntityManagerInterface $entityManager ,
          Request $request ,
-         UserPasswordHasherInterface $passwordHasher)
+         UserPasswordHasherInterface $passwordHasher,
+         EmailVerifier $emailVerifier)
          : Response
 
 
@@ -45,9 +49,23 @@ final class InscriptionControleurController extends AbstractController
         $user->setPostale($tab['ad']);
         $user->setNum($tab['num']);
         $user->setRoles(['ROLE_USER']);
-        
         $entityManager->persist($user);
         $entityManager->flush();
+        
+        try {
+            $emailVerifier->sendActivationEmail($user);
+            $this->addFlash(
+                'success',
+                'Inscription réussie ! Consultez votre boîte e-mail pour activer votre compte.'
+            );
+        } catch (TransportExceptionInterface $exception) {
+            $this->addFlash(
+                'warning',
+                "Votre compte a bien été créé, mais l'e-mail d'activation n'a pas pu être envoyé."
+            );
+        }
+        
+       
         return $this->redirectToRoute('app_connexion');
         
         

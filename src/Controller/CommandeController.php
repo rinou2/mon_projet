@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Service\DeliveryCalculatorService;
 use App\Entity\Commande;
 use App\Entity\Menu;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,6 +27,7 @@ final class CommandeController extends AbstractController
     #[Route('/com/{id}', name: 'app_com')]
     public function commande(EntityManagerInterface $entityManager ,
          Request $request,
+         DeliveryCalculatorService $deliveryCalculator,
          MenuRepository $menuRepository,
          int $id
          )
@@ -44,6 +45,7 @@ final class CommandeController extends AbstractController
             'total'=>(float)$request->request->get('total')
 
         ];
+        $frais= $deliveryCalculator->calculateDeliveryCost($tab['adresse'], $tab['lieu']);
         $menu = $menuRepository->find($id); 
         $user = $this->getUser(); 
 
@@ -52,7 +54,7 @@ final class CommandeController extends AbstractController
         $commande->setLieu($tab['lieu']);
         $commande->setHeure(new \DateTime($tab['heure']));
         $commande->setNbrPersonnes($tab['nbr']);
-        $commande->setTotal($menu->getPrix() * $tab['nbr']);
+        $commande->setTotal($menu->getPrix() * $tab['nbr'] + $frais);
         $commande->setDateCreation(new \DateTime());
         $commande->setStatut('en attente');
         $commande->setIdUser($user);
