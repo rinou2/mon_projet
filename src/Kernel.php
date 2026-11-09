@@ -9,11 +9,21 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
-    /**
-     * @return list<string> An array of allowed values for APP_ENV
-     */
-    private function getAllowedEnvs(): array
+    public function getCacheDir(): string
     {
-        return ['prod', 'dev', 'test'];
+        if (getenv('VERCEL')) {
+            return '/tmp/symfony/cache/' . $this->environment;
+        }
+
+        return parent::getCacheDir();
+    }
+
+    public function getLogDir(): string
+    {
+        if (getenv('VERCEL')) {
+            return '/tmp/symfony/log';
+        }
+
+        return parent::getLogDir();
     }
 }
