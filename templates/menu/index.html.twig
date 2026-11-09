@@ -1,31 +1,84 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/Acceuil.css') }}">
+             <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+            {% endblock %} 
+            {% block javascripts %}
+           {% endblock %} 
+    </head>
+    <body>
 {% block body %}
 {% block header %} {% include 'header.html.twig' %}{% endblock %}
-<div id="menu">
+
 
             <span class="titre">What's Cooking</span>
             <h2 class="stitre">Our Delicious <span>Menu</span></h2>
             <div class="sligne"></div>
-            <div class="conteneur">
-                <button class="choix" data-choix="all">All</button>
-                <button class="choix" data-choix="tacos">Tacos</button>
-                <button class="choix" data-choix="pizza">Pizzas</button>
-                <button class="choix" data-choix="burger">Burgers</button>
-                <button class="choix" data-choix="pasta">Pastas</button>
-               
-            </div>
 
-<div class="menus">
+                                {% set prixMax = 0 %}        
+                                 {% set perxMax = 1 %}   
+                    {% for menu in menus %}             
+                        {% if menu.prix > prixMax %}                 
+                            {% set prixMax = menu.prix %}             
+                        {% endif %}   
+                             {% if menu.nbrpersonnes > perxMax %}                 
+                            {% set perxMax = menu.nbrpersonnes %}             
+                        {% endif %}    
+                    {% endfor %} 
+                    {% set prixMax = prixMax|round(0, 'ceil') %} 
+                    <div class="layout-menu">
+            <form class="filtres" id="filtres" onsubmit="return false;">
+                <p>Filtrer les menus</p>
+                <div class="filtre">                 
+                    <label for="filtre-recherche">Rechercher</label>          
+                    <input type="search" id="filtre-recherche" placeholder="Nom du menu...">
+                </div>
+                <div class="filtre"> 
+                    <label for="filtre-theme">Thème</label><br>
+                    <button class="th" data-th="Tous">Tous</button>
+                    <button class="th" data-th="Dessert">Dessert</button>
+                    <button class="th" data-th="Cocktail">Cocktail</button>
+                    <button class="th" data-th="Brunch">Brunch</button>
+                    <button class="th" data-th="Mariage">Mariage</button>
+                    <button class="th" data-th="Fast food">Fast food</button>
+                </div>
+                <div class="filtre"> 
+                    <label for="filtre-regime">Régime</label><br>
+                    <button class="reg" data-reg="Tous">Standard</button>
+                    <button class="reg" data-reg="Dessert">Végétarien</button>
+                </div>
+                <div class="filtre">                 
+                    <label for="filtre-personnes">Nombre de convives</label>  <br>
+                    <p>à partir de 0 personnes</p>
+                    <input type="range" id="filtre-personnes" min="1" max="{{ perxMax }}" step="1" value="{{ perxMax }}" >             
+                </div> 
+                <div class="filtre">                 
+                    <label for="filtre-prix">Budget max / personne</label>  <br>
+                    <p>Jusqu'à {{ prixMax }}</p>
+                    <input type="range" id="filtre-prix" min="0" max="{{ prixMax }}" step="1" value="{{ prixMax }}">              
+                </div>
+                <button type="button" id="filtre-reset" class="btn">Réinitialiser</button> 
+                </form>
+
+<div class="menus_menu" id="liste-menus">
 {% for menu in menus %}          
-<div class="m1" >
+<div class="m1_menu"  data-menu="{{menu.theme}}" data-regime="{{menu.regime}}" data-titre="{{menu.titre}}" data-prix="{{menu.prix}}" data-personnes="{{menu.nbrpersonnes}}">
 <img src="{{ asset('images/'~ menu.image)}}" alt="{{menu.titre}}">
 <h3>{{menu.titre}}</h3>
 <p>{{menu.description}}</p>
 <p class="prix"> {{ menu.prix }} €</p>
+<p>{{ menu.nbrpersonnes}} personnes </p>
 <button class="b1"><a class="a" href="{{ path('app_commande', { id: menu.id }) }}"> Commander </a> </button>
 </div>
 
 {% endfor %} 
 
-
+</div></div>
+<p id="aucun-menu" style="display: none; text-align: center;"> Aucun menu ne correspond à votre recherche. </p> 
 {% endblock %}
+</body>
+ <script src="{{ asset('js/Filtre_menu.js')}}"></script>
+</html>

@@ -1,14 +1,27 @@
 {% extends 'espacea/layout.html.twig' %}
-
 {% block title %}Administration{% endblock %}
-
 {% block contenu %}
     <h1>Tableau de bord</h1>
     <p>Bonjour {{ app.user.nom }}.</p>
-    <canvas id="graph" width="1000px" height="500px">Canvas not supported</canvas>
+    <form method="get" action="" style="margin-bottom: 20px;">
+    <label for="periode">Période : </label>
+    <select name="periode" id="periode" onchange="this.form.submit()">
+        <option value="3" {% if app.request.query.get('periode') == '3' %}selected{% endif %}>3 derniers mois</option>
+        <option value="6" {% if app.request.query.get('periode') == '6' or not app.request.query.has('periode') %}selected{% endif %}>6 derniers mois</option>
+        <option value="12" {% if app.request.query.get('periode') == '12' %}selected{% endif %}>12 derniers mois</option>
+    </select>
+</form>
+    <canvas id="graph" style="backgournd-color:beige;" width="800px" height="500px">Canvas not supported</canvas>
   <script>
+  const tab = {{ tab|json_encode|raw }};
   const canvasElement = document.getElementById('graph');
+canvasElement.style.backgroundColor = "#f0f0f0";
   const ctx = canvasElement.getContext('2d');
+
+  ctx.font = "bold 14px Arial, sans-serif";
+  ctx.fillStyle = "#333333";
+  ctx.fillText("Chiffre d'affaires mensuel", 50, 30);
+
   const createAxeX = (marks, scale, unit, label) => {
     const distance=(ctx.canvas.width -100)/marks
    ctx.beginPath();
@@ -24,14 +37,17 @@
         ctx.lineTo(50+i*distance, ctx.canvas.height - 40);
         ctx.stroke();
         ctx.fillText(i, 50+i*distance, ctx.canvas.height - 30);
-
+        ctx.strokeStyle = "#e0e0e0";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(50 + i * distance, 50);
+        ctx.lineTo(50 + i * distance, ctx.canvas.height - 50);
+        ctx.stroke();
     }
 }
 const fillTextVertically = (text, x, y) => {
     const lineHeight = 10;
     y = y - lineHeight * text.length / 2;
-
-
     ctx.textAlign = "center";
     for (var i = 0; i < text.length; i += 1) {
         ctx.fillText(text[i], x, y + i * lineHeight);
@@ -52,30 +68,68 @@ const createAxeY= (marks, scale, unit, label) => {
         ctx.lineTo(45,ctx.canvas.height - 50 - i * distance );
         ctx.stroke();
         if(unit){
-            ctx.fillText(i*scale+unit,30,ctx.canvas.height - 50 - i * distance);
+            ctx.fillText(i*scale+unit,10,ctx.canvas.height - 50 - i * distance);
         }
+        ctx.strokeStyle = "#e0e0e0";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(50, ctx.canvas.height - 50 - i * distance);
+        ctx.lineTo(ctx.canvas.width - 50, ctx.canvas.height - 50 - i * distance);
+        ctx.stroke();
     }
-
 }
 const generatePoints = (size,color) => {
-  const points = []; 
-
-
-for (var i = 0; i < size; i += 1) {
-   points.push({
-   x:i,
-   y: ,
-   color: color 
-});
-
+    const points = []; 
+    for (var j = 0; j < tab.length; j++) {
+        points.push({
+            x: j + 1,
+            y: tab[j],
+            color: color 
+        });
+    }
+    return points;  
 }
-
-
-return points;  
-}
-  const points = generatePoints(50, "red");
-  createAxeY(10,100,"£","gains");
-  createAxeX(12,100,undefined,"mois");
-  
+const drawLineAndFill = (points, marks_x, scale_x, marks_y, scale_y) => {
+    const transform_x = marks_x * scale_x / (ctx.canvas.width - 100);
+    const transform_y = marks_y * scale_y / (ctx.canvas.height - 100);
+    if (points.length === 0) return;
+    const baseY = ctx.canvas.height - 50;
+    // 1. Tracer et remplir la zone sous la courbe
+    ctx.beginPath();
+    // Partir du bas de l'axe au niveau du premier point
+    const firstX = 50 + points[0].x / transform_x;
+    ctx.moveTo(firstX, baseY);
+    // Relier tous les points
+    points.forEach(point => {
+        const x = 50 + point.x / transform_x;
+        const y = baseY - point.y / transform_y;
+        ctx.lineTo(x, y);
+    });
+    // Redescendre tout en bas au niveau du dernier point pour fermer la forme
+    const lastPoint = points[points.length - 1];
+    const lastX = 50 + lastPoint.x / transform_x;
+    ctx.lineTo(lastX, baseY);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(217, 83, 79, 0.15)"; 
+    ctx.fill();
+    ctx.beginPath();
+    points.forEach((point, index) => {
+        const x = 50 + point.x / transform_x;
+        const y = baseY - point.y / transform_y;
+        if (index === 0) {
+            ctx.moveTo(x, y);
+        } else {
+            ctx.lineTo(x, y);
+        }
+    });
+    
+    ctx.strokeStyle = "red"; // Couleur de la ligne (rouge)
+    ctx.lineWidth = 3; // Épaisseur de la ligne
+    ctx.stroke();
+};
+  createAxeY(10,100,"£",undefined);
+  createAxeX(tab.length,100,undefined,undefined);
+  const points = generatePoints(tab.length, "red");
+drawLineAndFill(points,tab.length,1,10,100);
   </script>
 {% endblock %}

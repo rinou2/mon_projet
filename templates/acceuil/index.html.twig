@@ -24,6 +24,67 @@ Vite et Gourmand</h2>
 
 </section>
 
+<section id="equipe-section" class="equipe-section">
+    <div class="equipe-container">
+        <div class="equipe-image">
+            <img src="{{ asset('images/equipe.jpeg') }}" alt="Équipe">
+        </div>
+
+        <div class="equipe-content">
+            <span class="equipe-subtitle">— QUI SOMMES-NOUS</span>
+            <h2 class="equipe-title">Une équipe passionnée au service de vos événements</h2>
+            
+            <p class="equipe-text">
+                Depuis 2019, Vite & Gourmand accompagne particuliers et entreprises dans l'organisation de leurs repas événementiels. Notre cuisine est préparée chaque jour par notre brigade, à partir de produits frais et de saison.
+            </p>
+            <p class="equipe-text">
+                Nous mettons un point d'honneur à nous adapter à vos contraintes : régimes alimentaires, allergènes, budget et nombre d'invités. Chaque menu est pensé pour être personnalisable, sans jamais transiger sur la qualité.
+            </p>
+
+            <div class="equipe-grid">
+                <div class="equipe-item">
+                    <div class="equipe-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div>
+                        <h4>Produits frais</h4>
+                        <p>Sélectionnés chaque semaine</p>
+                    </div>
+                </div>
+
+                <div class="equipe-item">
+                    <div class="equipe-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <div>
+                        <h4>Livraison fiable</h4>
+                        <p>Respect des horaires</p>
+                    </div>
+                </div>
+
+                <div class="equipe-item">
+                    <div class="equipe-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <div>
+                        <h4>Fait maison</h4>
+                        <p>Cuisine artisanale</p>
+                    </div>
+                </div>
+
+                <div class="equipe-item">
+                    <div class="equipe-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h4>Hygiène & sécurité</h4>
+                        <p>Normes respectées</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="menu">
 
 
@@ -360,6 +421,7 @@ Pizza Artisan
 {%endfor%}
 </div>
 <p>{{a.commentaire}}.</p>
+<p>{{a.usernom}}
 </div>
 {% endif %}
 {%endfor%}

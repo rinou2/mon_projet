@@ -54,7 +54,9 @@
             </tr>
         </thead>
         <tbody>
+        
             {% for commande in commandes %}
+            <form class="formavis" action="{{path('app_espaceu_avis', { id: commande.id })}}" method="POST">
                 {% if app.user and commande.user and commande.user.id == app.user.id and commande.statut == "livrée" %}
                     <tr>
                         <td>{{ commande.date_event|date('d/m/Y') }}</td>
@@ -77,23 +79,23 @@
     
 
       <div class="modal-body">
-        <form class="formavis" action="{{path('app_espaceu_avis', { id: commande.id })}}" method="POST">
+        
           <h2 style="text-align:center; color:#BE5C3E;"> doner votre avis </h2>
 
           <div>
             <label for="note">Note :</label>
-            <input type="Number" name="note">
+            <input type="Number" min="1" max="5" name="note">
           </div>
 
           <div>
             <label for="comment">Commentaire :</label><br>
-            <textarea rows="6" style="width:400px;" name="comment"></textarea>
+            <textarea rows="6" style="width:400px" name="comment"></textarea>
           </div>
 
           <button type="submit" class="b" class="btn btn-primary w-100">envoyer</button>
-        </form>
+       
         </div>
-
+ </form>
     </div>
   </div>
 </div>
@@ -104,6 +106,6 @@
     {% else %}
         <p>Aucune commande pour le moment.</p>
     {% endif %}
-
+<button class="b1"><a class="a" href="/menu"> Commander </a> </button>
 
 {% endblock %}

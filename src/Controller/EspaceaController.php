@@ -11,10 +11,21 @@ use Symfony\Component\Routing\Attribute\Route;
 final class EspaceaController extends AbstractController
 {
     #[Route('/espacea', name: 'app_espacea')]
-    public function index(): Response
+    public function index(Request $request,CommandeRepository $commandeRepository): Response
     {
+        $commandes = $commandeRepository->findAll();
+        $tab = array_fill(0, 12, 0);
+        foreach ($commandes as $commande) {
+            $date=$commande->getDate_Creation();
+            $month = (int)$date->format('m');
+            $tab[$month-1]+=$commande->getTotal();
+        }
+        $periode = $request->query->get('periode', 12);
+
+        $tabFiltre = array_slice($tab, -$periode);
         return $this->render('espacea/index.html.twig', [
-            'controller_name' => 'EspaceaController'
+            'controller_name' => 'EspaceaController',
+            'tab'=>$tabFiltre
         ]);
     }
     private const status= ['en attente', 'en cours de préparation', 'terminée', 'acceptée','livrée','annulée'];
@@ -23,11 +34,18 @@ final class EspaceaController extends AbstractController
     {
         $menus = $menuRepository->findAll();
         $commandes = $commandeRepository->findAll();
+        $tab = array_fill(0, 12, 0);
+        foreach ($commandes as $commande) {
+            $date=$commande->getDate_Creation();
+            $month = (int)$date->format('m');
+            $tab[$month-1]+=$commande->getTotal();
+        }
         return $this->render('espacea/commandes.html.twig', [
             'controller_name' => 'EspaceaController',
             'menu' => $menus,
             'commandes' => $commandes,
-            'status' => self::status
+            'status' => self::status,
+            'tab'=>$tab
         ]);
     }
 

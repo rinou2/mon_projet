@@ -12,14 +12,80 @@ header{
     top:0;
     
 }
-footer{
-    background-color: #333;
-    color:white;
-    display:flex;
-    justify-content:space-around;
-    align-items: center;
-    
+
+/********************************footer**************************************/
+
+.footer {
+    background-color: #262220;
+    color: #b5ada6;
+    padding: 50px 20px 20px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-col {
+    flex: 1;
+    min-width: 200px;
+}
+.footer-col h3 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-family: "Georgia", serif;
+}
+.footer-col p {
+    margin: 8px 0;
+}
+.footer-col a {
+    color: #b5ada6;
+    text-decoration: none;
+}
+.footer-col a:hover {
+    color: #fff;
+}
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 20px 0;
+    font-size: 12px;
+    color: #888;
+}
+
+.footer-bottom-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+/********************************fin de footer**************************************/
+
 .c2{
     padding-left: 500px;
     display:flex;
@@ -92,10 +158,10 @@ div img {
     z-index:0;
     position:relative;
 }
-form {
+form:not(#filtres){
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centre parfaitement l'élément au milieu */
+    transform: translate(-50%, -50%);
     z-index: 10;
     position:absolute;
     background-color: beige;
@@ -111,13 +177,38 @@ form {
     border-radius:10px;
     box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
 }
+.filtres .th {
+    display: inline-block;
+    background-color: #F3F4F6;
+    border: 1px solid #E5E7EB;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #444;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filtres .th:hover, .filtres .th.active {
+    background-color: #BE5C3E;
+    color: white;
+    border-color: #BE5C3E;
+}
+
+.filtres input[type="range"] {
+    width: 100%;
+    accent-color: #BE5C3E;
+    cursor: pointer;
+}
+/**************** code page menu*******************/
 .formavis{
     background-color: transparent !important;     
 }
 .form {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Centre parfaitement l'élément au milieu */
+    transform: translate(-50%, -50%);
     z-index: 10;
     position:absolute;
     background-color: beige !important;
@@ -383,7 +474,7 @@ color:white;
 /* 1. Le masque qui cache ce qui dépasse sur les côtés */
 .slider-mask {
     width: 100%;
-    height:60vh;
+    max-height:60vh;
     max-width: 1200px; /* Ajustez la largeur visible de votre slider */
     margin: 0 auto;
     overflow: hidden; /* C'est ceci qui évite d'avoir une barre de défilement */
@@ -419,7 +510,7 @@ color:white;
 }
 
 #avis{
-    max-height:70vh;
+    max-height:80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -436,10 +527,10 @@ color:white;
 }
 .jaune{
     position: absolute;
-    top: -100px; 
+    top: -40px; 
     left: -180px; 
     width: 700px; 
-    height: 100vh;
+    height: 90vh;
     background: beige;
     border-radius: 0 60% 60% 0 / 0 50% 50% 0;
     z-index:0; 
@@ -459,10 +550,302 @@ color:white;
   align-items: center;
   width:100%;
   gap: 50px;
-  height:100vh;
+  max-height:100vh;
   padding: 40px;
   position: relative;
     padding-top: 0;
 
 }
+/*****************************************************section equipe**************************************/
+.equipe-section {
+    background-color: #fdfbf7;
+    padding: 60px 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 75vh;
+}
 
+.equipe-container {
+    height: 100%;
+    margin:auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.equipe-image {
+    flex: 1;
+    min-width: 350px;
+}
+
+.equipe-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.equipe-content {
+    flex: 1.2;
+    min-width: 350px;
+}
+
+.equipe-subtitle {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: #8c7355;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.equipe-title {
+    font-size: 32px;
+    font-family: "Georgia", serif;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.equipe-text {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.equipe-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 30px;
+    margin-top: 30px;
+}
+
+.equipe-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.equipe-icon {
+    font-size: 20px;
+    color: #4a6b41;
+    margin-top: 2px;
+}
+
+.equipe-item h4 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 0 0 3px 0;
+}
+
+.equipe-item p {
+    font-size: 13px;
+    color: #777;
+    margin: 0;
+}
+/************************************************fin de section equipe**********************************************/
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+
+    header {
+        padding-left: 20px;
+        padding-right: 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .c2, .p1 {
+        padding-left: 20px;
+    }
+
+    .c {
+        max-height:25vh;
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .image img {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .menus {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pa {
+        width: 100%;
+        left: 0;
+    }
+
+    .jaune {
+        width: 50%;
+    }
+
+    form, .form {
+        width: 90%;
+        max-width: 500px;
+        padding: 35px;
+        margin: 0;
+    }
+}
+@media screen and (max-width: 768px) {
+
+    header {
+        padding: 15px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .c, .c2, .conteneur {
+        flex-direction: column;
+        padding: 20px;
+        gap: 25px;
+    }
+
+    .c {
+        max-height:50vh;
+
+    }
+
+    .c2, .p1 {
+        padding-left: 0;
+    }
+
+    .stitre {
+        font-size: 32px;
+    }
+
+    .image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .menus {
+        grid-template-columns: 1fr;
+    }
+
+    .m, .m1, .ch, .av {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #menu, #chef {
+        padding: 20px;
+        min-height: auto;
+    }
+
+    #menu img, #chef img {
+        width: 100%;
+        height: auto;
+    }
+
+    .chefs {
+        justify-content: center;
+    }
+
+    form, .form {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 25px;
+        margin: 20px auto;
+    }
+
+    .res {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .x {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .pa {
+        width: 100%;
+        padding-top: 20px;
+        left: 0;
+    }
+
+    .jaune {
+        display: none;
+    }
+
+    #avis {
+        max-height: none;
+        padding: 50px 15px;
+    }
+
+    .slider-mask {
+        height: auto;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    select {
+        max-width: 100%;
+    }
+
+    .b, .b1 {
+        max-width: 100%;
+    }
+}
+@media screen and (max-width: 480px) {
+
+    .stitre {
+        font-size: 26px;
+    }
+
+    .titre {
+        font-size: 1.2rem;
+    }
+
+    .c {
+        padding: 12px;
+          max-height:50vh;
+    }
+    
+
+    form, .form {
+        padding: 18px;
+    }
+
+    .menus {
+        gap: 15px;
+    }
+
+    .m, .m1, .ch, .av {
+        margin-top: 20px;
+    }
+
+    .b {
+        width: 100%;
+    }
+   
+}

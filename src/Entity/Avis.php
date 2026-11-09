@@ -30,6 +30,9 @@ class Avis
     #[ORM\JoinColumn(nullable: false)]
     private ?Commande $commande = null;
 
+   #[ORM\Column(length: 255)]
+   private ?string $user_nom = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,18 @@ class Avis
     public function setCommande(?commande $commande): static
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getUserNom(): ?string
+    {
+        return $this->user_nom;
+    }
+
+    public function setUserNom(string $user_nom): static
+    {
+        $this->user_nom = $user_nom;
 
         return $this;
     }

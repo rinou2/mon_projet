@@ -71,7 +71,7 @@
                 contientspecial=true;
             }
         }
-        if (mdp.length < 8 || mdp.includes(" ") || mdp === mdp.toUpperCase() || mdp === mdp.toLowerCase() || !contientchiffre || !contientspecial) {
+        if (mdp.length < 10 || mdp.includes(" ") || mdp === mdp.toUpperCase() || mdp === mdp.toLowerCase() || !contientchiffre || !contientspecial) {
             erreurs.push("Le mot de passe est faible.");
         }
         if (erreurs.length > 0) {

@@ -53,6 +53,7 @@ final class EspaceuController extends AbstractController
         $avis->setCommentaire($tab['commentaire']);
         $avis->setNote($tab['note']);
         $avis->setUser($this->getUser());
+        $avis->setUserNom($this->getUser()->getNom());
         $avis->setCommande($commande);
         $avis->setStatut('envoyé');
         $entityManager->persist($avis);
