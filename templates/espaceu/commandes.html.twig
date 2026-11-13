@@ -19,11 +19,12 @@
                 <th>Total</th>
                 <th>Date de création</th>
                 <th>Statut</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for commande in commandes %}
-                {% if app.user and commande.user and commande.user.id == app.user.id and commande.statut !== "livrée" %}
+                {% if app.user and commande.user and commande.user.id == app.user.id and commande.statut !== "livrée" and commande.statut !== "terminée" %}
                     <tr>
                         <td>{{ commande.date_event|date('d/m/Y') }}</td>
                         <td>{{ commande.adresse }}</td>
@@ -33,6 +34,7 @@
                         <td>{{ commande.total|number_format(2, ',', ' ') }} €</td>
                         <td>{{ commande.date_creation|date('d/m/Y') }}</td>
                     <td>{{ commande.statut }}</td>
+                    <td><a href="{{ path('app_commande_details', {id: commande.id}) }}" class="btn-details">Détails</a></td>
                     </tr>
                 {% endif %}
             {% endfor %}
@@ -51,14 +53,16 @@
                 <th>Date de création</th>
                 <th>Statut</th>
                 <th></th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         
             {% for commande in commandes %}
             <form class="formavis" action="{{path('app_espaceu_avis', { id: commande.id })}}" method="POST">
-                {% if app.user and commande.user and commande.user.id == app.user.id and commande.statut == "livrée" %}
+                {% if app.user and commande.user and commande.user.id == app.user.id and (commande.statut == "livrée" or commande.statut == "terminée") %}
                     <tr>
+                    
                         <td>{{ commande.date_event|date('d/m/Y') }}</td>
                         <td>{{ commande.adresse }}</td>
                         <td>{{ commande.lieu }}</td>
@@ -68,6 +72,7 @@
                         <td>{{ commande.date_creation|date('d/m/Y') }}</td>
                     <td>{{ commande.statut }}</td>
                     <td><i class="fa-regular fa-comment"  data-bs-toggle="modal" data-bs-target="#maModal_{{commande.id}}"></i></td>
+                    <td><a href="{{ path('app_commande_details', {id: commande.id}) }}" class="btn-details">Détails</a></td>
                     </tr>
 
       

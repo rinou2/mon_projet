@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Employer;
+use App\Service\EmployeBienvenue;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,10 +22,20 @@ final class AjoutController extends AbstractController
             'employes'=>$employes
         ]);
     }
+    #[Route('/espacea/employes{id}', name: 'app_supprimer_employe')]
+    public function supprimer(int $id, EntityManagerInterface $entityManager, EmployerRepository $employerRepository): Response
+    {
+        $employer = $employerRepository->find($id);
+        $entityManager->remove($employer);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_ajout');
+    }
         #[Route('/aj', name: 'app_aj')]
     public function aj(EntityManagerInterface $entityManager ,
          Request $request ,
-         UserPasswordHasherInterface $passwordHasher)
+         UserPasswordHasherInterface $passwordHasher,
+         EmployeBienvenue $employeBienvenue)
          : Response
 
 
@@ -49,6 +60,7 @@ final class AjoutController extends AbstractController
         
         $entityManager->persist($employer);
         $entityManager->flush();
+        $employeBienvenue->sendEmployeBienvenue($employer);
         return $this->redirectToRoute('app_espacea');
         
         

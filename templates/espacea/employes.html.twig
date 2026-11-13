@@ -16,6 +16,7 @@
                 <th>Adresse Postale</th>
                 <th>Adresse mail</th>
                 <th>Numéro</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -26,6 +27,16 @@
     <td>{{ employe.postale }}</td>
     <td>{{ employe.email }}</td>
     <td>{{ employe.num }}</td>
+    <td>
+        <div class="action-cell">
+            <a href="" class="btn-action btn-edit">
+                <i class="fa-solid fa-pencil"></i>
+            </a>
+            <a href="{{ path('app_supprimer_employe', {'id': employe.id}) }}" class="btn-action btn-delete">
+                <i class="fa-solid fa-trash-can"></i>
+            </a>
+        </div>
+    </td>
          
 
 

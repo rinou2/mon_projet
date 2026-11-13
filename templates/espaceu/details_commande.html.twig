@@ -1,0 +1,130 @@
+{% extends 'espaceu/layout.html.twig' %}
+
+{% block title %}Details{% endblock %}
+
+{% block contenu %}
+{# suivi  #}
+<form action="{{ path('app_supprimer_commande', {id: commande.id}) }}" method="POST" style="display: inline;" onsubmit="return confirm('Supprimer la commande ?');">
+
+<div class="stepper-container">
+    {% set statut = commande.statut|lower|default('en attente') %}
+
+    <div class="step {% if statut == 'en attente' %}active{% elseif statut in ['acceptée', 'en préparation', 'en cours de livraison', 'livrée', 'terminée'] %}completed{% endif %}">
+        <div class="step-bullet"></div>
+        <div class="step-label">En attente</div>
+        {% if commande.dateEnAttente %}
+            <div class="step-date">{{ commande.date_creation|date('d/m/Y H:i') }}</div>
+        {% endif %}
+    </div>
+
+    <div class="step {% if statut == 'acceptée' %}active{% elseif statut in ['en préparation', 'en cours de livraison', 'livrée', 'terminée'] %}completed{% endif %}">
+        <div class="step-bullet"></div>
+        <div class="step-label">Acceptée</div>
+        {% if commande.dateAcceptee %}
+            <div class="step-date">{{ commande.dateAcceptee|date('d/m/Y H:i') }}</div>
+        {% endif %}
+    </div>
+
+    <div class="step {% if statut == 'en préparation' %}active{% elseif statut in ['en cours de livraison', 'livrée', 'terminée']%}completed{% endif %}">
+        <div class="step-bullet"></div>
+        <div class="step-label">En préparation</div>
+        {% if commande.dateEnPreparation %}
+            <div class="step-date">{{ commande.dateEnPreparation|date('d/m/Y H:i') }}</div>
+        {% endif %}
+    </div>
+
+    <div class="step {% if statut == 'en cours de livraison' %}active{% elseif statut in ['livrée', 'terminée'] %}completed{% endif %}">
+        <div class="step-bullet"></div>
+        <div class="step-label">En cours de livraison</div>
+        {% if commande.dateEnCoursDeLivraison %}
+            <div class="step-date">{{ commande.dateEnCoursDeLivraison|date('d/m/Y H:i') }}</div>
+        {% endif %}
+    </div>
+
+    <div class="step {% if statut == 'livrée' %}active{% elseif statut == 'terminée' %}completed{% endif %}">
+        <div class="step-bullet"></div>
+        <div class="step-label">Livrée</div>
+        {% if commande.dateLivree %}
+            <div class="step-date">{{ commande.dateLivree|date('d/m/Y H:i') }}</div>
+        {% endif %}
+    </div>
+
+    <div class="step {% if statut == 'terminée' %}active{% endif %}">
+        <div class="step-bullet"></div>
+        <div class="step-label">Terminée</div>
+        {% if commande.dateTerminee %}
+            <div class="step-date">{{ commande.dateTerminee|date('d/m/Y H:i') }}</div>
+        {% endif %}
+    </div>
+</div>
+<div class="details-facture-grid">
+{# Details #}
+        <div class="card-details">
+            <h4>Détails de l'événement</h4>
+            <ul class="info-list">
+                <li>
+                    <span class="label">Commandé le</span>
+                    <span class="value">
+                        {% if commande.date_creation %}
+                            {{ commande.date_creation|date('d/m/Y à H:i') }}
+                        {% endif %}
+                    </span>
+                </li>
+                <li>
+                    <span class="label">Date & heure de l'événement</span>
+                    <span class="value">
+                        {% if commande.date_event %}
+                            {{ commande.date_event|date('d/m/Y') }} à {{ commande.heure|date('H:i') }}
+                        {% endif %}
+                    </span>
+                </li>
+                <li>
+                    <span class="label">Lieu</span>
+                    <span class="value">{{ commande.lieu|default('Non précisé') }}</span>
+                </li>
+                <li>
+                    <span class="label">Nombre de personnes</span>
+                    <span class="value">{{ commande.nbr_personnes }} personnes</span>
+                </li>
+                <li>
+                    <span class="label">Livraison</span>
+                    <span class="value">
+                        {% if commande.adresse %}
+                            {{ commande.adresse }}
+                        {% else %}
+                            Non — retrait sur place
+                        {% endif %}
+                    </span>
+                </li>
+            </ul>
+        </div>
+        {# Facturation #}
+        <div class="card-facture">
+            <h4>Facturation</h4>
+            <div class="facture-ligne">
+                <span>Sous-total</span>
+                <span>{{ commande.total|number_format(2, ',', ' ') }} €</span>
+            </div>
+            <div class="facture-ligne">
+                <span>Réduction</span>
+                <span>{{ commande.remise|number_format(2, ',', ' ') }} €</span>
+            </div>
+            <div class="facture-ligne">
+                <span>Frais de livraison</span>
+                <span>{{ commande.frais|number_format(2, ',', ' ') }} €</span>
+            </div>
+            <div class="facture-total">
+                <span>Total payé</span>
+                <span class="prix-total">{{ commande.total|number_format(2, ',', ' ') }} €</span>
+            </div>
+
+            <div class="facture-actions">
+                <a href="#" class="btn-modifier">Demander une modification</a>
+                {% if commande.statut == 'en attente' %}        
+                        <button type="submit" class="btn-annuler">Supprimer la commande</button>
+                    
+                {% endif %}
+            </div>
+    </div>
+</form>
+{% endblock %}

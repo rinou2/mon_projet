@@ -3,8 +3,36 @@
 {% block title %}Commandes{% endblock %}
 
 {% block contenu %}
-    <h1>Commandes</h1>
+    <div class="container">
+  <h1 class="page-title">Gestion des commandes</h1>
 
+  <div class="filters-card">
+    <div class="filter-group">
+      <label for="statut">Statut</label>
+      <select id="statut">
+      <option value="Tous">Tous</option>
+        {% for statut in status %}
+                <option value="{{ statut }}">{{ statut }}</option>
+            {% endfor %}
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="menu">Menu</label>
+      <select id="menu-liste">
+      <option value="Tous">Tous</option>
+        {% for menu in menu %}
+                <option value="{{ menu.titre }}">{{ menu.titre }}</option>
+            {% endfor %}
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="recherche">Recherche client</label>
+      <input type="text" id="recherche" placeholder="Nom du client..." />
+    </div>
+  </div>
+</div>
     <p>{{ commandes|length }} commande(s)</p>
 
     {% if commandes|length > 0 %}
@@ -12,6 +40,8 @@
        <table>
         <thead>
             <tr>
+                <th>user</th>
+                <th>menu</th>
                 <th>Date de l'événement</th>
                 <th>Adresse</th>
                 <th>Lieu</th>
@@ -19,6 +49,7 @@
                 <th>Nombre de personnes</th>
                 <th>Total</th>
                 <th>Date de création</th>
+
                 <th>Statut</th>
                 <th></th>
             </tr>
@@ -28,6 +59,8 @@
             {% for commande in commandes %}
               <form method="POST" action="{{path('app_statutem', {id: commande.id})}}">
             <tr>
+                <td>{{ commande.usernom }}</td>
+                <td>{{ commande.menunom }}</td>
     <td>{{ commande.date_event|date('d/m/Y') }}</td>
     <td>{{ commande.adresse }}</td>
     <td>{{ commande.lieu }}</td>
@@ -55,4 +88,44 @@
     {% else %}
         <p>Aucune commande pour le moment.</p>
     {% endif %}
+
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const filtreStatut = document.getElementById("statut");
+    const filtreMenu = document.getElementById("menu-liste");
+    const filtreRecherche = document.getElementById("recherche");
+    const lignes = document.querySelectorAll("table tbody tr");
+
+    if (filtreStatut) filtreStatut.value = "Tous";
+    if (filtreMenu) filtreMenu.value = "Tous";
+
+    function filtrerTableau() {
+        const valStatut = filtreStatut.value.trim();
+        const valMenu = filtreMenu.value.trim();
+        const valRecherche = filtreRecherche.value.toLowerCase().trim();
+
+        lignes.forEach(ligne => {
+            const cols = ligne.querySelectorAll("td");
+            const clientTexte = cols[0].textContent.toLowerCase();
+            const menuTexte = cols[1].textContent.toLowerCase();
+            const selectStatutLigne = cols[9].querySelector("select");
+            const statutTexte = selectStatutLigne ? selectStatutLigne.value.trim() : "";
+
+            const correspondStatut = (valStatut === "Tous"||statutTexte.toLowerCase() === valStatut.toLowerCase());
+            const correspondMenu = (valMenu === "Tous"||menuTexte.toLowerCase() === valMenu.toLowerCase());
+            const correspondRecherche = (clientTexte.includes(valRecherche));
+
+            if (correspondStatut && correspondMenu && correspondRecherche) {
+                ligne.style.display = "";
+            } else {
+                ligne.style.display = "none";
+            }
+        });
+    }
+
+    if (filtreStatut) filtreStatut.addEventListener("change", filtrerTableau);
+    if (filtreMenu) filtreMenu.addEventListener("change", filtrerTableau);
+    if (filtreRecherche) filtreRecherche.addEventListener("input", filtrerTableau);
+});
+</script>   
 {% endblock %}

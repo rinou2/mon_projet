@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Repository\MenuRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\CommandeTerminee;
 use  App\Entity\Commande;
 use  App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class EspaceeController extends AbstractController
 {
-    private const status= ['en attente', 'en cours de préparation', 'terminée', 'acceptée','livrée','annulée'];
+    private const status= ['en attente', 'acceptée', 'en préparation', 'en cours de livraison' ,'livrée', 'terminée'];
     
     #[Route('/espacee/commandes', name: 'app_espacee_commandes')]
     public function commande(MenuRepository $menuRepository, CommandeRepository $commandeRepository): Response
@@ -38,14 +39,28 @@ final class EspaceeController extends AbstractController
         ]);
     }
     #[Route('/espacee/statut{id}', name: 'app_statutem')]
-    public function statut(EntityManagerInterface $entityManager,Request $request, Commande $commande ,int $id,CommandeRepository $commandeRepository,MenuRepository $menuRepository): Response
+    public function statut(EntityManagerInterface $entityManager,CommandeTerminee $commandeTerminee, Request $request, Commande $commande ,int $id,CommandeRepository $commandeRepository,MenuRepository $menuRepository): Response
     {
         $statut = (string)$request->request->get('statut');
         //$menus = $menuRepository->findAll();
         $commande= $commandeRepository->find($id);
         $commande->setStatut($statut);
+        $timezone = new \DateTimeZone('Europe/Paris');
+        $maintenant = new \DateTime('now', $timezone);
+
+        match ($statut) {
+            'acceptée' => $commande->setDateAcceptee($maintenant),
+            'en préparation' => $commande->setDateEnPreparation($maintenant),
+            'en cours de livraison' => $commande->setDateEnCoursDeLivraison($maintenant),
+            'livrée' => $commande->setDateLivree($maintenant),
+            'terminée' => $commande->setDateTerminee($maintenant),
+        };
         $entityManager->persist($commande);
         $entityManager->flush();
+        if($statut === 'terminée'){
+            $user = $commande->getUser();
+            $commandeTerminee->sendCommandeTerminee($user, $commande);
+        }
        return $this->redirectToRoute('app_espacee_commandes');
 
         /*return $this->render('espacee/commandes.html.twig', [

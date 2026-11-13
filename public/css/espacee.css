@@ -3,16 +3,84 @@ body { margin: 0; font-family: Arial, sans-serif; }
 .employer { display: flex; min-height: 100vh; }
 
 .employer-nav { width: 230px; background: #2b2b2b; padding: 20px; box-sizing: border-box; }
-.employer-nav h2 { color: #f0a58c; font-size: 18px; margin: 0 0 20px 0; }
+.employer-nav h2 { color: #BE5C3E; font-size: 18px; margin: 0 0 20px 0; }
 .employer-nav a { display: block; color: #dddddd; padding: 10px 12px; margin-bottom: 4px; text-decoration: none; border-radius: 6px; }
 .employer-nav a:hover { background: #444444; }
-.employer-nav a.actif { background: #f0a58c; color: white; }
+.employer-nav a.actif { background: #BE5C3E; color: white; }
 
 
 
 .employer-nav a.deconnexion { margin-top: 30px; border-top: 1px solid #555; border-radius: 0; padding-top: 14px; }
 
-.employer-contenu { flex: 1; padding: 30px; background: white; }
+.employer-contenu { flex: 1; padding: 30px; background: white;background: #fcf8f3; }
 .employer-contenu table { border-collapse: collapse; width: 100%; }
 .employer-contenu th, .employer-contenu td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; }
 .employer-contenu th { background: #f5f5f5; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+.page-title {
+  font-family: Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2d2825;
+  margin-bottom: 24px;
+}
+
+.filters-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.filter-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #333333;
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  background-color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.filter-group select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.filter-group input::placeholder {
+  color: #a0a0a0;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  border-color: #b0b0b0;
+}

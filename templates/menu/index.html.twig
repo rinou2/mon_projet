@@ -47,8 +47,9 @@
                 </div>
                 <div class="filtre"> 
                     <label for="filtre-regime">Régime</label><br>
-                    <button class="reg" data-reg="Tous">Standard</button>
-                    <button class="reg" data-reg="Dessert">Végétarien</button>
+                    <button class="reg" data-reg="Tous">Tous</button>
+                    <button class="reg" data-reg="Standard">Standard</button>
+                    <button class="reg" data-reg="Végétarien">Végétarien</button>
                 </div>
                 <div class="filtre">                 
                     <label for="filtre-personnes">Nombre de convives</label>  <br>
@@ -71,7 +72,8 @@
 <p>{{menu.description}}</p>
 <p class="prix"> {{ menu.prix }} €</p>
 <p>{{ menu.nbrpersonnes}} personnes </p>
-<button class="b1"><a class="a" href="{{ path('app_commande', { id: menu.id }) }}"> Commander </a> </button>
+<p>{{menu.regime}}</p>
+<button class="b1"><a class="a" href="{{ path('app_commande', { id: menu.id ,n:menu.nbrpersonnes, prix: menu.prix}) }}"> Commander </a> </button>
 </div>
 
 {% endfor %} 

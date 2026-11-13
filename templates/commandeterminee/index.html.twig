@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Votre repas est livré !</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f8f9fa; font-family: 'Poppins', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased;">
+
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f8f9fa; padding: 20px 0;">
+    <tr>
+      <td align="center">
+        
+        <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+          
+          <!-- En-tête / Logo Restaurant -->
+          <tr>
+            <td align="center" style="padding: 25px 20px; background-color: #ff4757;">
+              <h1 style="color: #ffffff; margin: 0; font-size: 26px; font-weight: bold; letter-spacing: 1px;">
+                🍔 Vite et Gourmand 
+              </h1>
+            </td>
+          </tr>
+
+          <!-- Visuel & Message principal -->
+          <tr>
+            <td align="center" style="padding: 40px 30px 20px 30px;">
+              <div style="font-size: 50px; margin-bottom: 10px;">🛵💨</div>
+              <h2 style="color: #2f3542; font-size: 24px; margin-top: 10px; margin-bottom: 10px;">
+                Votre repas a été livré !
+              </h2>
+              <p style="color: #747d8c; font-size: 16px; line-height: 1.5; margin: 0;">
+                Bonjour <strong>{{ user.nom }}</strong>,<br>
+                Le livreur vient de déposer votre commande. C'est l'heure de passer à table !
+              </p>
+            </td>
+          </tr>
+
+          <!-- Détails du menu / de la commande -->
+          <tr>
+            <td style="padding: 10px 30px 20px 30px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #fff0f1; border-radius: 8px; padding: 20px;">
+                <tr>
+                  <td style="color: #ff4757; font-size: 16px; font-weight: bold; padding-bottom: 10px; border-bottom: 1px dashed #ffb8b8;">
+                    Résumé de la commande 
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #2f3542; font-size: 14px; padding-top: 12px; line-height: 1.6;">
+                    {{ menu }}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="color: #747d8c; font-size: 13px; padding-top: 12px; border-top: 1px solid #ffe1e1; margin-top: 10px;">
+                    <strong>Livré à :</strong> {{ adresse }}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Souhait & Appel à l'action (Avis) -->
+          <tr>
+            <td align="center" style="padding: 10px 30px 30px 30px;">
+              <h3 style="color: #2f3542; font-size: 18px; margin-bottom: 15px;">
+                Toute l'équipe vous souhaite un excellent appétit ! 🍕
+              </h3>
+              <p style="color: #747d8c; font-size: 14px; margin-bottom: 20px;">
+                Vous avez aimé votre repas ? Laissez-nous un avis !
+              </p>
+              <a href="http://127.0.0.1:8000/connexion" style="background-color: #ff4757; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 25px; font-weight: bold; font-size: 15px; display: inline-block;">
+                ⭐ Donner mon avis
+              </a>
+            </td>
+          </tr>
+
+          <!-- Pied de page -->
+          <tr>
+            <td align="center" style="background-color: #f1f2f6; padding: 20px; color: #a4b0be; font-size: 12px;">
+              <p style="margin: 0 0 5px 0;">Des questions sur votre commande ? <a href="tel:0123456789" style="color: #ff4757; text-decoration: none;">Appelez le restaurant</a></p>
+              <p style="margin: 0;">© 2026 Vite et Gourmand . Bon appétit !</p>
+            </td>
+          </tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

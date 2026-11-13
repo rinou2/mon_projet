@@ -1,9 +1,13 @@
 {% extends 'espacea/layout.html.twig' %}
 {% block title %}Administration{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/Acceuil.css') }}">
+{% endblock %}
 {% block contenu %}
     <h1>Tableau de bord</h1>
     <p>Bonjour {{ app.user.nom }}.</p>
-    <form method="get" action="" style="margin-bottom: 20px;">
+    <form method="get" action="" id="filtres" style="margin-bottom: 20px;">
     <label for="periode">Période : </label>
     <select name="periode" id="periode" onchange="this.form.submit()">
         <option value="3" {% if app.request.query.get('periode') == '3' %}selected{% endif %}>3 derniers mois</option>
@@ -11,9 +15,28 @@
         <option value="12" {% if app.request.query.get('periode') == '12' %}selected{% endif %}>12 derniers mois</option>
     </select>
 </form>
+    <div class="stats">
+        <div class="stat-carte">
+            <p class="stat-titre"><i class="fa-solid fa-coins"></i> Revenus ce mois</p>
+            <p class="stat-valeur">{{ revenusMois|number_format(2, ',', ' ') }} £</p>
+        </div>
+        <div class="stat-carte">
+            <p class="stat-titre"><i class="fa-solid fa-user-tie"></i> Employés</p>
+            <p class="stat-valeur">{{ nbEmployes }}</p>
+        </div>
+        <div class="stat-carte">
+            <p class="stat-titre"><i class="fa-solid fa-utensils"></i> Commandes par menu</p>
+            <ul class="stat-liste">
+                {% for titre, nombre in commandesParMenu %}
+                    <li><span>{{ titre }}</span><strong>{{ nombre }}</strong></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
     <canvas id="graph" style="backgournd-color:beige;" width="800px" height="500px">Canvas not supported</canvas>
   <script>
   const tab = {{ tab|json_encode|raw }};
+  const labels = {{ labels|json_encode|raw }};
   const canvasElement = document.getElementById('graph');
 canvasElement.style.backgroundColor = "#f0f0f0";
   const ctx = canvasElement.getContext('2d');
@@ -36,7 +59,7 @@ canvasElement.style.backgroundColor = "#f0f0f0";
         ctx.moveTo(50+i*distance, ctx.canvas.height - 50);
         ctx.lineTo(50+i*distance, ctx.canvas.height - 40);
         ctx.stroke();
-        ctx.fillText(i, 50+i*distance, ctx.canvas.height - 30);
+        ctx.fillText(labels[i], 50+i*distance, ctx.canvas.height - 30);
         ctx.strokeStyle = "#e0e0e0";
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -82,7 +105,7 @@ const generatePoints = (size,color) => {
     const points = []; 
     for (var j = 0; j < tab.length; j++) {
         points.push({
-            x: j + 1,
+            x: j,
             y: tab[j],
             color: color 
         });
@@ -128,8 +151,8 @@ const drawLineAndFill = (points, marks_x, scale_x, marks_y, scale_y) => {
     ctx.stroke();
 };
   createAxeY(10,100,"£",undefined);
-  createAxeX(tab.length,100,undefined,undefined);
+  createAxeX(tab.length - 1,100,undefined,undefined);
   const points = generatePoints(tab.length, "red");
-drawLineAndFill(points,tab.length,1,10,100);
+drawLineAndFill(points,tab.length - 1,1,10,100);
   </script>
 {% endblock %}

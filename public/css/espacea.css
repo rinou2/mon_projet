@@ -19,3 +19,87 @@ body { margin: 0; font-family: Arial, sans-serif; }
 #graph{
     background-color: beige;
 }
+.action-cell {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-action {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background-color: #f1f2f6;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-action:hover {
+    background-color: #e4e7eb;
+}
+
+.btn-edit i {
+    color: #4b6584;
+    font-size: 14px;
+}
+
+.btn-delete i {
+    color: #ff4757 !important;
+    font-size: 14px;
+}
+/* Cartes du tableau de bord admin */
+.stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+.stat-carte {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-left: 5px solid #BE5C3E;
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+}
+.stat-titre {
+    margin: 0 0 8px 0;
+    color: #777;
+    font-size: 0.9rem;
+}
+.stat-titre i {
+    color: #BE5C3E;
+}
+.stat-valeur {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+.stat-liste {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.stat-liste li {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 0;
+}
+.stat-liste span {
+    color: #333; 
+}
+#filtres:not(.filtres) {
+    width: auto;
+    max-width: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+#filtres:not(.filtres) select {
+    width: auto !important;
+}

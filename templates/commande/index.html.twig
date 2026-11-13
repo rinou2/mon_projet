@@ -3,32 +3,119 @@
 {% block body %}
 {% block header %} {% include 'header.html.twig' %}{% endblock %}
 
-<img class="res" src={{asset("images/ruya.png")}} alt="res">
+<img class="res" src="{{ asset('images/ruya.png') }}" alt="res">
 
-<form action="{{ path('app_com', { id: menu.id }) }}" method="POST">
-<h2 style="text-align: center;">commander</h2>
-<div>
-<label for="adresse">adresse:</label>
-<input type="text" id="ad" name="ad" required>
-</div>
-<div>
-<label for="date">date:</label>
-<input type="date" id="date" name="date" required>
-</div>
-<div>
-<label for="lieu">lieu:</label>
-<input type="text" id="lieu" name="lieu" required >
-</div>
-<div>
-<label for="heure">heure:</label>
-<input type="text" id="heure" name="heure" placeholder="00:00:00" required>
+<div class="commande-container">
+
+  <div class="bloc-carte bloc-facture">
+    <h2>Récapitulatif</h2>
+    
+    <div class="ligne-info">
+      <span>Prix :</span>
+      <span id="val-prix">{{prix}}</span>€
+    </div>
+    
+    <div class="ligne-info">
+      <span>Frais de livraison :</span>
+      <span id="val-livraison">{{ frais|number_format(2, '.', ' ') }}</span>€
+    </div>
+    
+    <div class="ligne-info">
+      <span>Remise :</span>
+      <span>- <span id="val-remise">0.00</span></span>€
+    </div>
+    
+    <div class="ligne-info ligne-total">
+      <span>Total :</span>
+      <span id="val-total">0.00</span>€
+    </div>
+  </div>
+
+  <div class="bloc-carte">
+    <form action="{{ path('app_com', { id: menu.id ,n:nbr }) }}" method="POST">
+      <h2 style="text-align: center;">commander</h2>
+      
+      <div class="champ-groupe">
+        <label for="adresse">adresse:</label>
+        <input type="text" id="ad" name="ad" required>
+      </div>
+      
+      <div class="champ-groupe">
+        <label for="date">date:</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+      
+      <div class="champ-groupe">
+        <label for="lieu">lieu:</label>
+        <input type="text" id="lieu" name="lieu" required>
+      </div>
+      
+      <div class="champ-groupe">
+        <label for="heure">heure:</label>
+        <input type="text" id="heure" name="heure" placeholder="00:00:00" required>
+      </div>
+
+      <div class="champ-groupe">
+        <label for="nbr">nombre de personnes:</label>
+        <input type="number" id="nbr" name="nbr" required>
+      </div>
+      
+      <button class="b" type="submit">commander</button>
+    </form>
+  </div>
+
 </div>
 
-<div>
-<label for="nbr">nombre de personnes:</label>
-<input type="number" id="nbr" name="nbr" required>
-</div>
-<button class="b" type="submit">commander</button>
-</form>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const inputAdresse = document.getElementById('ad');
+    const inputLieu = document.getElementById('lieu');
+    const spanLivraison = document.getElementById('val-livraison');
+    const inputNbr = document.getElementById('nbr');
 
+    function calcultotal(){
+        const prix = parseFloat(document.getElementById('val-prix').textContent) || 0;
+        const livraison = parseFloat(document.getElementById('val-livraison').textContent) || 0;
+        const nbrpersonnes = inputNbr.value || 1;
+        let remise=0;
+        if (nbrpersonnes > {{ nbr }} + 5) {
+            remise = prix *nbrpersonnes* 0.10;
+        }
+        document.getElementById('val-remise').textContent = remise.toFixed(2);
+        const total = (prix * nbrpersonnes + livraison) - remise;
+        document.getElementById('val-total').textContent = total.toFixed(2);
+    }
+
+function mettreAJourFrais() {
+        const adresse = inputAdresse.value;
+        const lieu = inputLieu.value;
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                const data = JSON.parse(this.responseText);
+                spanLivraison.textContent = parseFloat(data.frais).toFixed(2);
+                calcultotal();
+            }
+        };
+
+        xhttp.open("POST", "{{ path('app_calculer_frais') }}", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhttp.send(`ad=${encodeURIComponent(adresse)}&lieu=${encodeURIComponent(lieu)}`);
+    }
+    inputAdresse.addEventListener('input', mettreAJourFrais);
+    inputLieu.addEventListener('input', mettreAJourFrais);
+    inputNbr.addEventListener('input', calcultotal);
+    calcultotal();
+    const formulaire = document.querySelector("form");
+    const nombredepersonnes = document.getElementById("nbr");
+    formulaire.addEventListener("submit", function(event) {
+        if(nombredepersonnes.value < {{nbr}}){
+            event.preventDefault(); 
+            alert("Le nombre de personnes minimum pour ce menu est de " + {{nbr}});
+        }
+    });
+});
+</script>
 {% endblock %}

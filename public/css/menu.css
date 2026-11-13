@@ -10,10 +10,8 @@ header{
     position:sticky;
     z-index:1000;
     width:100%;
-    top:0;
-    
+    top:0;   
 }
-
 .layout-menu {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -24,7 +22,6 @@ header{
     align-items: start;
     background-color: white ;
 }
-
 .layout-menu .filtres {
     grid-column: 1;
     position: static;
@@ -72,18 +69,4 @@ header{
     height:150px;
     object-fit: cover;
     margin-top:0;
-}
-.th{
-  border: 2px solid #e5e5e5;
-  background: #fff;
-  border-radius: 50px;
-  padding: 8px 20px;
-
-  color: #666;
-  cursor: pointer;
-  margin: 3px;
-}
-.th:hover{
-  background: #f0a58c;
-  color: #fff;
 }

@@ -1,21 +1,21 @@
   document.addEventListener('DOMContentLoaded', function () {     
     const liste = document.getElementById('liste-menus');     
     const formulaire = document.getElementById('filtres'); 
-    const m = Array.from(liste.querySelectorAll('.m1_menu')); 
-    const champRecherche = document.getElementById('filtre-recherche');     
-    const champPrix = document.getElementById('filtre-prix');     
+    const m = Array.from(liste.querySelectorAll('.m1_menu'));
+    const champRecherche = document.getElementById('filtre-recherche');
+    const champPrix = document.getElementById('filtre-prix');
     const champPersonnes = document.getElementById('filtre-personnes');
-    const champtheme = document.getElementById('filtre-theme');  
-    const messageVide = document.getElementById('aucun-menu');    
+    const champtheme = document.getElementById('filtre-theme');
+    const messageVide = document.getElementById('aucun-menu');
         
-    const boutonReset = document.getElementById('filtre-reset');    
-    function sansAccents(texte) {         
-        return texte.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();     
+    const boutonReset = document.getElementById('filtre-reset');
+    function sansAccents(texte) {
+        return texte.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     }
 function filtrer() {
     const recherche = sansAccents(champRecherche.value.trim());
     const prixMax = parseFloat(champPrix.value);
-    const personnes = parseInt(champPersonnes.value); 
+    const personnes = parseInt(champPersonnes.value);
 
 
 
@@ -41,18 +41,18 @@ function filtrer() {
     return visibles;
 } 
 
-    function mettreAJour() {              
-        const visibles = filtrer();                 
-        messageVide.style.display = visibles === 0 ? 'block' : 'none';     
+    function mettreAJour() {
+        const visibles = filtrer();
+        messageVide.style.display = visibles === 0 ? 'block' : 'none';
     }    
-    champRecherche.addEventListener('input', mettreAJour);     
-    champPrix.addEventListener('input', mettreAJour);     
-    champPersonnes.addEventListener('input', mettreAJour);     
-    boutonReset.addEventListener('click', function () {         
+    champRecherche.addEventListener('input', mettreAJour);
+    champPrix.addEventListener('input', mettreAJour);
+    champPersonnes.addEventListener('input', mettreAJour);
+    boutonReset.addEventListener('click', function () {
         formulaire.reset();
-        mettreAJour();     
-    });       
-    mettreAJour(); 
+        mettreAJour();
+    });
+    mettreAJour();
 
 })
 const filterButtons = document.querySelectorAll('.th');
@@ -68,7 +68,7 @@ filterButtons.forEach(button => {
       if (filterValue === 'Tous' || filterValue === cardCategory) {
         card.style.display = 'block';
       } else {
-        card.style.display = 'none';  
+        card.style.display = 'none';
       }
     });
   });
@@ -80,9 +80,9 @@ filterButton.forEach(button => {
     const filterValue = button.getAttribute('data-reg');
 
     foodCards.forEach(card => {
-      const cardCategory = card.getAttribute('data-reg');
+      const cardCategory = card.getAttribute('data-regime');
 
-      if (filterValue === cardCategory) {
+      if (filterValue === 'Tous' || filterValue === cardCategory) {
         card.style.display = 'block';
       } else {
         card.style.display = 'none';  

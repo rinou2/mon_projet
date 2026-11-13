@@ -19,3 +19,246 @@ body { margin: 0; font-family: Arial, sans-serif; }
 .modal-body{
     background-color:beige ;
 }
+.user-info-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 22px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eaeaea;
+    max-width: 950px;
+    margin-top: 20px;
+}
+
+.user-info-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+}
+
+.user-info-details {
+    font-size: 0.95rem;
+    color: #666666;
+    margin: 0;
+}
+
+.btn-modify {
+    background-color: #f1f1f1;
+    color: #333333;
+    padding: 7px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-modify:hover {
+    background-color: #e2e2e2;
+    color: #111111;
+}
+.btn-details {
+    background-color: #f1f1f1;
+    color: #333333;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: none;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-details:hover {
+    background-color: #e2e2e2;
+    color: #111111;
+}
+.stepper-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 20px 20px 10px 20px;
+}
+
+.stepper-container::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background-color: #e5e5e5;
+    z-index: 1;
+}
+
+.step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.step-bullet {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #e5e5e5;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 2px #e5e5e5;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+.step-label {
+    font-size: 0.88rem;
+    color: #888888;
+    font-weight: 500;
+}
+.step.active .step-bullet {
+    background-color: #d15637;
+    box-shadow: 0 0 0 3px rgba(209, 86, 55, 0.2);
+}
+
+.step.active .step-label {
+    color: #d15637;
+    font-weight: 600;
+}
+
+.step.completed .step-bullet {
+    background-color: #d15637;
+    box-shadow: 0 0 0 2px #d15637;
+}
+
+.step.completed .step-label {
+    color: #333333;
+}
+.details-facture-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.details-facture-grid > div {
+    background: #fdfbf7;
+    border-radius: 20px;
+    padding: 35px;
+    border: 1px solid #f3ece1;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.details-facture-grid h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3ece1;
+    font-size: 0.95rem;
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+.info-list .label {
+    color: #78716c;
+}
+
+.info-list .value {
+    color: #1c1917;
+    font-weight: 500;
+    text-align: right;
+}
+
+.facture-ligne {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+    color: #78716c;
+}
+
+.facture-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #f3ece1;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1c1917;
+}
+
+.prix-total {
+    color: #991b1b;
+}
+
+.facture-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-modifier,
+.btn-annuler {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+.btn-modifier {
+    border: 1px solid #d7d3cb;
+    color: #1c1917;
+}
+
+.btn-modifier:hover {
+    background: #f4f2eb;
+}
+
+.btn-annuler {
+    border: 1px solid #fecdd3;
+    color: #e11d48;
+}
+
+.btn-annuler:hover {
+    background: #fff1f2;
+}
+
+@media (max-width: 900px) {
+    .details-facture-grid {
+        grid-template-columns: 1fr;
+    }
+}

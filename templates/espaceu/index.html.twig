@@ -5,5 +5,49 @@
 {% block contenu %}
     <h1>Tableau de bord</h1>
     <p>Bonjour {{ app.user.nom }}.</p>
+    <div class="user-info-card">
+    <div class="user-info-content">
+        <h3 class="user-info-title">Mes informations</h3>
+        <p class="user-info-details">
+            {{ user.nom }} &middot; {{ user.email }}
+        </p>
+    </div>
+    <button type="button" class="btn-modify" data-bs-toggle="modal" data-bs-target="#modifModal{{ user.id }}">
+        <i class="fas fa-pen" style="margin-right: 6px;"></i> Modifier
+    </button>
+</div>
+    </div>
+    <div class="modal fade" id="modifModal{{ user.id }}" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-body">
+            <form action="{{ path('app_modifier_infos', {id: user.id}) }}" enctype="multipart/form-data" method="POST">
+                <h2 style="text-align: center;">Modifier vos infos</h2>
+                <div>
+                <label>Nom:</label>
+                <input type="text" name="nom" value="{{ user.nom }}" required>
+                </div>
+                <div>
+                <label>Adresse email:</label>
+                <input type="text" name="email" value="{{ user.email }}" required>
+                </div>
+                <div>
+                <label>Adresse Postale:</label>
+                <input type="text" name="ad" value="{{ user.postale }}" required>
+                </div>
+                <div>
+                <label>Numéro de téléphone:</label>
+                <input type="number" name="num" value="{{ user.num }}" required>
+                </div>
+                <div>
+                <label>Password:</label>
+                <input type="password" name="mdp" value="{{ user.password }}" required>
+                </div>
+                <button class="b" type="submit">enregistrer</button>
+            </form>
+            </div>
+            </div>
+          </div>
+        </div>
 {% endblock %}
  

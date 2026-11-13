@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Commande confirmée</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f7; margin: 0; padding: 20px; color: #333;">
+  
+  <div style="max-width: 500px; margin: 0 auto; background: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+    
+    <!-- En-tête -->
+    <div style="background-color: #bb5a3a; color: #ffffff; text-align: center; padding: 20px;">
+      <h2 style="margin: 0;">Commande Confirmée ! 🎉</h2>
+    </div>
+
+    <!-- Contenu -->
+    <div style="padding: 25px;">
+      <p style="margin-top: 0;">Bonjour,</p>
+      <p>Votre commande a bien été enregistrée. Voici le récapitulatif :</p>
+
+      <!-- Boîte récap -->
+      <div style="background-color: #fcf8ee; border: 1px solid #efe5cc; border-radius: 6px; padding: 15px; font-size: 14px;">
+        <p style="margin: 5px 0;"><strong>Adresse :</strong> {{ adresse }}</p>
+        <p style="margin: 5px 0;"><strong>Lieu :</strong> {{ lieu }}</p>
+        <p style="margin: 5px 0;"><strong>Date & Heure :</strong> {{ date|date('d/m/Y') }} à {{ heure|date('H:i') }}</p>
+        <p style="margin: 5px 0;"><strong>Personnes :</strong> {{ nbrPersonnes }}</p>
+        
+        <hr style="border: none; border-top: 1px solid #e2d7ba; margin: 10px 0;">
+        
+        <p style="margin: 5px 0;">Livraison : {{ frais }} €</p>
+        {% if remise > 0 %}
+        <p style="margin: 5px 0; color: #27ae60;">Remise : -{{ remise }} €</p>
+        {% endif %}
+        <p style="margin: 10px 0 0 0; font-size: 16px; font-weight: bold; color: #bb5a3a;">Total : {{ total }} €</p>
+      </div>
+
+      <p style="margin-bottom: 0; font-size: 14px; color: #666;">À très bientôt !</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
