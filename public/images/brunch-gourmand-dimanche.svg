@@ -1,0 +1,41 @@
+<svg viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="menuBrunchTitle">
+  <title id="menuBrunchTitle">Illustration du menu Brunch Gourmand du Dimanche</title>
+  <defs>
+    <linearGradient id="bgBrunch" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3ead9"/>
+      <stop offset="100%" stop-color="#eec49a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="210" fill="url(#bgBrunch)"/>
+  <circle cx="30" cy="30" r="50" fill="#c96f4a" opacity="0.15"/>
+
+  <!-- croissant -->
+  <path d="M70,120 q40,-46 90,-10 q-14,-4 -26,6 q10,4 16,16 q-16,-6 -24,4 q6,8 4,18 q-16,-8 -24,2 q2,-12 -8,-16 q-10,10 -22,4 q10,-6 8,-16 q-12,4 -14,-8 z" fill="#d9a441"/>
+
+  <!-- coffee cup with saucer -->
+  <g>
+    <ellipse cx="260" cy="160" rx="46" ry="10" fill="#fbf6ef"/>
+    <path d="M232,120 h56 v24 a28,20 0 0 1 -56,0 z" fill="#fbf6ef"/>
+    <path d="M288,128 q16,0 16,14 q0,14 -16,14" fill="none" stroke="#fbf6ef" stroke-width="6"/>
+    <path d="M240,116 q4,-10 -2,-16" fill="none" stroke="#a85635" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <!-- orange slice -->
+  <g>
+    <circle cx="330" cy="90" r="26" fill="#d9a441"/>
+    <circle cx="330" cy="90" r="20" fill="#f1d9a8"/>
+    <g stroke="#d9a441" stroke-width="2">
+      <line x1="330" y1="70" x2="330" y2="110"/>
+      <line x1="312" y1="80" x2="348" y2="100"/>
+      <line x1="312" y1="100" x2="348" y2="80"/>
+    </g>
+  </g>
+
+  <!-- berries bowl -->
+  <g>
+    <path d="M60,180 q60,20 120,0 v10 q-60,20 -120,0 z" fill="#fbf6ef"/>
+    <circle cx="90" cy="176" r="7" fill="#a85635"/>
+    <circle cx="110" cy="170" r="7" fill="#c96f4a"/>
+    <circle cx="130" cy="176" r="7" fill="#5c6b4a"/>
+  </g>
+</svg>

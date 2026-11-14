@@ -22,6 +22,17 @@ final class ConnexionController extends AbstractController
             'email' => $lastUsername,
         ]);
     }
+    #[Route('/connexion', name: 'app_mdp')]
+    public function mdp(AuthenticationUtils $authenticationUtils): Response
+    {
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('connexion/index.html.twig', [
+            'error' => $error,
+            'email' => $lastUsername,
+        ]);
+    }
     
     #[Route('/espace', name: 'app_espace')]
     public function espace():Response{

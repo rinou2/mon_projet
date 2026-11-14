@@ -1,38 +1,102 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{% block header %} {% include 'header.html.twig' %}{% endblock %}
-<p class="t">Get In Touch</p>
-<h1>Contact Us</h1>
-<p>Vous avez une question, un commentaire ou vous souhaitez organiser un événement spécial ?
-Nous serions ravis de vous entendre.</p>
-<form action="" method="GET">
-<div>
-<label for="nom">Votre nom:</label>
-<input type="text" id="nom" name="nom"  placeholder="John Doe">
-</div>
-<div>
-<label for="email">adresse email:</label>
-<input type="text" id="email" name="email" placeholder="john@doe.com">
-</div>
-<div>
-<label for="num">Numéro de téléphone:</label>
-<input type="tel" id="num" name="num" placeholder="+33 0 00 00 00 00">
-</div>
-<div>
-<label for="sujet">sujet :</label>
-<select id="sujet" name="sujet">
-  <option value="">Sélectionnez une option</option>
-  <option value="op1">Réservations et Événements privés</option>
-  <option value="op2">Cartes et Menus sur mesure</option>
-  <option value="op3">Informations pratiques et Accès</option>
-</select>
-</div>
-<div>
-<label for="message">Message:</label>
-<textarea type="message" id="message" name="message" rows="5" placeholder="Ecrivez votre message ici..."></textarea> 
-</div>
-<button type="submit">Envoyer</button>
+    {% include 'header.html.twig' %}
 
-</form>
+    <div class="contact-section">
+        <div class="contact-header">
+            <span class="contact-subtitle">Restons en contact</span>
+            <h1 class="contact-title">Contactez <span>nous</span></h1>
+            <p class="contact-description">
+                Vous avez une question, un commentaire ou vous souhaitez organiser un événement spécial ?<br>
+                Nous serions ravis de vous entendre.
+            </p>
+        </div>
+
+        <div class="contact-container">
+            <!-- Bloc de gauche : Informations -->
+            <div class="contact-info-box">
+                <h2>Parlons-en</h2>
+                <p class="info-subtitle">Nous répondons généralement sous 2 heures pendant les heures ouvrables.</p>
+                
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>ADRESSE</strong>
+                        <p>Bordeaux</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <strong>TÉLÉPHONE</strong>
+                        <p>+33 1 23 45 67 89</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <strong>E-MAIL</strong>
+                        <p>info.vitegourmand@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <strong>HORAIRES D'OUVERTURE</strong>
+                        <p>Lun – Dim : 9h00 – 23h00</p>
+                    </div>
+                </div>
+
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Bloc de droite : Formulaire -->
+            <form id="filtres" action="{{ path('app_contact') }}" method="POST" class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nom">Votre nom *</label>
+                        <input type="text" id="nom" name="nom" placeholder="Jean Dupont" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail *</label>
+                        <input type="email" id="email" name="email" placeholder="vous@exemple.com" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="num">Numéro de téléphone</label>
+                        <input type="tel" id="num" name="num" placeholder="+33 6 00 00 00 00">
+                    </div>
+                    <div class="form-group">
+                        <label for="sujet">Sujet *</label>
+                        <select id="sujet" name="sujet" required>
+                            <option value="">Sélectionnez une option</option>
+                            <option value="op1">Réservations et Événements privés</option>
+                            <option value="op2">Cartes et Menus sur mesure</option>
+                            <option value="op3">Informations pratiques et Accès</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Écrivez votre message ici..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i> Envoyer le message
+                </button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

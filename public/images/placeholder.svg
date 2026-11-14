@@ -1,0 +1,16 @@
+<svg viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="menuPlaceholderTitle">
+  <title id="menuPlaceholderTitle">Photo à ajouter</title>
+  <defs>
+    <linearGradient id="bgPlaceholder" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3ead9"/>
+      <stop offset="100%" stop-color="#f1d9a8"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="210" fill="url(#bgPlaceholder)"/>
+  <g fill="none" stroke="#5c6b4a" stroke-width="3" opacity="0.6">
+    <rect x="140" y="65" width="120" height="90" rx="10"/>
+    <circle cx="170" cy="95" r="10"/>
+    <path d="M140,140 l35,-30 l25,22 l20,-16 l40,34"/>
+  </g>
+  <text x="200" y="180" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#5c6b4a" opacity="0.8">Photo à ajouter</text>
+</svg>

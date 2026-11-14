@@ -70,3 +70,169 @@ header{
     object-fit: cover;
     margin-top:0;
 }
+
+/******************************** telephone **************************************/
+@media screen and (max-width: 768px) {
+
+    header {
+        gap: 8px 20px;
+    }
+
+    /* les filtres au dessus, les menus en dessous */
+    .layout-menu {
+        grid-template-columns: 1fr;
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    .layout-menu .filtres,
+    .layout-menu .menus_menu {
+        grid-column: 1;
+    }
+
+    .layout-menu .menus_menu {
+        grid-template-columns: 1fr;
+    }
+
+    .layout-menu .m1_menu img {
+        width: 100%;
+        height: 200px;
+    }
+}
+/******************************** fin telephone **************************************/
+
+/******************************** page detail d'un menu **************************************/
+.detail-menu {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.detail-retour {
+    color: #BE5C3E;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.detail-contenu {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.detail-image {
+    flex: 1;
+}
+
+.detail-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* galerie : petites images sous la grande */
+.detail-galerie {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.detail-galerie .miniature {
+    width: 110px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    opacity: 0.7;
+    transition: 0.2s;
+}
+
+.detail-galerie .miniature:hover {
+    opacity: 1;
+}
+
+/* la miniature affichee en grand */
+.detail-galerie .miniature.active {
+    border-color: #BE5C3E;
+    opacity: 1;
+}
+
+.detail-infos {
+    flex: 1;
+}
+
+.detail-theme {
+    display: inline-block;
+    background-color: #BE5C3E;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.detail-infos h1 {
+    font-size: 36px;
+    margin: 15px 0;
+}
+
+.detail-description {
+    color: #555;
+    line-height: 1.7;
+}
+
+.detail-liste {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.detail-liste li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* composition du menu */
+.detail-plats {
+    margin: 25px 0;
+}
+
+.detail-plats h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.detail-infos .b1 {
+    width: 240px;
+    margin: 10px 0 0 0;
+}
+
+@media screen and (max-width: 768px) {
+
+    .detail-contenu {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .detail-image {
+        width: 100%;
+    }
+
+    .detail-image #image-principale {
+        height: 250px;
+    }
+
+    .detail-galerie .miniature {
+        width: 80px;
+        height: 60px;
+    }
+
+    .detail-infos h1 {
+        font-size: 28px;
+    }
+}
+/******************************** fin page detail **************************************/

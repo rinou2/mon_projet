@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouveau message</title>
+</head>
+<body style="margin: 0; padding: 20px; background-color: #f4f4f5; font-family: Arial, sans-serif; color: #333;">
+
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 550px; margin: 0 auto; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
+        
+        <tr>
+            <td style="background-color: #141414; padding: 20px 30px; border-bottom: 3px solid #d9381e;">
+                <h2 style="margin: 0; color: #fff; font-size: 18px;">
+                    Nouveau message <span style="color: #e74c3c;">de contact</span>
+                </h2>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 25px 30px; font-size: 14px; line-height: 1.5;">
+                <p style="margin: 0 0 8px 0;"><strong>Nom :</strong> {{ nom }}</p>
+                <p style="margin: 0 0 8px 0;"><strong>E-mail :</strong> <a href="mailto:{{ mail }}" style="color: #d9381e; text-decoration: none;">{{ mail }}</a></p>
+                <p style="margin: 0 0 8px 0;"><strong>Téléphone :</strong> {{ num }}</p>
+                <p style="margin: 0 0 18px 0;"><strong>Sujet :</strong> <span style="background: #fdecea; color: #d9381e; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 12px;">{{ sujet }}</span></p>
+
+                <div style="background: #fafafa; border-left: 3px solid #d9381e; padding: 12px 15px; margin-bottom: 20px; color: #444;">
+                    {{ message}}
+                </div>
+
+                <a href="mailto:{{ mail }}?subject=Re: {{ sujet}}" style="display: inline-block; background-color: #d9381e; color: #fff; text-decoration: none; font-size: 13px; font-weight: bold; padding: 10px 20px; border-radius: 5px;">
+                    Répondre
+                </a>
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<svg viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="menuAnniversaireTitle">
+  <title id="menuAnniversaireTitle">Illustration du menu Anniversaire Street-Food</title>
+  <defs>
+    <linearGradient id="bgAnniv" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3ead9"/>
+      <stop offset="100%" stop-color="#ecd8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="210" fill="url(#bgAnniv)"/>
+
+  <!-- confetti -->
+  <g fill="#c96f4a">
+    <circle cx="40" cy="40" r="4"/>
+    <circle cx="360" cy="50" r="4"/>
+    <circle cx="320" cy="20" r="3"/>
+  </g>
+  <g fill="#5c6b4a">
+    <circle cx="60" cy="70" r="3"/>
+    <circle cx="340" cy="90" r="3"/>
+  </g>
+  <g fill="#d9a441">
+    <rect x="80" y="24" width="8" height="8" transform="rotate(20 84 28)"/>
+    <rect x="300" y="60" width="8" height="8" transform="rotate(-15 304 64)"/>
+  </g>
+
+  <!-- balloons -->
+  <g>
+    <circle cx="90" cy="80" r="28" fill="#c96f4a"/>
+    <path d="M90,108 l-4,10 h8 z" fill="#c96f4a"/>
+    <path d="M90,118 q10,20 -4,40" fill="none" stroke="#a85635" stroke-width="2"/>
+
+    <circle cx="150" cy="55" r="24" fill="#5c6b4a"/>
+    <path d="M150,79 l-4,8 h8 z" fill="#5c6b4a"/>
+    <path d="M150,87 q-10,24 6,44" fill="none" stroke="#454f37" stroke-width="2"/>
+
+    <circle cx="200" cy="85" r="20" fill="#d9a441"/>
+    <path d="M200,105 l-3,7 h6 z" fill="#d9a441"/>
+    <path d="M200,112 q8,20 -6,36" fill="none" stroke="#a8791f" stroke-width="2"/>
+  </g>
+
+  <!-- burger stack -->
+  <g>
+    <ellipse cx="290" cy="176" rx="60" ry="12" fill="#2b2622" opacity="0.08"/>
+    <path d="M240,166 q50,-26 100,0 z" fill="#d9a441"/>
+    <rect x="240" y="166" width="100" height="8" fill="#5c6b4a"/>
+    <rect x="240" y="174" width="100" height="10" fill="#a85635"/>
+    <rect x="240" y="184" width="100" height="8" fill="#c96f4a"/>
+    <path d="M242,192 q48,16 96,0 v6 q-48,16 -96,0 z" fill="#e8b98a"/>
+    <g fill="#f1d9a8">
+      <circle cx="255" cy="164" r="2"/>
+      <circle cx="270" cy="160" r="2"/>
+      <circle cx="285" cy="163" r="2"/>
+      <circle cx="300" cy="159" r="2"/>
+      <circle cx="315" cy="163" r="2"/>
+    </g>
+  </g>
+</svg>

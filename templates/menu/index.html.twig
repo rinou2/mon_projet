@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
             {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/Acceuil.css') }}">
              <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
@@ -39,17 +40,17 @@
                 <div class="filtre"> 
                     <label for="filtre-theme">Thème</label><br>
                     <button class="th" data-th="Tous">Tous</button>
-                    <button class="th" data-th="Dessert">Dessert</button>
-                    <button class="th" data-th="Cocktail">Cocktail</button>
-                    <button class="th" data-th="Brunch">Brunch</button>
-                    <button class="th" data-th="Mariage">Mariage</button>
-                    <button class="th" data-th="Fast food">Fast food</button>
+                    <button class="th" data-th="Noël">Noël</button>
+                    <button class="th" data-th="Pâques">Pâques</button>
+                    <button class="th" data-th="Classique">Classique</button>
+                    <button class="th" data-th="Événement">Événement</button>
                 </div>
                 <div class="filtre"> 
                     <label for="filtre-regime">Régime</label><br>
                     <button class="reg" data-reg="Tous">Tous</button>
-                    <button class="reg" data-reg="Standard">Standard</button>
+                    <button class="reg" data-reg="Classique">Classique</button>
                     <button class="reg" data-reg="Végétarien">Végétarien</button>
+                    <button class="reg" data-reg="Végan">Végan</button>
                 </div>
                 <div class="filtre">                 
                     <label for="filtre-personnes">Nombre de convives</label>  <br>
@@ -72,8 +73,8 @@
 <p>{{menu.description}}</p>
 <p class="prix"> {{ menu.prix }} €</p>
 <p>{{ menu.nbrpersonnes}} personnes </p>
-<p>{{menu.regime}}</p>
-<button class="b1"><a class="a" href="{{ path('app_commande', { id: menu.id ,n:menu.nbrpersonnes, prix: menu.prix}) }}"> Commander </a> </button>
+<p>{{menu.theme}} · {{menu.regime}}</p>
+<button class="b1"><a class="a" href="{{ path('app_menu_detail', { id: menu.id }) }}"> Voir le détail </a> </button>
 </div>
 
 {% endfor %} 

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+
+    <style>
+        .box { max-width: 400px; margin: 50px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); overflow: hidden; font-family: Arial, sans-serif; }
+        .box-header { background: #141414; color: #fff; padding: 20px; text-align: center; border-bottom: 3px solid #d9381e; }
+        .box-header h2 { margin: 0; font-size: 18px; }
+        .box-header span { color: #d9381e; }
+        .box-form { padding: 25px; }
+        .field { margin-bottom: 15px; display: flex; flex-direction: column; }
+        .field label { font-size: 13px; font-weight: bold; margin-bottom: 6px; color: #333; }
+        .field input { padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; outline: none; }
+        .field input:focus { border-color: #d9381e; }
+        .field input.error { border-color: #d9381e; background: #fff8f8; }
+        .field input.success { border-color: #2ecc71; background: #f7fff9; }
+        .msg { font-size: 12px; margin-top: 4px; }
+        .msg.error { color: #d9381e; }
+        .msg.success { color: #2ecc71; }
+        .btn { width: 100%; background: #d9381e; color: #fff; border: none; padding: 11px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #c03019; }
+    </style>
+
+    <div class="box">
+        <div class="box-header">
+            <h2>Nouveau <span>mot de passe</span></h2>
+        </div>
+
+        <form action="" method="POST" id="form" class="box-form">
+            <div class="field">
+                <label for="p1">Mot de passe *</label>
+                <input type="password" id="p1" name="mdp" required minlength="8" placeholder="Minimum 8 caractères">
+            </div>
+
+            <div class="field">
+                <label for="p2">Confirmer le mot de passe *</label>
+                <input type="password" id="p2" name="confirm_mdp" required placeholder="Répétez le mot de passe">
+                <small id="msg" class="msg"></small>
+            </div>
+
+            <button type="submit" class="btn">Enregistrer</button>
+        </form>
+    </div>
+
+    <script>
+        const p1 = document.getElementById('p1');
+        const p2 = document.getElementById('p2');
+        const msg = document.getElementById('msg');
+        const form = document.getElementById('form');
+
+        function check() {
+            if (p2.value === '') {
+                p2.className = '';
+                msg.textContent = '';
+                return false;
+            }
+            if (p1.value === p2.value && p1.value.length >= 10) {
+                p2.className = 'success';
+                msg.textContent = 'Les mots de passe correspondent.';
+                msg.className = 'msg success';
+                return true;
+            } else {
+                p2.className = 'error';
+                msg.textContent = 'Les mots de passe ne correspondent pas.';
+                msg.className = 'msg error';
+                return false;
+            }
+        }
+
+        p1.addEventListener('input', check);
+        p2.addEventListener('input', check);
+
+        form.addEventListener('submit', (e) => {
+            if (!check()) e.preventDefault();
+        });
+    </script>
+{% endblock %}

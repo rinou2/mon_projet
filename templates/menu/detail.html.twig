@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ menu.titre }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+{% endblock %}
+
+{% block body %}
+{% include 'header.html.twig' %}
+
+<section class="detail-menu">
+    <a class="detail-retour" href="{{ path('app_menu') }}">&larr; Retour aux menus</a>
+
+    <div class="detail-contenu">
+        <div class="detail-image">
+            <img id="image-principale" src="{{ asset('images/' ~ menu.image) }}" alt="{{ menu.titre }}">
+
+            {# galerie : les petites images en dessous, on clique pour changer la grande #}
+            {% if menu.images|length > 1 %}
+            <div class="detail-galerie">
+                {% for img in menu.images %}
+                    <img class="miniature {% if loop.first %}active{% endif %}" src="{{ asset('images/' ~ img) }}" alt="{{ menu.titre }} - photo {{ loop.index }}" onclick="changerImage(this)">
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="detail-infos">
+            <span class="detail-theme">{{ menu.theme }}</span>
+            <h1>{{ menu.titre }}</h1>
+            <p class="detail-description">{{ menu.description }}</p>
+
+            <ul class="detail-liste">
+                <li><strong>Régime :</strong> {{ menu.regime }}</li>
+                <li><strong>Minimum :</strong> {{ menu.nbrpersonnes }} personnes</li>
+                <li><strong>Prix :</strong> {{ menu.prix }} € par personne</li>
+            </ul>
+
+            {# les plats : [0] = entrée, [1] = plat, [2] = dessert #}
+            {% if menu.plats %}
+            <div class="detail-plats">
+                <h2>Composition du menu</h2>
+                <p><strong>Entrée :</strong> {{ menu.plats[0] }}</p>
+                <p><strong>Plat :</strong> {{ menu.plats[1] }}</p>
+                <p><strong>Dessert :</strong> {{ menu.plats[2] }}</p>
+            </div>
+            {% endif %}
+
+            <button class="b1"><a class="a" href="{{ path('app_commande', { id: menu.id, n: menu.nbrpersonnes, prix: menu.prix }) }}">Commander ce menu</a></button>
+        </div>
+    </div>
+</section>
+
+{% include 'footer.html.twig' %}
+
+<script>
+    // quand on clique sur une miniature, elle devient la grande image
+    function changerImage(miniature) {
+        document.getElementById('image-principale').src = miniature.src;
+
+        const miniatures = document.querySelectorAll('.miniature');
+        for (let i = 0; i < miniatures.length; i++) {
+            miniatures[i].classList.remove('active');
+        }
+        miniature.classList.add('active');
+    }
+</script>
+{% endblock %}

@@ -36,6 +36,14 @@ class Menu
     #[ORM\Column(length: 255)]
     private ?string $regime = null;
 
+    // galerie : la liste des noms de toutes les images du menu
+    #[ORM\Column(nullable: true)]
+    private ?array $images = null;
+
+    // les plats du menu : [0] = entrée, [1] = plat, [2] = dessert (avec les allergènes)
+    #[ORM\Column(nullable: true)]
+    private ?array $plats = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +129,35 @@ class Menu
     public function setRegime(string $regime): static
     {
         $this->regime = $regime;
+
+        return $this;
+    }
+
+    public function getImages(): array
+    {
+        // si le menu n'a pas de galerie, on renvoie juste l'image principale
+        if (empty($this->images)) {
+            return [$this->image];
+        }
+
+        return $this->images;
+    }
+
+    public function setImages(?array $images): static
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    public function getPlats(): ?array
+    {
+        return $this->plats;
+    }
+
+    public function setPlats(?array $plats): static
+    {
+        $this->plats = $plats;
 
         return $this;
     }

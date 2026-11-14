@@ -13,13 +13,13 @@
 <section class="c">
 <div class="x">
     <div class="jaune"></div>
-    <img src="images/pate1.png" alt="Pâtes" class="pa">
+    <img src="images/slide1.jpg" alt="Salle dressée pour un repas" class="pa">
 </div>
 <div>
-<h2>Bienvenue à<br>
-Vite et Gourmand</h2>
-<p>Laissez-vous porter par une symphonie de saveurs uniques,orchestrée par notre chef avec des produits d'exception.<br> Depuis 25 ans à Bordeaux, Pour un repas de fête ou un moment gourmand du quotidien, Vite & Gourmand vous propose un menu de saison en constante évolution. Découvrez dès maintenant nos créations gourmandes sur notre tout nouveau site web!</p>
-<button class="b" > s'inscrire </button>
+<h2>Vite & Gourmand,<br>
+votre traiteur à Bordeaux</h2>
+<p>Noël, Pâques, anniversaire ou repas d'entreprise : depuis 25 ans, Julie et José cuisinent pour tous vos événements.<br> Choisissez votre menu, commandez en ligne et nous livrons chez vous.</p>
+<button class="b"><a class="a" href="{{ path('app_menu') }}">Découvrir nos menus</a></button>
 </div>
 
 </section>
@@ -27,18 +27,18 @@ Vite et Gourmand</h2>
 <section id="equipe-section" class="equipe-section">
     <div class="equipe-container">
         <div class="equipe-image">
-            <img src="{{ asset('images/equipe.jpeg') }}" alt="Équipe">
+            <img src="{{ asset('images/about-kitchen.jpg') }}" alt="L'équipe Vite & Gourmand en cuisine">
         </div>
 
         <div class="equipe-content">
             <span class="equipe-subtitle">— QUI SOMMES-NOUS</span>
-            <h2 class="equipe-title">Une équipe passionnée au service de vos événements</h2>
-            
+            <h2 class="equipe-title">Julie et José, votre traiteur pour tous vos événements</h2>
+
             <p class="equipe-text">
-                Depuis 2019, Vite & Gourmand accompagne particuliers et entreprises dans l'organisation de leurs repas événementiels. Notre cuisine est préparée chaque jour par notre brigade, à partir de produits frais et de saison.
+                Depuis 25 ans à Bordeaux, Julie et José préparent des menus pour tous vos événements : un simple repas de Noël ou de Pâques, un anniversaire, une fête de famille ou un repas d'entreprise.
             </p>
             <p class="equipe-text">
-                Nous mettons un point d'honneur à nous adapter à vos contraintes : régimes alimentaires, allergènes, budget et nombre d'invités. Chaque menu est pensé pour être personnalisable, sans jamais transiger sur la qualité.
+                Vous choisissez votre menu, vous nous donnez la date, l'adresse et le nombre de personnes, et nous nous occupons du reste : nous cuisinons et nous livrons chez vous. Nos menus changent selon les saisons et existent en version classique, végétarienne ou végane.
             </p>
 
             <div class="equipe-grid">
@@ -47,8 +47,8 @@ Vite et Gourmand</h2>
                         <i class="fa-solid fa-circle-check"></i>
                     </div>
                     <div>
-                        <h4>Produits frais</h4>
-                        <p>Sélectionnés chaque semaine</p>
+                        <h4>25 ans d'expérience</h4>
+                        <p>Des clients fidèles à Bordeaux</p>
                     </div>
                 </div>
 
@@ -57,8 +57,8 @@ Vite et Gourmand</h2>
                         <i class="fa-solid fa-truck-fast"></i>
                     </div>
                     <div>
-                        <h4>Livraison fiable</h4>
-                        <p>Respect des horaires</p>
+                        <h4>Livraison à domicile</h4>
+                        <p>À Bordeaux et dans les environs</p>
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@ Vite et Gourmand</h2>
                     </div>
                     <div>
                         <h4>Fait maison</h4>
-                        <p>Cuisine artisanale</p>
+                        <p>Cuisiné par Julie et José</p>
                     </div>
                 </div>
 
@@ -86,203 +86,34 @@ Vite et Gourmand</h2>
     </div>
 </section>
 <section id="menu">
-
-
-               <span class="titre">What's Cooking</span>
-               <h2 class="stitre">Our Delicious <span>Menu</span></h2>
+               <span class="titre">Nos menus</span>
+               <h2 class="stitre">Des menus pour <span>tous vos événements</span></h2>
                <div class="sligne"></div>
+
                <div class="conteneur">
-               <button class="choix" data-choix="all">All</button>
-               <button class="choix" data-choix="tacos">Tacos</button>
-               <button class="choix" data-choix="pizza">Pizzas</button>
-               <button class="choix" data-choix="burger">Burgers</button>
-               <button class="choix" data-choix="pasta">Pastas</button>
-               
+               <button class="choix active" data-choix="all">Tous</button>
+               <button class="choix" data-choix="Noël">Noël</button>
+               <button class="choix" data-choix="Pâques">Pâques</button>
+               <button class="choix" data-choix="Classique">Classique</button>
+               <button class="choix" data-choix="Événement">Événement</button>
                </div>
+
 <div class="menus">
-<div class="m" data-menu="pizza" data-bs-toggle="modal" data-bs-target="#modalItem1" style="cursor: pointer;">
-<img src="images/pizza.jpg" alt="pizza">
-<h3>pizza</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
+{% for menu in menus %}
+<div class="m" data-menu="{{ menu.theme }}">
+    <img src="{{ asset('images/' ~ menu.image) }}" alt="{{ menu.titre }}">
+    <span class="m-theme">{{ menu.theme }}</span>
+    <h3>{{ menu.titre }}</h3>
+    <p class="m-infos">{{ menu.regime }} · à partir de {{ menu.nbrpersonnes }} personnes</p>
+    <p class="prix">{{ menu.prix }} € / pers.</p>
+    <a class="m-lien" href="{{ path('app_menu_detail', { id: menu.id }) }}">Voir le détail</a>
 </div>
-<p class="prix">$19.99</p>
-</div>
-<div class="m" data-menu="pizza" data-bs-toggle="modal" data-bs-target="#modalItem1" style="cursor: pointer;">
-<img src="images/pizzathon.webp" alt="pizza">
-<h3>pizza</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$19.99</p>
-</div>
-<div class="m" data-menu="pizza" data-bs-toggle="modal" data-bs-target="#modalItem1" style="cursor: pointer;">
-<img src="images/marpizza.jpg" alt="pizza">
-<h3>pizza</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$19.99</p>
+{% endfor %}
 </div>
 
+<p id="aucun-menu-accueil" style="display: none;">Aucun menu pour ce thème pour le moment.</p>
 
-
-
-<div class="m" data-menu="burger">
-<img src="images/burger.png" alt="burger">
-<h3>burger</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$14.99 </p><i class="fa-sharp fa-solid fa-circle-plus"  data-bs-toggle="modal" data-bs-target="#modalItem2" style="cursor: pointer;"></i>
-</div>
-<div class="m" data-menu="burger">
-<img src="images/veggieburger.jpg" alt="burger">
-<h3>burger</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$14.99 </p><i class="fa-sharp fa-solid fa-circle-plus"  data-bs-toggle="modal" data-bs-target="#modalItem2" style="cursor: pointer;"></i>
-</div>
-<div class="m" data-menu="burger">
-<img src="images/cheeseburger.avif" alt="burger">
-<h3>burger</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$14.99 </p><i class="fa-sharp fa-solid fa-circle-plus"  data-bs-toggle="modal" data-bs-target="#modalItem2" style="cursor: pointer;"></i>
-</div>
-<div class="m" data-menu="pasta">
-<img src="images/pasta.webp" alt="pasta" data-bs-toggle="modal" data-bs-target="#modalItem3" style="cursor: pointer;">
-<h3>pasta</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$16.99</p>
-</div>
-<div class="m" data-menu="pasta">
-<img src="images/Tagliatelles.png" alt="pasta" data-bs-toggle="modal" data-bs-target="#modalItem3" style="cursor: pointer;">
-<h3>pasta</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$16.99</p>
-</div>
-<div class="m" data-menu="pasta">
-<img src="images/penne.png" alt="pasta" data-bs-toggle="modal" data-bs-target="#modalItem3" style="cursor: pointer;">
-<h3>pasta</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$16.99</p>
-</div>
-
-
-
-<div class="m" data-menu="tacos">
-<img src="images/tacos.jpeg" alt="tacos" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
-<h3>tacos</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$10.99</p>
-</div>
-
-<div class="m" data-menu="tacos">
-<img src="images/tacosmex.jpeg" alt="tacos" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
-<h3>tacos</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$10.99</p>
-</div>
-<div class="m" data-menu="tacos">
-<img src="images/hard-shelltacos.jpeg" alt="tacos" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
-<h3>tacos</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$10.99</p>
-</div>
-
-
-
-<div class="m" data-menu="dassert">
-<img src="images/dessert1.jpeg" alt="dessert" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
-<h3>Dessert</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$10.99</p>
-</div>
-<div class="m" data-menu="dassert">
-<img src="images/dessert2.jpeg" alt="dessert" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
-<h3>Dessert</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$10.99</p>
-</div>
-<div class="m" data-menu="dassert">
-<img src="images/dessert3.jpeg" alt="dessert" data-bs-toggle="modal" data-bs-target="#modalItem4" style="cursor: pointer;">
-<h3>Dessert</h3>
-<div class="étoiles">
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i>
-<i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-</div>
-<p class="prix">$10.99</p>
-</div>
-
-</div>
-
-
-
-
-<button class="b"><a href="/menu"  class="a">voir plus</a></button>
+<button class="b"><a href="{{ path('app_menu') }}" class="a">Voir tous les menus</a></button>
 </section>
 
 
@@ -325,35 +156,6 @@ Pizza Artisan
 </div>
 </div>
 </section>
-<!-- Fenêtre Modal des détails -->
-<div class="modal fade" id="modalItem2" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content overflow-hidden rounded-4 border-0">
-      <div class="modal-body p-0">
-        <div class="row g-0">
-          <div class="col-md-6">
-            <img src="images/burger.png" alt="Classic Smash Burger" class="img-fluid h-100 object-fit-cover w-100">
-          </div>
-
-          <div class="col-md-6 p-4 position-relative">
-            <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
-            <span class="text-uppercase text-muted fw-bold small">BURGERS</span>
-            <h3 class="fw-bold mt-1 mb-2">Classic Smash Burger</h3>
-            <p class="text-secondary small mb-4">
-              Double smashed patty, cheddar cheese, caramelized onions, house pickles and our legendary special sauce.
-            </p>
-            <div class="d-flex align-items-baseline mb-4">
-              <span class="fs-3 fw-bold text-danger me-2">$14.99</span>
-            </div>
-            <button class="b">
-              ajouter au panier
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <section id="avis">
@@ -471,4 +273,5 @@ Pizza Artisan
   </div>
 </div>
 {% block footer %} {% include 'footer.html.twig' %}{% endblock %}
+<script src="{{ asset('js/acceuil.js') }}"></script>
 {% endblock %}

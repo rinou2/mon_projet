@@ -1,0 +1,30 @@
+<svg viewBox="0 0 400 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="menuMariageTitle">
+  <title id="menuMariageTitle">Illustration du menu Mariage Élégance</title>
+  <defs>
+    <linearGradient id="bgMariage" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f3ead9"/>
+      <stop offset="100%" stop-color="#cdd6bd"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="210" fill="url(#bgMariage)"/>
+  <circle cx="40" cy="180" r="70" fill="#5c6b4a" opacity="0.12"/>
+
+  <!-- interlocked rings -->
+  <g fill="none" stroke="#d9a441" stroke-width="8">
+    <circle cx="180" cy="100" r="34"/>
+    <circle cx="220" cy="100" r="34"/>
+  </g>
+
+  <!-- floral sprigs -->
+  <g fill="#5c6b4a">
+    <path d="M120,150 q10,-30 30,-30 q-14,20 -6,36 q-16,4 -24,-6 z"/>
+    <path d="M280,150 q-10,-30 -30,-30 q14,20 6,36 q16,4 24,-6 z"/>
+  </g>
+  <g fill="#c96f4a">
+    <circle cx="140" cy="140" r="6"/>
+    <circle cx="260" cy="140" r="6"/>
+  </g>
+
+  <!-- ribbon -->
+  <path d="M150,175 q50,24 100,0" fill="none" stroke="#c96f4a" stroke-width="4" stroke-linecap="round"/>
+</svg>

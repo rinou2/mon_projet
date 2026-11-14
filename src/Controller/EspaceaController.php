@@ -14,6 +14,7 @@ final class EspaceaController extends AbstractController
     #[Route('/espacea', name: 'app_espacea')]
     public function index(Request $request,CommandeRepository $commandeRepository,EmployerRepository $employerRepository,MenuRepository $menuRepository): Response
     {
+        //graph 1
         $commandes = $commandeRepository->findAll();
         // 6 par défaut on filttre 
         $periode = $request->query->getInt('periode', 6);
@@ -48,7 +49,7 @@ final class EspaceaController extends AbstractController
             }
         }
 
-        // Carte 3 
+        // Carte 3 //graph 2
         $commandesParMenu = [];
         foreach ($menuRepository->findAll() as $menu) {
             $commandesParMenu[$menu->getTitre()] = 0;
@@ -56,7 +57,15 @@ final class EspaceaController extends AbstractController
         foreach ($commandes as $commande) {
             $commandesParMenu[$commande->getIdMenu()->getTitre()]++;
         }
-        arsort($commandesParMenu); // le menu le plus commandé en premier
+
+        //graph 3
+        $caParMenu=[];
+        foreach ($menuRepository->findAll() as $menu) {
+            $caParMenu[$menu->getTitre()] = 0;
+        }
+        foreach ($commandes as $commande) {
+            $caParMenu[$commande->getIdMenu()->getTitre()] += $commande->getTotal();
+        }
 
         return $this->render('espacea/index.html.twig', [
             'controller_name' => 'EspaceaController',
@@ -64,7 +73,12 @@ final class EspaceaController extends AbstractController
             'labels'=>$labels,
             'revenusMois'=>$revenusMois,
             'nbEmployes'=>$nbEmployes,
-            'commandesParMenu'=>$commandesParMenu
+            'commandesParMenu'=>$commandesParMenu,
+            'caParMenu'=>$caParMenu,
+            'menuLabels' => array_keys($commandesParMenu),
+            'menuValues' => array_values($commandesParMenu),
+            'caMenuLabels' => array_keys($caParMenu),
+            'caMenuValues' => array_values($caParMenu),
         ]);
     }
     private const status= ['en attente','acceptée', 'en préparation' ,'en cours de livraison', 'livrée', 'terminée'];
@@ -85,6 +99,7 @@ final class EspaceaController extends AbstractController
             'commandes' => $commandes,
             'status' => self::status,
             'tab'=>$tab
+            
         ]);
     }
 

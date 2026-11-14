@@ -1,0 +1,220 @@
+
+    {# messages apres une suppression #}
+    {% for message in app.flashes('success') %}
+        <p class="alert alert-success">{{ message }}</p>
+    {% endfor %}
+    {% for message in app.flashes('danger') %}
+        <p class="alert alert-danger">{{ message }}</p>
+    {% endfor %}
+
+    <p>{{ menus|length }} menu(s)</p>
+
+    {% if menus|length > 0 %}
+
+       <table>
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Nombre de peronnes</th>
+                <th>Thème</th>
+                <th>Régime</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for menu in menus %}
+            <tr>
+    <td>{{ menu.titre }}</td>
+    <td>{{ menu.description }}</td>
+    <td>{{ menu.prix }}</td>
+    <td>{{menu.nbrpersonnes}}</td>
+    <td>{{ menu.theme }}</td>
+    <td>{{ menu.regime }}</td>
+    <td>
+        {# memes boutons icones que la page Employes #}
+        <div class="action-cell">
+            <button type="button" class="btn-action btn-edit" data-bs-toggle="modal" data-bs-target="#modif{{ menu.id }}" title="Modifier" aria-label="Modifier {{ menu.titre }}">
+                <i class="fa-solid fa-pencil"></i>
+            </button>
+            <button type="button" class="btn-action btn-delete" data-bs-toggle="modal" data-bs-target="#supp{{ menu.id }}" title="Supprimer" aria-label="Supprimer {{ menu.titre }}">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
+    </td>
+</tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Aucun menu pour le moment.</p>
+    {% endif %}
+
+            <button class="b" data-bs-toggle="modal" data-bs-target="#myModal" type="submit">ajouter un menu</button>
+     <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+    <div class="modal-body">
+    <form class="form-menu" action="{{path ('app_ajmenu' )}}" enctype="multipart/form-data" method="POST">
+<h2 style="text-align: center;">Ajouter un menu </h2>
+<div>
+<label for="tit">Titre:</label>
+<input type="text" id="tit" name="tit" required>
+</div>
+<div>
+<label for="descr">Description:</label>
+<input type="textarea" id="descr" name="descr" required>
+</div>
+<div>
+<label for="prix">Prix:</label>
+<input type="float" id="prix" name="prix" required >
+</div>
+<div>
+<label for="nbr">Nombre de personnes:</label>
+<input type="number" id="nbr" name="nbr" required>
+</div>
+
+<div>
+<label for="img">Images la 1ère sera l'image principale:</label>
+  <input type="file" id="img" name="img[]" multiple accept="image/*" required>
+</div>
+<div>
+<label for="theme">Thème:</label>
+<select id="theme" name="theme" required>
+    <option value="Noël">Noël</option>
+    <option value="Pâques">Pâques</option>
+    <option value="Classique">Classique</option>
+    <option value="Événement">Événement</option>
+</select>
+</div>
+<div>
+<label for="entree">Entrée (et allergènes):</label>
+<input type="text" id="entree" name="entree" placeholder="Foie gras maison (allergènes : gluten, lait)">
+</div>
+<div>
+<label for="plat">Plat (et allergènes):</label>
+<input type="text" id="plat" name="plat" placeholder="Chapon aux marrons (allergènes : fruits à coque)">
+</div>
+<div>
+<label for="dessert">Dessert (et allergènes):</label>
+<input type="text" id="dessert" name="dessert" placeholder="Bûche au chocolat (allergènes : gluten, oeufs, lait)">
+</div>
+<div>
+<label for="regime">Régime:</label>
+<select id="regime" name="regime" required>
+    <option value="Classique">Classique</option>
+    <option value="Végétarien">Végétarien</option>
+    <option value="Végan">Végan</option>
+</select>
+</div>
+<button class="b" type="submit">ajouter</button>
+</form>
+</div>
+</div>
+  </div>
+</div>
+
+{% for menu in menus %}
+<div class="modal fade" id="modif{{ menu.id }}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+    <div class="modal-body">
+    <form class="form-menu" action="{{ path('app_modif_menu', { id: menu.id }) }}" enctype="multipart/form-data" method="POST">
+<h2 style="text-align: center;">Modifier le menu</h2>
+<div>
+<label for="tit{{ menu.id }}">Titre:</label>
+<input type="text" id="tit{{ menu.id }}" name="tit" value="{{ menu.titre }}" required>
+</div>
+<div>
+<label for="descr{{ menu.id }}">Description:</label>
+<input type="textarea" id="descr{{ menu.id }}" name="descr" value="{{ menu.description }}" required>
+</div>
+<div>
+<label for="prix{{ menu.id }}">Prix:</label>
+<input type="float" id="prix{{ menu.id }}" name="prix" value="{{ menu.prix }}" required >
+</div>
+<div>
+<label for="nbr{{ menu.id }}">Nombre de personnes:</label>
+<input type="number" id="nbr{{ menu.id }}" name="nbr" value="{{ menu.nbrpersonnes }}" required>
+</div>
+
+<div>
+<label for="img{{ menu.id }}">Nouvelles images:</label>
+  <input type="file" id="img{{ menu.id }}" name="img[]" multiple accept="image/*">
+</div>
+<div>
+<label for="theme{{ menu.id }}">Thème:</label>
+<select id="theme{{ menu.id }}" name="theme" required>
+    <option value="Noël" {{ menu.theme == 'Noël' ? 'selected' : '' }}>Noël</option>
+    <option value="Pâques" {{ menu.theme == 'Pâques' ? 'selected' : '' }}>Pâques</option>
+    <option value="Classique" {{ menu.theme == 'Classique' ? 'selected' : '' }}>Classique</option>
+    <option value="Événement" {{ menu.theme == 'Événement' ? 'selected' : '' }}>Événement</option>
+</select>
+</div>
+<div>
+<label for="entree{{ menu.id }}">Entrée (et allergènes):</label>
+<input type="text" id="entree{{ menu.id }}" name="entree" value="{{ menu.plats[0] ?? '' }}">
+</div>
+<div>
+<label for="plat{{ menu.id }}">Plat (et allergènes):</label>
+<input type="text" id="plat{{ menu.id }}" name="plat" value="{{ menu.plats[1] ?? '' }}">
+</div>
+<div>
+<label for="dessert{{ menu.id }}">Dessert (et allergènes):</label>
+<input type="text" id="dessert{{ menu.id }}" name="dessert" value="{{ menu.plats[2] ?? '' }}">
+</div>
+<div>
+<label for="regime{{ menu.id }}">Régime:</label>
+<select id="regime{{ menu.id }}" name="regime" required>
+    <option value="Classique" {{ menu.regime == 'Classique' ? 'selected' : '' }}>Classique</option>
+    <option value="Végétarien" {{ menu.regime == 'Végétarien' ? 'selected' : '' }}>Végétarien</option>
+    <option value="Végan" {{ menu.regime == 'Végan' ? 'selected' : '' }}>Végan</option>
+</select>
+</div>
+<button class="b" type="submit">modifier</button>
+</form>
+</div>
+</div>
+  </div>
+</div>
+{% endfor %}
+
+{# ---------------- confirmation pour SUPPRIMER un menu (une par menu) ---------------- #}
+{% for menu in menus %}
+<div class="modal fade" id="supp{{ menu.id }}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+    <div class="modal-body">
+    <form action="{{ path('app_supp_menu', { id: menu.id }) }}" method="POST">
+<h2 style="text-align: center;">Supprimer ce menu ?</h2>
+<p style="text-align: center;"><strong>{{ menu.titre }}</strong> sera supprimé définitivement.</p>
+<button class="b b-supp" type="submit">oui, supprimer</button>
+<button class="b" type="button" data-bs-dismiss="modal">annuler</button>
+</form>
+</div>
+</div>
+  </div>
+</div>
+{% endfor %}
+
+<script>
+   
+    document.querySelectorAll('.form-menu').forEach(function(formulaire) {
+        formulaire.addEventListener('submit', function(event) {
+            const fichiers = formulaire.querySelector('input[type="file"]').files;
+            const extensions = ['jpg', 'jpeg', 'png','webp'];
+            for (let i = 0; i < fichiers.length; i++) {
+                const nom = fichiers[i].name.toLowerCase();
+                const isValid = extensions.some(ext => nom.endsWith(ext));
+                if (!isValid) {
+                    alert("Votre extension d'image est invalide : " + fichiers[i].name);
+                    event.preventDefault();
+                    return;
+                }
+            }
+        })
+    })
+</script>
