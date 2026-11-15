@@ -4,6 +4,8 @@ use App\Repository\MenuRepository;
 use App\Repository\EmployerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use  App\Entity\Commande;
+use App\Service\CommandeTerminee;
+use App\Service\RetourMateriel;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CommandeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -81,7 +83,7 @@ final class EspaceaController extends AbstractController
             'caMenuValues' => array_values($caParMenu),
         ]);
     }
-    private const status= ['en attente','acceptée', 'en préparation' ,'en cours de livraison', 'livrée', 'terminée'];
+    private const status= ['en attente','acceptée', 'en préparation' ,'en cours de livraison', 'livrée','en attente du retour de matériel', 'terminée'];
     #[Route('/espacea/commandes', name: 'app_espacea_commandes')]
     public function commande(MenuRepository $menuRepository, CommandeRepository $commandeRepository): Response
     {
@@ -104,7 +106,7 @@ final class EspaceaController extends AbstractController
     }
 
     #[Route('/espacea/statut{id}', name: 'app_statuta')]
-    public function statut(EntityManagerInterface $entityManager,
+    public function statut(EntityManagerInterface $entityManager,RetourMateriel $retourMateriel,CommandeTerminee $commandeTerminee,
     Request $request, Commande $commande ,int $id,CommandeRepository $commandeRepository): Response
     {
         $statut = (string)$request->request->get('statut');
@@ -118,9 +120,19 @@ final class EspaceaController extends AbstractController
             'en cours de livraison' => $commande->setDateEnCoursDeLivraison($maintenant),
             'livrée' => $commande->setDateLivree($maintenant),
             'terminée' => $commande->setDateTerminee($maintenant),
+            'en attente du retour de matériel' => $commande->setDateRetourMateriel($maintenant),
         };
         $entityManager->persist($commande);
         $entityManager->flush();
+        if($statut === 'terminée'){
+            $user = $commande->getUser();
+            $commandeTerminee->sendCommandeTerminee($user, $commande);
+        }
+        if($statut === 'en attente du retour de matériel'){
+            $user = $commande->getUser();
+            $retourMateriel->sendRetourMateriel($user);
+        }
+
         return $this->redirectToRoute('app_espacea_commandes');
     }
     

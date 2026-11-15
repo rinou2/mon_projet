@@ -1367,7 +1367,6 @@ color:white;
 .modal-body form:not(#filtres) {
     position: static;
     transform: none;
-    margin: 0 auto;
     max-width: 100%;
 }
 
@@ -1377,3 +1376,24 @@ color:white;
 }
 
 /******************************** fin popups **************************************/
+
+.modal-body form {
+    position: static !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    box-shadow: none !important;
+    background-color: beige !important;
+}
+.modal-body form input[type="text"],
+.modal-body form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.modal-content {
+    background-color: beige !important;
+    border: none !important;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Restitution de matériel</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f7; margin: 0; padding: 20px; color: #333; }
+        .box { max-width: 500px; margin: auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .header { background: #141414; color: #fff; padding: 20px; text-align: center; border-bottom: 3px solid #d9381e; }
+        .header h1 { margin: 0; font-size: 18px; }
+        .header span { color: #d9381e; }
+        .content { padding: 25px; line-height: 1.5; font-size: 14px; }
+        .alert { background: #fff8f8; border-left: 4px solid #d9381e; padding: 12px; margin: 15px 0; color: #555; }
+        .alert strong { color: #d9381e; }
+        .btn-container { text-align: center; margin-top: 20px; }
+        .btn { background: #d9381e; color: #fff; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="header">
+            <h1>Restitution de <span>matériel</span></h1>
+        </div>
+        <div class="content">
+            <p>Bonjour {{nom}},</p>
+            <p>Votre dossier est désormais au statut : <strong>« En attente du retour de matériel »</strong>.</p>
+            
+            <div class="alert">
+                <p style="margin: 0;"><strong>Attention :</strong> Conformément à nos conditions générales, si le matériel n'est pas restitué sous <strong>10 jours ouvrés</strong>, des frais de <strong>600 €</strong> vous seront facturés.</p>
+            </div>
+
+            <p>Veuillez <strong>prendre contact avec notre société</strong> dès que possible pour organiser la restitution.</p>
+
+            <div class="btn-container">
+                <a href="mailto:info.vitegourmand@gmail.com" class="btn">Contacter le support</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

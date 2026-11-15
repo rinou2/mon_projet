@@ -4,12 +4,12 @@
 
 {% block contenu %}
 {# suivi  #}
-<form action="{{ path('app_supprimer_commande', {id: commande.id}) }}" method="POST" style="display: inline;" onsubmit="return confirm('Supprimer la commande ?');">
+<form id="filtres" action="{{ path('app_supprimer_commande', {id: commande.id}) }}" method="POST" style="display: inline;" onsubmit="return confirm('Supprimer la commande ?');">
 
 <div class="stepper-container">
     {% set statut = commande.statut|lower|default('en attente') %}
 
-    <div class="step {% if statut == 'en attente' %}active{% elseif statut in ['acceptée', 'en préparation', 'en cours de livraison', 'livrée', 'terminée'] %}completed{% endif %}">
+    <div class="step {% if statut == 'en attente' %}active{% elseif statut in ['acceptée', 'en préparation', 'en cours de livraison', 'livrée','en attente du retour de matériel', 'terminée'] %}completed{% endif %}">
         <div class="step-bullet"></div>
         <div class="step-label">En attente</div>
         {% if commande.dateEnAttente %}
@@ -17,7 +17,7 @@
         {% endif %}
     </div>
 
-    <div class="step {% if statut == 'acceptée' %}active{% elseif statut in ['en préparation', 'en cours de livraison', 'livrée', 'terminée'] %}completed{% endif %}">
+    <div class="step {% if statut == 'acceptée' %}active{% elseif statut in ['en préparation', 'en cours de livraison', 'livrée','en attente du retour de matériel', 'terminée'] %}completed{% endif %}">
         <div class="step-bullet"></div>
         <div class="step-label">Acceptée</div>
         {% if commande.dateAcceptee %}
@@ -25,7 +25,7 @@
         {% endif %}
     </div>
 
-    <div class="step {% if statut == 'en préparation' %}active{% elseif statut in ['en cours de livraison', 'livrée', 'terminée']%}completed{% endif %}">
+    <div class="step {% if statut == 'en préparation' %}active{% elseif statut in ['en cours de livraison', 'livrée','en attente du retour de matériel', 'terminée']%}completed{% endif %}">
         <div class="step-bullet"></div>
         <div class="step-label">En préparation</div>
         {% if commande.dateEnPreparation %}
@@ -33,7 +33,7 @@
         {% endif %}
     </div>
 
-    <div class="step {% if statut == 'en cours de livraison' %}active{% elseif statut in ['livrée', 'terminée'] %}completed{% endif %}">
+    <div class="step {% if statut == 'en cours de livraison' %}active{% elseif statut in ['livrée','en attente du retour de matériel', 'terminée'] %}completed{% endif %}">
         <div class="step-bullet"></div>
         <div class="step-label">En cours de livraison</div>
         {% if commande.dateEnCoursDeLivraison %}
@@ -41,11 +41,20 @@
         {% endif %}
     </div>
 
-    <div class="step {% if statut == 'livrée' %}active{% elseif statut == 'terminée' %}completed{% endif %}">
+
+    <div class="step {% if statut == 'livrée' %}active{% elseif statut in ['en attente du retour de matériel','terminée'] %}completed{% endif %}">
         <div class="step-bullet"></div>
         <div class="step-label">Livrée</div>
         {% if commande.dateLivree %}
             <div class="step-date">{{ commande.dateLivree|date('d/m/Y H:i') }}</div>
+        {% endif %}
+    </div>
+
+    <div class="step {% if statut == 'en attente du retour de matériel' %}active{% elseif statut =='terminée' %}completed{% endif %}">
+        <div class="step-bullet"></div>
+        <div class="step-label">En attente du retour de matériel</div>
+        {% if commande.dateretourmateriel %}
+            <div class="step-date">{{ commande.dateretourmateriel|date('d/m/Y H:i') }}</div>
         {% endif %}
     </div>
 

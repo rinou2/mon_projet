@@ -84,6 +84,9 @@ class Commande
     #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $dateTerminee = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTime $dateretourmateriel = null;
+
     public function __construct()
     {
         $this->avis = new ArrayCollection();
@@ -359,6 +362,18 @@ class Commande
     public function setDateTerminee(\DateTime $dateTerminee): static
     {
         $this->dateTerminee = $dateTerminee;
+
+        return $this;
+    }
+
+    public function getDateretourmateriel(): ?\DateTime
+    {
+        return $this->dateretourmateriel;
+    }
+
+    public function setDateretourmateriel(?\DateTime $dateretourmateriel): static
+    {
+        $this->dateretourmateriel = $dateretourmateriel;
 
         return $this;
     }
