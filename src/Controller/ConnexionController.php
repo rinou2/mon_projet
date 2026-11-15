@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 use App\Repository\MenuRepository;
-
-
+use App\Service\ForgetedPassword;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 final class ConnexionController extends AbstractController
@@ -22,16 +23,17 @@ final class ConnexionController extends AbstractController
             'email' => $lastUsername,
         ]);
     }
-    #[Route('/connexion', name: 'app_mdp')]
-    public function mdp(AuthenticationUtils $authenticationUtils): Response
+    #[Route('/connexion/email', name: 'app_conemail')]
+    public function email(): Response
     {
-        $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('connexion/index.html.twig', [
-            'error' => $error,
-            'email' => $lastUsername,
-        ]);
+        return $this->render('connexion/email.html.twig');
+    }
+    #[Route('/connexion/mdp', name: 'app_mdp')]
+    public function mdp(Request $request, ForgetedPassword $forgetedPassword): Response
+    {
+        $email = $request->request->get('email');
+        $forgetedPassword->sendforgetedpassword($email);
+        return $this->render('connexion/email.html.twig');
     }
     
     #[Route('/espace', name: 'app_espace')]

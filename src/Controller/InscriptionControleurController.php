@@ -23,6 +23,25 @@ final class InscriptionControleurController extends AbstractController
         ]);
         
     }
+    #[Route('/connexion/reinitialisation/{email}', name: 'app_reinitialisation')]
+    public function reinitialisation(EntityManagerInterface $entityManager ,
+         Request $request , string $email,
+         UserPasswordHasherInterface $passwordHasher):Response
+    {
+        if($request->isMethod('POST')){
+            $user=$entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+            $pass =(string)$request->request->get('mdp');
+            $user->setPassword($passwordHasher->hashPassword($user, $pass));
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_connexion');
+        }
+        return $this->render('connexion/reinitialisation.html.twig', [
+            'email' => $email
+        ]);
+        
+        
+    }
     #[Route('/inscri', name: 'app_inscri')]
     public function inscri(EntityManagerInterface $entityManager ,
          Request $request ,

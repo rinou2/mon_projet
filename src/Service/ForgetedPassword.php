@@ -15,15 +15,15 @@ class ForgetedPassword
         private MailerInterface $mailer,
         private EntityManagerInterface $entityManager
     ) {} 
-    public function sendForgetedPassword(User $user): void 
+    public function sendForgetedPassword(String $email): void 
     {
         $email = (new TemplatedEmail())
             ->from(new Address(self::SENDER_EMAIL))
-            ->to($user->getEmail())
+            ->to($email)
             ->subject('Réinitialisation de votre mot de passe')
             ->htmlTemplate('connexion/mdp.html.twig')
-            ->context([                 
-                'user' => $user,      
+            ->context([
+                'userEmail' => $email,
             ]); 
 
         $this->mailer->send($email);

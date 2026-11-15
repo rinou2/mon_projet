@@ -27,10 +27,10 @@
             <h2>Nouveau <span>mot de passe</span></h2>
         </div>
 
-        <form action="" method="POST" id="form" class="box-form">
+        <form action="{{ path('app_reinitialisation', {email: email}) }}" method="POST" id="form" class="box-form">
             <div class="field">
-                <label for="p1">Mot de passe *</label>
-                <input type="password" id="p1" name="mdp" required minlength="8" placeholder="Minimum 8 caractères">
+                <label for="mdp">Mot de passe *</label>
+                <input type="password" id="mdp" name="mdp" required minlength="8" placeholder="Minimum 8 caractères">
             </div>
 
             <div class="field">
@@ -44,7 +44,7 @@
     </div>
 
     <script>
-        const p1 = document.getElementById('p1');
+        const mdp = document.getElementById('mdp');
         const p2 = document.getElementById('p2');
         const msg = document.getElementById('msg');
         const form = document.getElementById('form');
@@ -55,7 +55,7 @@
                 msg.textContent = '';
                 return false;
             }
-            if (p1.value === p2.value && p1.value.length >= 10) {
+            if (mdp.value === p2.value && mdp.value.length >= 10) {
                 p2.className = 'success';
                 msg.textContent = 'Les mots de passe correspondent.';
                 msg.className = 'msg success';
@@ -68,7 +68,7 @@
             }
         }
 
-        p1.addEventListener('input', check);
+        mdp.addEventListener('input', check);
         p2.addEventListener('input', check);
 
         form.addEventListener('submit', (e) => {

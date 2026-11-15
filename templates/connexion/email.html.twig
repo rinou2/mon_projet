@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'header.html.twig' %}
+
+    <style>
+        .box { max-width: 400px; margin: 60px auto; background: #fff; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); overflow: hidden; font-family: Arial, sans-serif; }
+        .box-header { background: #141414; color: #fff; padding: 20px; text-align: center; border-bottom: 3px solid #d9381e; }
+        .box-header h2 { margin: 0; font-size: 18px; }
+        .box-header span { color: #d9381e; }
+        .box-form { padding: 25px; }
+        .field { margin-bottom: 15px; display: flex; flex-direction: column; }
+        .field label { font-size: 13px; font-weight: bold; margin-bottom: 6px; color: #333; }
+        .field input { padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 14px; outline: none; }
+        .field input:focus { border-color: #d9381e; }
+        .btn { width: 100%; background: #d9381e; color: #fff; border: none; padding: 11px; font-weight: bold; border-radius: 5px; cursor: pointer; }
+        .btn:hover { background: #c03019; }
+        .desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.4; text-align: center; }
+    </style>
+
+    <div class="box">
+        <div class="box-header">
+            <h2>Mot de passe <span>oublié</span></h2>
+        </div>
+
+        <form action="{{path('app_mdp')}}" method="POST" class="box-form">
+            <p class="desc">Entrez votre adresse e-mail pour recevoir le lien de réinitialisation.</p>
+            
+            <div class="field">
+                <label for="email">Adresse e-mail *</label>
+                <input type="email" id="email" name="email" required placeholder="vous@exemple.com">
+            </div>
+
+            <button type="submit" class="btn">Envoyer le lien</button>
+        </form>
+    </div>
+{% endblock %}
