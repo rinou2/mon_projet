@@ -95,9 +95,9 @@ Tous les comptes créés par les fixtures utilisent le mot de passe
 
 | Rôle                  | E-mail                              |
 | --------------------- | ------------------------------------ |
-| Client                | sarah.b@example.com                  |
+| Client                | client1@vite-gourmand.test           |
 | Administrateur        | admin@vite-gourmand.test             |
-| Employé               | client1@vite-gourmand.test           |    
+| Employé               | employe1@vite-gourmand.test          |    
 
 ## Commandes utiles
 
