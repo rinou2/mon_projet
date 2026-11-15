@@ -40,15 +40,13 @@
        <table>
         <thead>
             <tr>
-                <th>user</th>
+                <th>client</th>
                 <th>menu</th>
                 <th>Date de l'événement</th>
                 <th>Adresse</th>
                 <th>Lieu</th>
-                <th>Heure</th>
                 <th>Nombre de personnes</th>
                 <th>Total</th>
-                <th>Date de création</th>
 
                 <th>Statut</th>
                 <th></th>
@@ -61,13 +59,11 @@
             <tr>
                 <td>{{ commande.usernom }}</td>
                 <td>{{ commande.menunom }}</td>
-    <td>{{ commande.date_event|date('d/m/Y') }}</td>
+    <td>{{ commande.date_event|date('d/m/Y') }} à {{ commande.heure|date('H:i') }}</td>
     <td>{{ commande.adresse }}</td>
     <td>{{ commande.lieu }}</td>
-    <td>{{ commande.heure|date('H:i') }}</td>
     <td>{{ commande.nbr_personnes }}</td>
     <td>{{ commande.total|number_format(2, ',', ' ') }} €</td>
-    <td>{{ commande.date_creation|date('d/m/Y') }}</td>
     <td>
     <div style="display: flex; align-items: center; gap: 5px;">
     
