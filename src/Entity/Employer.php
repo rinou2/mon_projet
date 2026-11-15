@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: EmployerRepository::class)]
 
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[ORM\UniqueConstraint(name: 'UNIQ_EMPLOYER_EMAIL', fields: ['email'])]
 class Employer implements UserInterface, PasswordAuthenticatedUserInterface
  
 {
