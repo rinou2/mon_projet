@@ -18,18 +18,46 @@
 
 {% block body %}
     {% set route = app.request.attributes.get('_route') %}
+    <header class="user-header">
+        <div class="user-logo">
+            <i class="fa-solid fa-egg logo-icon"></i>
+            <span class="logo-vite">Vite</span>
+            <span class="logo-et">&amp;</span>
+            <span class="logo-gourmand">Gourmand</span>
+        </div>
 
+        <div class="user-header-actions">
+            <a href="{{ path('app_acceuil') }}" class="header-pill">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Retour au site
+            </a>
+
+            {% if app.user %}
+                <div class="header-user-badge">
+                    <span class="user-avatar"><i class="fa-regular fa-user"></i></span>
+                    <span>{{ app.user.nom }}</span>
+                </div>
+            {% endif %}
+
+            <a href="{{ path('app_deconnexion') }}" class="header-pill">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion
+            </a>
+        </div>
+    
+    
+    </header>
     <div class="user">
-        <nav class="user-nav">
-            <h2>Mon espace</h2>
+    <nav class="user-nav">
+    <h2>MON ESPACE</h2>
+    <a href="{{ path('app_espaceu') }}" class="{{ route == 'app_espaceu' ? 'actif' : '' }}">
+        <i class="fa-solid fa-table-columns"></i> Tableau de bord</a>
+    <a href="{{ path('app_espaceu_commandes') }}" class="{{ route == 'app_espaceu_commandes' ? 'actif' : '' }}">
+        <i class="fa-solid fa-bag-shopping"></i> Mes commandes</a>
 
-            <a href="{{ path('app_espaceu') }}" class="{{ route == 'app_espaceu' ? 'actif' : '' }}">Tableau de bord</a>
-            <a href="{{ path('app_espaceu_commandes') }}" class="{{ route == 'app_espaceu_commandes' ? 'actif' : '' }}">Commandes</a>
-            <a href="{{ path('app_espaceu_avis_list') }}" class="{{ route == 'app_espaceu_avis_list' ? 'actif' : '' }}">Avis</a>
+    <h2 class="nav-section-title">DÉCOUVRIR</h2>
 
-
-            <a href="{{ path('app_deconnexion') }}" class="deconnexion">Déconnexion</a>
-        </nav>
+    <a href="/menu"><i class="fa-regular fa-rectangle-list"></i> Nos menus</a>
+    <a href="/contact"><i class="fa-regular fa-envelope"></i> Contact</a>
+    </nav>
 
         <main class="user-contenu">
             {% block contenu %}{% endblock %}
