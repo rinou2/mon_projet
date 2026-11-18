@@ -25,22 +25,15 @@ final class EspaceuController extends AbstractController
             'commandes' => $commandes
         ]);
     }
-    #[Route('/espaceu/avis', name: 'app_espaceu_avis_list')]
-    public function avis_list(AvisRepository $avisRepository): Response
+    #[Route('/espaceu', name: 'app_espaceu')]
+    public function index(AvisRepository $avisRepository): Response
     {
         $avis = $avisRepository->findAll();
-        return $this->render('espaceu/avis.html.twig', [
-            'controller_name' => 'EspaceuController',
-            'avis' => $avis
-        ]);
-    }
-    #[Route('/espaceu', name: 'app_espaceu')]
-    public function index(): Response
-    {
         $user = $this->getUser();
         return $this->render('espaceu/index.html.twig', [
             'controller_name' => 'EspaceuController',
-            'user' => $user
+            'user' => $user,
+            'avis'=>$avis
         ]);
     }
     #[Route('/espaceu/avis/{id}', name: 'app_espaceu_avis')]
