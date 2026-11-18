@@ -39,7 +39,7 @@ final class InscriptionControleurController extends AbstractController
         return $this->render('connexion/reinitialisation.html.twig', [
             'email' => $email
         ]);
-        
+    
         
     }
     #[Route('/inscri', name: 'app_inscri')]

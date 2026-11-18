@@ -215,18 +215,18 @@ const drawBars = (ctx, values, marks_y, scale_y, color) => {
         ctx.fillText(val, x + (barWidth / 2), y - 8);
     })
 }
-    createAxeY(ctx,10,100,"£",undefined);
+    createAxeY(ctx,10,1000,"£",undefined);
     createAxeX(tab.length - 1,100,undefined,undefined);
     const points = generatePoints(tab.length, "red");
-    drawLineAndFill(points,tab.length - 1,1,10,100);
+    drawLineAndFill(points,tab.length - 1,1,10,1000);
 
     createAxeY(ctx2, 10, 2, "", undefined);
     createBarAxeX(ctx2, menuLabels, undefined);
     drawBars(ctx2, menuValues, 10, 2, "#d9534f");
 
-    createAxeY(ctx3, 10, 100, "£", undefined);
+    createAxeY(ctx3, 10, 1000, "£", undefined);
     createBarAxeX(ctx3, caMenuLabels, undefined);
-    drawBars(ctx3, caMenuValues, 10, 100, "#2ecc71");
+    drawBars(ctx3, caMenuValues, 10, 1000, "#2ecc71");
 
   </script>
 {% endblock %}

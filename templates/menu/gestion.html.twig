@@ -14,8 +14,7 @@
        <table>
         <thead>
             <tr>
-                <th>Titre</th>
-                <th>Description</th>
+                <th>Menu</th>
                 <th>Prix</th>
                 <th>Nombre de peronnes</th>
                 <th>Thème</th>
@@ -27,8 +26,7 @@
         <tbody>
             {% for menu in menus %}
             <tr>
-    <td>{{ menu.titre }}</td>
-    <td>{{ menu.description }}</td>
+    <td><img src="{{ asset('images/'~ menu.image)}}" alt="{{menu.titre}}">  {{ menu.titre }}</td>
     <td>{{ menu.prix }}</td>
     <td>{{menu.nbrpersonnes}}</td>
     <td>{{ menu.theme }}</td>

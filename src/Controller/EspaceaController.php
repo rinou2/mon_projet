@@ -2,8 +2,10 @@
 namespace App\Controller;
 use App\Repository\MenuRepository;
 use App\Repository\EmployerRepository;
+use App\Repository\AvisRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use  App\Entity\Commande;
+use App\Entity\Avis;
 use App\Service\CommandeTerminee;
 use App\Service\RetourMateriel;
 use Symfony\Component\HttpFoundation\Request;
@@ -135,5 +137,26 @@ final class EspaceaController extends AbstractController
 
         return $this->redirectToRoute('app_espacea_commandes');
     }
-    
+    private const status2= ['en attente', 'publié','annulé'];
+   #[Route('/espacea/avis', name: 'app_espacea_avis_list')]
+    public function avis_list3(AvisRepository $avisRepository): Response
+    {
+        $avis = $avisRepository->findAll();
+        return $this->render('espacea/avis.html.twig', [
+            'controller_name' => 'EspaceaController',
+            'avis' => $avis,
+            'status' => self::status2
+        ]);
+    }
+    #[Route('/espacea/status{id}', name: 'app_status')]
+    public function status(EntityManagerInterface $entityManager,Request $request, AvisRepository $avisRepository ,int $id): Response
+    {
+        $statut = (string)$request->request->get('statut');
+        $avis= $avisRepository->find($id);
+        $avis->setStatut($statut);
+        $entityManager->persist($avis);
+        $entityManager->flush();
+       return $this->redirectToRoute('app_espacea_avis_list');
+
+    }
 }

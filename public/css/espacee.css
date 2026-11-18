@@ -2,11 +2,63 @@ body { margin: 0; font-family: Arial, sans-serif; }
 
 .employer { display: flex; min-height: 100vh; }
 
-.employer-nav { width: 230px; background: #2b2b2b; padding: 20px; box-sizing: border-box; }
-.employer-nav h2 { color: #BE5C3E; font-size: 18px; margin: 0 0 20px 0; }
-.employer-nav a { display: block; color: #dddddd; padding: 10px 12px; margin-bottom: 4px; text-decoration: none; border-radius: 6px; }
-.employer-nav a:hover { background: #444444; }
-.employer-nav a.actif { background: #BE5C3E; color: white; }
+.employer-nav {
+    width: 240px;
+    background-color: white;
+    border-right: 1px solid #ede6da;
+    padding: 28px 18px;
+    box-sizing: border-box;
+}
+
+.employer-nav h2 {
+    color: #9c9488;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 12px 12px;
+}
+
+.employer-nav h2.nav-section-title {
+    margin-top: 28px;
+}
+
+.employer-nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #44403c;
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 11px 14px;
+    margin-bottom: 6px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+}
+
+.employer-nav a i {
+    width: 18px;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #78716c;
+}
+
+.employer-nav a:hover {
+    background-color: #efeae1;
+    color: #1c1917;
+}
+
+.employer-nav a.actif {
+    background-color: #d15637;
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(209, 86, 55, 0.25);
+}
+
+.employer-nav a.actif i {
+    color: #ffffff;
+}
 
 
 
@@ -158,4 +210,197 @@ body { margin: 0; font-family: Arial, sans-serif; }
 .btn-delete i {
     color: #ff4757 !important;
     font-size: 14px;
+}
+/**********header admin***********/
+.employer-header {
+    height: 70px;
+    background-color: #fbf8f3;
+    border-bottom: 1px solid #ede6da;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.employer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1c1917;
+    white-space: nowrap;
+}
+
+.employer-logo .logo-icon {
+    color: #d15637;
+    font-size: 1.25rem;
+}
+
+.logo-et {
+    color: #d15637;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.employer-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.header-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #efeae1;
+    color: #292524;
+    padding: 6px 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+
+.header-pill:hover {
+    background-color: #e4ddd0;
+    color: #1c1917;
+}
+
+.header-employer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #292524;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    white-space: nowrap;
+}
+
+.header-employer-badge .employer-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f3e4d7;
+    color: #d15637;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .employer-nav {
+        width: 200px;
+        padding: 20px 12px;
+    }
+
+    .employer-contenu {
+        padding: 20px;
+    }
+
+    .filters-card {
+        flex-wrap: wrap;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .employer {
+        flex-direction: column;
+    }
+
+    .employer-nav {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ede6da;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .employer-nav h2 {
+        display: none;
+    }
+
+    .employer-nav a {
+        margin-bottom: 0;
+        padding: 8px 12px;
+        font-size: 0.88rem;
+    }
+
+    .employer-nav a.deconnexion {
+        margin-top: 10px;
+        border-top: none;
+        padding-top: 8px;
+    }
+
+    .employer-contenu {
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .employer-contenu table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .employer-header {
+        padding: 0 15px;
+        height: 60px;
+    }
+
+    .employer-logo {
+        font-size: 1.1rem;
+    }
+
+    .employer-header-actions {
+        gap: 6px;
+    }
+
+    .header-pill {
+        padding: 4px 10px;
+        font-size: 0.78rem;
+    }
+
+    .header-employer-badge span {
+        display: none;
+    }
+
+    .filters-card {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+
+    .page-title {
+        font-size: 1.7rem;
+        margin-bottom: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .employer-header-actions {
+        gap: 4px;
+    }
+
+    .header-pill {
+        display: none;
+    }
 }

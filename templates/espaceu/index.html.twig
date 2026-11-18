@@ -3,8 +3,12 @@
 {% block title %}Administration{% endblock %}
 
 {% block contenu %}
+<div class="section-bonjour">
+    <span class="ligne-tiret"></span>
+    <span class="texte-bonjour">BONJOUR 👋</span>
+</div>
     <h1>Tableau de bord</h1>
-    <p>Bonjour {{ app.user.nom }}.</p>
+
     <div class="user-info-card">
     <div class="user-info-content">
         <h3 class="user-info-title">Mes informations</h3>
@@ -15,7 +19,7 @@
     <button type="button" class="btn-modify" data-bs-toggle="modal" data-bs-target="#modifModal{{ user.id }}">
         <i class="fas fa-pen" style="margin-right: 6px;"></i> Modifier
     </button>
-</div>
+
     </div>
     <div class="modal fade" id="modifModal{{ user.id }}" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -49,5 +53,30 @@
             </div>
           </div>
         </div>
+<br>
+<h3>avis</h3>
+    {% set avi = avis|filter(a => app.user and a.user and a.user.id == app.user.id ) %}
+    {% if avi|length > 0 %}
+       <table>
+        <thead>
+            <tr>
+                <th>Commentaire</th>
+                <th>Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for avis in avis %}
+                {% if app.user and avis.user and avis.user.id == app.user.id %}
+                    <tr>
+                        <td>{{ avis.commentaire}}</td>
+                        <td>{{ avis.statut }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>Aucun avis pour le moment.</p>
+    {% endif %}
 {% endblock %}
  

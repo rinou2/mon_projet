@@ -17,18 +17,40 @@
 
 {% block body %}
     {% set route = app.request.attributes.get('_route') %}
+    <header class="employer-header">
+        <div class="employer-logo">
+            <i class="fa-solid fa-egg logo-icon"></i>
+            <span class="logo-vite">Vite</span>
+            <span class="logo-et">&amp;</span>
+            <span class="logo-gourmand">Gourmand</span>
+        </div>
 
+        <div class="employer-header-actions">
+            <a href="{{ path('app_acceuil') }}" class="header-pill">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Retour au site
+            </a>
+
+            {% if app.user %}
+                <div class="header-employer-badge">
+                    <span class="employer-avatar"><i class="fa-regular fa-user"></i></span>
+                    <span>{{ app.user.nom }}</span>
+                </div>
+            {% endif %}
+
+            <a href="{{ path('app_deconnexion') }}" class="header-pill">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion
+            </a>
+        </div>
+    
+    
+    </header>
     <div class="employer">
         <nav class="employer-nav">
             <h2>Espace employeur</h2>
 
-            <a href="{{ path('app_espacee') }}" class="{{ route == 'app_espacee' ? 'actif' : '' }}">Tableau de bord</a>
             <a href="{{ path('app_espacee_commandes') }}" class="{{ route == 'app_espacee_commandes' ? 'actif' : '' }}">Commandes</a>
             <a href="{{ path('app_espacee_avis_list') }}" class="{{ route == 'app_espacee_avis_list' ? 'actif' : '' }}">Avis</a>
             <a href="{{ path('app_espacee_menus') }}" class="{{ route == 'app_espacee_menus' ? 'actif' : '' }}">Menus</a>
-
-
-            <a href="{{ path('app_deconnexion') }}" class="deconnexion">Déconnexion</a>
         </nav>
 
         <main class="employer-contenu">

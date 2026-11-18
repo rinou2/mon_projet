@@ -1,5 +1,4 @@
 /******************************** polices (fonts) **************************************/
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap');
 /*********************page contact **********************/
 
 .contact-section {
@@ -14,7 +13,7 @@
 }
 
 .contact-subtitle {
-    color: #e74c3c;
+    color: #BE5C3E;
     font-style: italic;
     font-size: 1.2rem;
     font-family: serif;
@@ -28,7 +27,7 @@
 }
 
 .contact-title span {
-    color: #e74c3c;
+    color: #BE5C3E;
 }
 
 .contact-description {
@@ -74,7 +73,7 @@
 }
 
 .info-item i {
-    color: #e74c3c;
+    color: #BE5C3E;
     font-size: 1.1rem;
     margin-right: 15px;
     margin-top: 3px;
@@ -98,7 +97,63 @@
     gap: 12px;
     margin-top: 20px;
 }
+#equipe-section, #avis { scroll-margin-top: 90px; }
 
+.main-header {
+    height: 80px;
+    background: #fbf8f3;
+    border-bottom: 1px solid #ede6da;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.user-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 700 1.25rem Georgia, serif;
+    color: #1c1917;
+}
+.user-logo .logo-icon, .logo-et { color: #d15637; }
+.logo-et { font-style: italic; font-weight: 400; }
+
+.main-nav { display: flex; gap: 30px; }
+.main-nav .nav-link {
+    text-decoration: none;
+    color: #44403c;
+    font-size: 0.95rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 4px;
+}
+.main-nav .nav-link:hover { color: #1c1917; }
+.main-nav .nav-link.active { color: #d15637; font-weight: 600; }
+.main-nav .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 100%; height: 2px;
+    background: #d15637;
+}
+
+.header-auth-actions { display: flex; gap: 12px; }
+.btn-connexion, .btn-inscription {
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: 0.2s;
+}
+.btn-connexion { background: #efeae1; color: #292524; }
+.btn-connexion:hover { background: #e4ddd0; }
+
+.btn-inscription { background: #d15637; color: #fff; }
+.btn-inscription:hover { background: #bc472b; }
 .social-icons a {
     width: 35px;
     height: 35px;
@@ -114,7 +169,7 @@
 }
 
 .social-icons a:hover {
-    background: #e74c3c;
+    background: #BE5C3E;
 }
 
 .contact-form {
@@ -161,12 +216,12 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: #e74c3c;
+    border-color: #BE5C3E;
     background-color: #fff;
 }
 
 .submit-btn {
-    background-color: #d9381e;
+    background-color: #BE5C3E;
     color: white;
     border: none;
     padding: 12px 25px;
@@ -182,7 +237,7 @@
 }
 
 .submit-btn:hover {
-    background-color: #c03019;
+    background-color: #BE5C3E;
     transform: translateY(-2px);
 }
 /*********************page contact **********************/
@@ -294,6 +349,7 @@ header{
 }
 .stitre{
     text-align: center;
+    margin:auto 0px;
     font-size: 50px;
 }
 
@@ -374,7 +430,29 @@ form:not(#filtres){
     margin-left:auto;
     margin-right:200px;
     border-radius:10px;
+    margin:40px auto;
     box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+}
+form:not(#filtres) > div {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+form:not(#filtres) label {
+    text-align: left;
+    font-weight: 500;
+    color: #292524;
+    margin: 0;
+}
+
+form:not(#filtres) input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d6cfc2;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 .filtres .th {
     display: inline-block;
@@ -722,25 +800,46 @@ color:white;
     color: #ffc107 ;
 
 }
-.av{
-       margin-top:50px;
-    padding-right:20px;
-    display:flex;
+.av {
+    width: 300px;
+    min-height: 240px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index:2;
-    --scale-factor: 1;
-  transform: scale(var(--scale-factor));
-  transition: transform 0.3s ease;
-    position:relative;
-  border-radius: 18px;
-  overflow: hidden;
-  transition: 0.4s;
-  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
-  cursor: pointer;
-  width:300px;
-  height:300px;
+    text-align: center;
+    gap: 12px;
+    background-color: #fdfbf7;
+    border-radius: 18px;
+    box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.slider-mask {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 0 auto;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+#avis {
+    min-height: 70vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    background-color: beige;
 }
 
 .av img{ 
@@ -752,14 +851,6 @@ color:white;
     border-radius:40px;
     margin-left:0;
 
-}
-/* 1. Le masque qui cache ce qui dépasse sur les côtés */
-.slider-mask {
-    width: 100%;
-    max-height:60vh;
-    max-width: 1200px; /* Ajustez la largeur visible de votre slider */
-    margin: 0 auto;
-    overflow: hidden; /* C'est ceci qui évite d'avoir une barre de défilement */
 }
 
 /* 2. Le conteneur qui s'anime */
@@ -789,16 +880,6 @@ color:white;
 
 .slider-mask:hover .image-container {
     animation-play-state: paused;
-}
-
-#avis{
-    max-height:80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 120px 0;
-    background-color: beige;
 }
 .x {
     position: relative;
@@ -938,233 +1019,6 @@ color:white;
     margin: 0;
 }
 /************************************************fin de section equipe**********************************************/
-
-
-
-
-
-@media screen and (max-width: 1024px) {
-
-    header {
-        padding-left: 20px;
-        padding-right: 20px;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .c2, .p1 {
-        padding-left: 20px;
-    }
-
-    .c {
-        gap: 25px;
-        padding: 20px;
-    }
-
-    .image img {
-        width: 100%;
-        max-width: 450px;
-    }
-
-    .menus {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .pa {
-        width: 100%;
-        left: 0;
-    }
-
-    .jaune {
-        width: 50%;
-    }
-
-    form, .form {
-        width: 90%;
-        max-width: 500px;
-        padding: 35px;
-        margin: 0;
-    }
-}
-@media screen and (max-width: 768px) {
-
-    /* section qui sommes-nous : le texte d'abord, la photo apres */
-    .equipe-section {
-        padding: 40px 20px;
-        min-height: auto;
-    }
-
-    .equipe-container {
-        flex-direction: column-reverse;
-        gap: 25px;
-    }
-
-    .equipe-image,
-    .equipe-content {
-        min-width: 0;
-        width: 100%;
-    }
-
-    .equipe-image img {
-        height: 250px;
-    }
-
-    /* liens du menu sur une ligne (qui passe a la ligne si besoin) */
-    header {
-        padding: 10px;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px 20px;
-    }
-
-    header p {
-        margin: 0;
-    }
-
-    footer {
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-    }
-
-    .c, .c2, .conteneur {
-        flex-direction: column;
-        padding: 20px;
-        gap: 25px;
-    }
-
-    .c {
-
-    }
-
-    .c2, .p1 {
-        padding-left: 0;
-    }
-
-    .stitre {
-        font-size: 32px;
-    }
-
-    .image img {
-        width: 100%;
-        height: auto;
-    }
-
-    .menus {
-        grid-template-columns: 1fr;
-    }
-
-    .m, .m1, .ch, .av {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    #menu, #chef {
-        padding: 20px;
-        min-height: auto;
-    }
-
-    #menu img, #chef img {
-        width: 100%;
-        height: auto;
-    }
-
-    .chefs {
-        justify-content: center;
-    }
-
-    form, .form {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        width: 100%;
-        max-width: 100%;
-        padding: 25px;
-        margin: 20px auto;
-    }
-
-    .res {
-        height: auto;
-        min-height: 100vh;
-    }
-
-    .x {
-        height: auto;
-        flex-direction: column;
-    }
-
-    .pa {
-        width: 100%;
-        height: 250px;
-        padding-top: 0;
-        margin-left: 0;
-        left: 0;
-    }
-
-    .jaune {
-        display: none;
-    }
-
-    #avis {
-        max-height: none;
-        padding: 50px 15px;
-    }
-
-    .slider-mask {
-        height: auto;
-    }
-
-    table {
-        display: block;
-        overflow-x: auto;
-    }
-
-    select {
-        max-width: 100%;
-    }
-
-    .b, .b1 {
-        max-width: 100%;
-    }
-}
-@media screen and (max-width: 480px) {
-
-    .stitre {
-        font-size: 26px;
-    }
-
-    .titre {
-        font-size: 1.2rem;
-    }
-
-    .c {
-        padding: 12px;
-    }
-
-    .equipe-section {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-    
-
-    form, .form {
-        padding: 18px;
-    }
-
-    .menus {
-        gap: 15px;
-    }
-
-    .m, .m1, .ch, .av {
-        margin-top: 20px;
-    }
-
-    .b {
-        width: 100%;
-    }
-   
-}
 /******************************** nouvelle section hero (1ere section) **************************************/
 /* la photo prend toute la section et le texte est ecrit dessus */
 .c {
@@ -1396,4 +1250,222 @@ color:white;
 .modal-content {
     background-color: beige !important;
     border: none !important;
+}
+.employer-header, .user-header, .admin-header {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 0 !important;
+    z-index: 1000 !important;
+}
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.employer, .user, .admin {
+    margin-top: 0 !important;
+}
+/******************************RESPONSIVE DESIGN GLOBAL (TABLETTES & MOBILES)**********************************************************/
+
+@media screen and (max-width: 1024px) {
+    /* Header sur une seule ligne */
+    .main-header {
+        padding: 0 20px;
+        height: 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
+
+    .user-logo {
+        font-size: 1.1rem;
+    }
+
+    .main-nav {
+        display: flex;
+        gap: 15px;
+        width: auto;
+        order: unset;
+        border-top: none;
+        padding-top: 0;
+    }
+
+    .main-nav .nav-link {
+        font-size: 0.85rem;
+    }
+
+    .header-auth-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .c2, .p1 {
+        padding-left: 20px;
+    }
+
+    /* --- MISE EN PAGE DES MENUS ET FILTRES (2 colonnes côte à côte) --- */
+    .layout-menu {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    /* Le formulaire de filtres prend un espace fixe à gauche */
+    .filtres {
+        width: 260px;
+        flex-shrink: 0;
+        position: static !important;
+        transform: none !important;
+        margin: 0 !important;
+        background-color: beige;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 22px rgba(0, 0, 0, 0.07);
+    }
+
+    /* La grille des menus s'installe à droite des filtres avec 2 cartes par ligne */
+    .menus_menu {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        flex: 1;
+    }
+
+    .contact-container {
+        width: 95%;
+    }
+}
+@media screen and (max-width: 768px) {
+    /* Barre supérieure orange : conservée sur une seule ligne en version miniature */
+    .c2 {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 4px 8px;
+        font-size: 0.55rem;
+        gap: 2px;
+    }
+
+    /* Header : tout reste côte à côte (en ligne) en version mini */
+    .main-header {
+        height: 50px;
+        padding: 0 6px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .user-logo {
+        font-size: 0.65rem;
+        gap: 3px;
+        white-space: nowrap;
+    }
+
+    .user-logo .logo-icon {
+        font-size: 0.7rem;
+    }
+
+    .main-nav {
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        width: auto;
+        border-top: none;
+        padding-top: 0;
+    }
+
+    .main-nav .nav-link {
+        font-size: 0.58rem;
+        padding-bottom: 1px;
+        white-space: nowrap;
+    }
+
+    .header-auth-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 3px;
+        width: auto;
+    }
+
+    .btn-connexion, .btn-inscription {
+        padding: 3px 6px;
+        font-size: 0.52rem;
+        border-radius: 10px;
+        white-space: nowrap;
+    }
+
+    /* Reste du contenu adapté pour mobile */
+    .stitre {
+        font-size: 28px;
+    }
+
+    .equipe-container {
+        flex-direction: column-reverse;
+        gap: 20px;
+    }
+
+    .equipe-image img, .equipe-image, .equipe-content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .menus {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .m1, .ch {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    form:not(#filtres), .form {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px 15px;
+        margin: 15px auto;
+        box-sizing: border-box;
+    }
+
+    form:not(#filtres) > div {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .commande-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        flex-direction: column;
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer-bottom-container {
+        flex-direction: column;
+        text-align: center;
+    }
 }

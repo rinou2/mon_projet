@@ -19,17 +19,44 @@
 
 {% block body %}
     {% set route = app.request.attributes.get('_route') %}
+        <header class="admin-header">
+        <div class="admin-logo">
+            <i class="fa-solid fa-egg logo-icon"></i>
+            <span class="logo-vite">Vite</span>
+            <span class="logo-et">&amp;</span>
+            <span class="logo-gourmand">Gourmand</span>
+        </div>
 
+        <div class="admin-header-actions">
+            <a href="{{ path('app_acceuil') }}" class="header-pill">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Retour au site
+            </a>
+
+            {% if app.user %}
+                <div class="header-admin-badge">
+                    <span class="admin-avatar"><i class="fa-regular fa-user"></i></span>
+                    <span>{{ app.user.nom }}</span>
+                </div>
+            {% endif %}
+
+            <a href="{{ path('app_deconnexion') }}" class="header-pill">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion
+            </a>
+        </div>
+    
+    
+    </header>
     <div class="admin">
         <nav class="admin-nav">
             <h2>Administration</h2>
 
-            <a href="{{ path('app_espacea') }}" class="{{ route == 'app_espacea' ? 'actif' : '' }}">Tableau de bord</a>
-            <a href="{{ path('app_espacea_commandes') }}" class="{{ route == 'app_espacea_commandes' ? 'actif' : '' }}">Commandes</a>
-            <a href="{{ path('app_ajout') }}" class="{{ route == 'app_ajout' ? 'actif' : '' }}">Employés</a>
-            <a href="{{ path('app_ajout_menu') }}" class="{{ route == 'app_ajout_menu' ? 'actif' : '' }}">Menus</a>
+            <a href="{{ path('app_espacea') }}" class="{{ route == 'app_espacea' ? 'actif' : '' }}"><i class="fa-solid fa-chart-pie"></i>Tableau de bord</a>
+            <a href="{{ path('app_espacea_commandes') }}" class="{{ route == 'app_espacea_commandes' ? 'actif' : '' }}"><i class="fa-solid fa-bag-shopping"></i>Commandes</a>
+            <a href="{{ path('app_ajout') }}" class="{{ route == 'app_ajout' ? 'actif' : '' }}"><i class="fa-solid fa-users"></i>Employés</a>
+            <a href="{{ path('app_ajout_menu') }}" class="{{ route == 'app_ajout_menu' ? 'actif' : '' }}"><i class="fa-solid fa-utensils"></i>Menus</a>
+            <a href="{{ path('app_espacea_avis_list') }}" class="{{ route == 'app_espacea_avis_list' ? 'actif' : '' }}"><i class="fa-regular fa-star"></i>Avis clients</a>
 
-            <a href="{{ path('app_deconnexion') }}" class="deconnexion">Déconnexion</a>
+
         </nav>
 
         <main class="admin-contenu">

@@ -1,7 +1,33 @@
-<header>
-<p><a class="a" href="/">Accueil</a></p>
-<p><a class="a" href="contact">Contact</a></p>
-<p><a class="a" href="menu">Menu</a></p>
-<p><a class="a" data-bs-toggle="modal" data-bs-target="#formModal" href="connexion">Connexion</a></p>
-<p><a class="a" href="/#avis">Avis</a></p>
+{% set route = app.request.attributes.get('_route') %}
+<header class="main-header">
+    <div class="user-logo">
+        <i class="fa-solid fa-egg logo-icon"></i>
+        <span class="logo-vite">Vite</span>
+        <span class="logo-et">&amp;</span>
+        <span class="logo-gourmand">Gourmand</span>
+    </div>
+
+    <nav class="main-nav">
+        <a href="{{ path('app_acceuil') }}" class="nav-link {{ route == 'app_acceuil' ? 'active' : '' }}">Accueil</a>
+        <a href="/menu" class="nav-link {{ route == 'app_menus' ? 'active' : '' }}">Nos menus</a>
+        <a href="{{ path('app_acceuil') }}#equipe-section" class="nav-link">À propos</a>
+        <a href="{{ path('app_acceuil') }}#avis" class="nav-link">Avis</a>
+        <a href="/contact" class="nav-link {{ route == 'app_contact' ? 'active' : '' }}">Contact</a>
+    </nav>
+
+    <div class="header-auth-actions">
+        {% if app.user %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_espacea') }}" class="btn-connexion">Mon espace</a>
+            {% elseif is_granted('ROLE_EMPLOYER') %}
+                <a href="{{ path('app_espacee') }}" class="btn-connexion">Mon espace</a>
+            {% else %}
+                <a href="{{ path('app_espaceu') }}" class="btn-connexion">Mon espace</a>
+            {% endif %}
+            <a href="{{ path('app_deconnexion') }}" class="btn-inscription">Déconnexion</a>
+        {% else %}
+            <a href="{{ path('app_connexion') }}" class="btn-connexion"  data-bs-toggle="modal" data-bs-target="#formModal">Connexion</a>
+            <a href="{{ path('app_inscription') }}" class="btn-inscription">Créer un compte</a>
+        {% endif %}
+    </div>
 </header>

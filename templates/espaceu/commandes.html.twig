@@ -3,11 +3,14 @@
 {% block title %}Commandes{% endblock %}
 
 {% block contenu %}
+    {% set commandesEnCours = commandes|filter(c => app.user and c.user and c.user.id == app.user.id and c.statut != 'terminée') %}
+    {% set commandesTerminees = commandes|filter(c => app.user and c.user and c.user.id == app.user.id and c.statut == 'terminée')%}
+    {% set totalMesCommandes = commandesEnCours|length + commandesTerminees|length %}
     <h1>Commandes</h1>
 
-    <p>{{ commandes|length }} commande(s)</p>
-
-    {% if commandes|length > 0 %}
+    <p>{{ totalMesCommandes }} commande(s)</p>
+{% if totalMesCommandes|length > 0 %}
+    {% if commandesEnCours|length > 0 %}
        <table>
         <thead>
             <tr>
@@ -40,7 +43,8 @@
             {% endfor %}
         </tbody>
     </table><br> <br>
-
+    {% endif %}
+    {% if commandesTerminees|length > 0 %}
     <table>
         <thead>
             <tr>
@@ -60,7 +64,7 @@
         
             {% for commande in commandes %}
             <form class="formavis" action="{{path('app_espaceu_avis', { id: commande.id })}}" method="POST">
-                {% if app.user and commande.user and commande.user.id == app.user.id and (commande.statut == "livrée" or commande.statut == "terminée") %}
+                {% if app.user and commande.user and commande.user.id == app.user.id and commande.statut == "terminée" %}
                     <tr>
                     
                         <td>{{ commande.date_event|date('d/m/Y') }}</td>
@@ -89,12 +93,12 @@
 
           <div>
             <label for="note">Note :</label>
-            <input type="Number" min="1" max="5" name="note">
+            <input type="Number" min="1" max="5" style="width:80px !important;"  name="note">
           </div>
 
           <div>
             <label for="comment">Commentaire :</label><br>
-            <textarea rows="6" style="width:400px" name="comment"></textarea>
+            <textarea rows="6" style="width:100%" name="comment"></textarea>
           </div>
 
           <button type="submit" class="b" class="btn btn-primary w-100">envoyer</button>
@@ -107,7 +111,7 @@
             {% endfor %}
         </tbody>
     </table>
-
+    {% endif %}
     {% else %}
         <p>Aucune commande pour le moment.</p>
     {% endif %}
